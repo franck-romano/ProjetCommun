@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.nicolas.projetcommun.connexion"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:text="Suric'App"
+        android:textSize="25dp"
+        android:gravity="center_horizontal"
+        android:textColor="#ff000000"
+        android:textStyle="bold"
+        android:paddingTop="30dp"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Identifiant :"
+            android:textColor="#ff000000"
+            android:paddingLeft="20dp"/>
+        <EditText
+            android:id="@+id/identifiant"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mot de passe :"
+            android:textColor="#ff000000"
+            android:paddingLeft="20dp"/>
+        <EditText
+            android:id="@+id/mdp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/inscription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="S\'inscrire"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"/>
+    <TextView
+        android:id="@+id/oubli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="Mot de passe oublié"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"/>
+</LinearLayout>
