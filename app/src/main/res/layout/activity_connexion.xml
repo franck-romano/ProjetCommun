@@ -45,6 +45,13 @@
             android:layout_height="wrap_content"
             android:inputType="text"/>
     </LinearLayout>
+    <Button
+        android:id="@+id/connexion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connexion"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"/>
     <TextView
         android:id="@+id/inscription"
         android:layout_width="wrap_content"
@@ -52,7 +59,7 @@
         android:clickable="true"
         android:text="S\'inscrire"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="10dp"/>
     <TextView
         android:id="@+id/oubli"
         android:layout_width="wrap_content"
@@ -60,5 +67,5 @@
         android:clickable="true"
         android:text="Mot de passe oublié"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="10dp"/>
 </LinearLayout>
