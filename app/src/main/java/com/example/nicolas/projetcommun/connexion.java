@@ -18,22 +18,21 @@ public class connexion extends ActionBarActivity {
 
         TextView inscription = (TextView)findViewById(R.id.inscription);
         TextView oubli = (TextView)findViewById(R.id.oubli);
-        Button connexion = (Button)findViewById(R.id.connexion);
+        final Button connexion = (Button)findViewById(R.id.connexion);
 
             connexion.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     TextView id = (TextView)findViewById(R.id.identifiant);
                     TextView mdp = (TextView)findViewById(R.id.mdp);
-                    //Intent intent = new Intent(connexion.this, NewMessage.class);
-                    Intent intent = new Intent(connexion.this,DetailMessage.class);
-                    String ident = String.valueOf(id.getText().toString());
-                    String mot = String.valueOf(id.getText().toString());
+                    Intent intent = new Intent(connexion.this,profil.class);
+                    String ident = id.getText().toString();
+                    String mot = mdp.getText().toString();
 
                     if(ident.trim().length()==0)
                         Toast.makeText(getApplicationContext(),"Veuillez remplir les champs identifiant et mot de passe svp", Toast.LENGTH_SHORT).show();
                     else {
-                        if ((ident.trim().equals("toto")&&(mot.trim().equals("toto"))))
+                        if ((ident.equals("toto")&&(mot.equals("toto"))))
                                 startActivity(intent);
                         else
                             Toast.makeText(getApplicationContext(), "Identifiant ou MDP Incorrect", Toast.LENGTH_SHORT).show();

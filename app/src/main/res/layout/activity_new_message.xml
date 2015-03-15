@@ -5,125 +5,140 @@
     tools:context="com.example.nicolas.projetcommun.NewMessage"
     android:orientation="vertical"
     android:weightSum="1">
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        >
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Ecrire un nouveau message"
-            android:textStyle="bold"
-            android:textColor="#ff000000"
-            android:gravity="center"
-            android:layout_weight="0.11"
-            android:paddingTop="20dp"
-            android:textSize="20sp"/>
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Votre message :"
-            android:textStyle="bold"
-            android:textColor="#ff000000"
-            android:gravity="left"
-            android:paddingLeft="55dp"
-            android:layout_marginTop="20dp"/>
-
-        <EditText
-            android:id="@+id/message"
+    <android.support.v4.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/drawer_layout">
+        <FrameLayout
+            android:id="@+id/content_frame"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:layout_weight="0.40"
-            android:layout_marginLeft="55dp"
-            android:layout_marginRight="55dp"
-            android:layout_marginTop="20dp"/>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                >
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Catégorie(s) associée(s) :"
-            android:textStyle="bold"
-            android:textColor="#ff000000"
-            android:gravity="left"
-            android:paddingLeft="55dp"
-            android:layout_marginTop="20dp"/>
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ecrire un nouveau message"
+                    android:textStyle="bold"
+                    android:textColor="#ff000000"
+                    android:gravity="center"
+                    android:layout_weight="0.11"
+                    android:paddingTop="20dp"
+                    android:textSize="20sp"/>
 
-        <GridLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:columnCount="3"
-            android:rowCount="4"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp">
-                <CheckBox
-                    android:id="@+id/categorie_1"
-                    android:layout_gravity="center_horizontal"/>
-                <CheckBox
-                    android:id="@+id/categorie_2"
-                    android:layout_gravity="center_horizontal"/>
-                <CheckBox
-                    android:id="@+id/categorie_3"
-                    android:layout_gravity="center_horizontal"/>
                 <TextView
-                    android:text="Transport"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
+                    android:text="Votre message :"
+                    android:textStyle="bold"
+                    android:textColor="#ff000000"
+                    android:gravity="left"
+                    android:paddingLeft="55dp"
+                    android:layout_marginTop="20dp"/>
+
+                <EditText
+                    android:id="@+id/message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:layout_weight="0.40"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginRight="55dp"
+                    android:layout_marginTop="20dp"/>
+
                 <TextView
-                    android:text="Evènement"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:text="Catégorie(s) associée(s) :"
+                    android:textStyle="bold"
+                    android:textColor="#ff000000"
+                    android:gravity="left"
+                    android:paddingLeft="55dp"
+                    android:layout_marginTop="20dp"/>
+
+                <GridLayout
                     android:layout_width="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
-                <TextView
-                    android:text="Promotion"
                     android:layout_height="wrap_content"
+                    android:columnCount="3"
+                    android:rowCount="4"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp">
+                    <CheckBox
+                        android:id="@+id/categorie_1"
+                        android:layout_gravity="center_horizontal"/>
+                    <CheckBox
+                        android:id="@+id/categorie_2"
+                        android:layout_gravity="center_horizontal"/>
+                    <CheckBox
+                        android:id="@+id/categorie_3"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:text="Transport"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                    <TextView
+                        android:text="Evènement"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                    <TextView
+                        android:text="Promotion"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                    <CheckBox
+                        android:id="@+id/categorie_4"
+                        android:layout_gravity="center_horizontal"/>
+                    <CheckBox
+                        android:id="@+id/categorie_5"
+                        android:layout_gravity="center_horizontal"/>
+                    <CheckBox
+                        android:id="@+id/categorie_6"
+                        android:layout_gravity="center_horizontal"/>
+                    <TextView
+                        android:text="Rencontre"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Co-voiturage"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                    <TextView
+                        android:text="Autorités"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                </GridLayout>
+                <Button
+                    android:id="@+id/envoyer"
                     android:layout_width="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
-                <CheckBox
-                    android:id="@+id/categorie_4"
-                    android:layout_gravity="center_horizontal"/>
-                <CheckBox
-                    android:id="@+id/categorie_5"
-                    android:layout_gravity="center_horizontal"/>
-                <CheckBox
-                    android:id="@+id/categorie_6"
-                    android:layout_gravity="center_horizontal"/>
-                <TextView
-                    android:text="Rencontre"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Co-voiturage"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
-                <TextView
-                    android:text="Autorités"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
-        </GridLayout>
-        <Button
-            android:id="@+id/envoyer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Envoyer"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"/>
-    </LinearLayout>
+                    android:text="Envoyer"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+        </FrameLayout>
+        <ListView
+            android:id="@+id/navList"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left|start"
+            android:background="#ffeeeeee"/>
+    </android.support.v4.widget.DrawerLayout>
 </LinearLayout>

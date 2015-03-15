@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
-public class NewMessage extends ActionBarActivity {
+public class profil extends ActionBarActivity {
 
     //Variables pour le menu
     private ListView mDrawerList;
@@ -25,7 +25,7 @@ public class NewMessage extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_message);
+        setContentView(R.layout.activity_profil);
 
         mDrawerList = (ListView)findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -37,6 +37,7 @@ public class NewMessage extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
+
     private void addDrawerItems(){
         String[] itemArray = { "Auteur", "Mon Compte", "Mes Préférences", "Mes suiveurs", "Mes catégories", "Mes informations", "Déconnexion" };
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemArray);
@@ -45,7 +46,7 @@ public class NewMessage extends ActionBarActivity {
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(NewMessage.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(profil.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -86,7 +87,7 @@ public class NewMessage extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_new_message, menu);
+        getMenuInflater().inflate(R.menu.menu_detail_message, menu);
         return true;
     }
 
