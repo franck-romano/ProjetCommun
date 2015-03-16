@@ -38,7 +38,7 @@ public class DetailMessage extends ActionBarActivity {
     }
 
     private void addDrawerItems(){
-        String[] itemArray = { "Auteur", "Mon Compte", "Mes Préférences", "Mes suiveurs", "Mes catégories", "Mes informations", "Déconnexion" };
+        String[] itemArray = { "Nouveau Message", "Vue Timeline", "Vue Carte", "Mon profil", "Mes suiveurs", "Mes catégories", "Mes informations", "Déconnexion" };
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemArray);
         mDrawerList.setAdapter(mAdapter);
 

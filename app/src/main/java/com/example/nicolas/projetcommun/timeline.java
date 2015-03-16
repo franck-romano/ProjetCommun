@@ -1,5 +1,6 @@
 package com.example.nicolas.projetcommun;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -39,14 +40,47 @@ public class timeline extends ActionBarActivity {
 
 
     private void addDrawerItems(){
-        String[] itemArray = { "Auteur", "Mon Compte", "Mes Préférences", "Mes suiveurs", "Mes catégories", "Mes informations", "Déconnexion" };
+        String[] itemArray = { "Nouveau Message", "Vue Timeline", "Vue Carte", "Mon profil", "Mes suiveurs", "Mes catégories", "Mes informations", "Déconnexion" };
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemArray);
         mDrawerList.setAdapter(mAdapter);
 
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(timeline.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
+                switch (position){
+                    case 0:
+                        Intent message = new Intent(timeline.this, NewMessage.class);
+                        startActivity(message);
+                        break;
+                    case 1:
+                        Intent timeline = new Intent(timeline.this, timeline.class);
+                        startActivity(timeline);
+                        break;
+                    case 2:
+                        Intent map = new Intent(timeline.this, map.class);
+                        startActivity(map);
+                        break;
+                    case 3:
+                        Intent profil = new Intent(timeline.this, profil.class);
+                        startActivity(profil);
+                        break;
+                    /*case 3:
+                        Intent followers = new Intent(timeline.this, followers.class);
+                        startActivity(followers);
+                        break;*/
+                    /*case 4:
+                        Intent categorie = new Intent(timeline.this, categorie.class);
+                        startActivity(categorie);
+                        break;*/
+                    /*case 5:
+                        Intent informations = new Intent(timeline.this, Information.class);
+                        startActivity(informations);
+                        break;*/
+                    /*case 6:
+                        Intent deconnexion = new Intent(timeline.this, deconnexion.class);
+                        startActivity(deconnexion);
+                        break;*/
+                }
             }
         });
     }

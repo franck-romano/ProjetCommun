@@ -25,7 +25,7 @@ public class connexion extends ActionBarActivity {
                 public void onClick(View v) {
                     TextView id = (TextView)findViewById(R.id.identifiant);
                     TextView mdp = (TextView)findViewById(R.id.mdp);
-                    Intent intent = new Intent(connexion.this,profil.class);
+                    Intent intent = new Intent(connexion.this,timeline.class);
                     String ident = id.getText().toString();
                     String mot = mdp.getText().toString();
 
