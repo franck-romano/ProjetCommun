@@ -68,10 +68,10 @@ public class timeline extends ActionBarActivity {
                         Intent followers = new Intent(timeline.this, followers.class);
                         startActivity(followers);
                         break;*/
-                    /*case 4:
-                        Intent categorie = new Intent(timeline.this, categorie.class);
+                    case 5:
+                        Intent categorie = new Intent(timeline.this, Categories.class);
                         startActivity(categorie);
-                        break;*/
+                        break;
                     /*case 5:
                         Intent informations = new Intent(timeline.this, Information.class);
                         startActivity(informations);
