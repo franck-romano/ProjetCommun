@@ -95,7 +95,10 @@
                     android:text="Envoyer"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    android:background="#0F6878"
+                    android:textColor="#ffffff"
+                    android:focusableInTouchMode="false" />
             </LinearLayout>
         </FrameLayout>
         <ListView
