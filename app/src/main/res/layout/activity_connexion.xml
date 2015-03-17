@@ -2,19 +2,18 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.nicolas.projetcommun.connexion"
-    android:orientation="vertical">
-    <TextView
+    android:orientation="vertical"
+    android:background="#DEDEDE">
+    <ImageView
         android:layout_width="fill_parent"
         android:layout_height="200dp"
-        android:text="Suric'App"
-        android:textSize="25dp"
         android:gravity="center_horizontal"
-        android:textColor="#ff000000"
-        android:textStyle="bold"
+        android:src="@drawable/logo"
         android:paddingTop="30dp"/>
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
@@ -43,13 +42,15 @@
             android:id="@+id/mdp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"/>
+            android:inputType="textPassword"/>
     </LinearLayout>
     <Button
         android:id="@+id/connexion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Connexion"
+        android:textColor="#ffffff"
+        android:background="#063040"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"/>
     <TextView
@@ -59,13 +60,12 @@
         android:clickable="true"
         android:text="S\'inscrire"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="50dp"/>
     <TextView
         android:id="@+id/oubli"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:text="Mot de passe oublié"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"/>
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

@@ -12,10 +12,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 
-public class NewMessage extends ActionBarActivity {
+public class Categories extends ActionBarActivity {
 
     //Variables pour le menu
     private ListView mDrawerList;
@@ -26,7 +25,7 @@ public class NewMessage extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_message);
+        setContentView(R.layout.activity_categories);
 
         mDrawerList = (ListView)findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -38,6 +37,7 @@ public class NewMessage extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
+
     private void addDrawerItems(){
         String[] itemArray = { "Nouveau Message", "Vue Timeline", "Vue Carte", "Mon profil", "Mes suiveurs", "Mes catégories", "Mes informations", "Déconnexion" };
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemArray);
@@ -48,19 +48,19 @@ public class NewMessage extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        Intent message = new Intent(NewMessage.this, NewMessage.class);
+                        Intent message = new Intent(Categories.this, NewMessage.class);
                         startActivity(message);
                         break;
                     case 1:
-                        Intent timeline = new Intent(NewMessage.this, timeline.class);
+                        Intent timeline = new Intent(Categories.this, timeline.class);
                         startActivity(timeline);
                         break;
                     case 2:
-                        Intent map = new Intent(NewMessage.this, map.class);
+                        Intent map = new Intent(Categories.this, map.class);
                         startActivity(map);
                         break;
                     case 3:
-                        Intent profil = new Intent(NewMessage.this, profil.class);
+                        Intent profil = new Intent(Categories.this, profil.class);
                         startActivity(profil);
                         break;
                     /*case 3:
@@ -68,7 +68,7 @@ public class NewMessage extends ActionBarActivity {
                         startActivity(followers);
                         break;*/
                     case 5:
-                        Intent categorie = new Intent(NewMessage.this, Categories.class);
+                        Intent categorie = new Intent(Categories.this, Categories.class);
                         startActivity(categorie);
                         break;
                     /*case 5:

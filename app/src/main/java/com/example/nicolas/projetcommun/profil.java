@@ -68,10 +68,10 @@ public class profil extends ActionBarActivity {
                         Intent followers = new Intent(NewMessage.this, followers.class);
                         startActivity(followers);
                         break;*/
-                    /*case 4:
-                        Intent categorie = new Intent(NewMessage.this, categorie.class);
+                    case 5:
+                        Intent categorie = new Intent(profil.this, Categories.class);
                         startActivity(categorie);
-                        break;*/
+                        break;
                     /*case 5:
                         Intent informations = new Intent(NewMessage.this, Information.class);
                         startActivity(informations);

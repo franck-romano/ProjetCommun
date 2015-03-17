@@ -1,8 +1,11 @@
 package com.example.nicolas.projetcommun;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -26,6 +29,17 @@ public class map extends FragmentActivity{
         //Google Map
         createMapView();
         addMarker(45, 0);
+
+        //Changement de vue
+       ImageButton bouton = (ImageButton)findViewById(R.id.new_message);
+
+        bouton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(map.this, NewMessage.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -40,7 +54,7 @@ public class map extends FragmentActivity{
             if(null == googleMap){
                 googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapView)).getMap();
                 /*Permet d'activer le zoom sur l'UI*/
-                googleMap.getUiSettings().setZoomControlsEnabled(true);
+                //googleMap.getUiSettings().setZoomControlsEnabled(true);
                 /*Permet d'afficher le compas sur l'UI*/
                 googleMap.getUiSettings().setCompassEnabled(true);
                 /*Permet d'afficher le bouton MaPosition*/
