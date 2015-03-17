@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#DEDEDE"
     tools:context="com.example.nicolas.projetcommun.Categories"
     android:orientation="vertical">
     <android.support.v4.widget.DrawerLayout
@@ -95,8 +96,8 @@
                     android:text="Envoyer"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#0F6878"
+                    android:layout_marginTop="20dp"
+                    android:background="#063040"
                     android:textColor="#ffffff"
                     android:focusableInTouchMode="false" />
             </LinearLayout>
