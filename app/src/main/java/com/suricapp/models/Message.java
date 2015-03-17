@@ -1,7 +1,11 @@
 package com.suricapp.models;
 import com.orm.SugarRecord;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  * Created by maxence on 17/03/15.
@@ -40,6 +44,22 @@ public class Message extends SugarRecord<Message> {
     private Point message_id_point_fk;
     private Category message_id_category_fk;
     private User message_id_user_fk;
+
+    public ArrayList<NameValuePair> objectToNameValuePair()
+    {
+        ArrayList<NameValuePair> followersDetails = new ArrayList<>();
+        followersDetails.add(new BasicNameValuePair("message_title_fr_fr",this.getMessage_title_fr_fr()));
+        followersDetails.add(new BasicNameValuePair("message_content_fr_fr",this.getMessage_content_fr_fr()));
+        followersDetails.add(new BasicNameValuePair("message_nb_like",""+""+this.getMessage_nb_like()));
+        followersDetails.add(new BasicNameValuePair("message_nb_unlike",""+this.getMessage_nb_unlike()));
+        followersDetails.add(new BasicNameValuePair("message_nb_report",""+this.getMessage_nb_report()));
+        followersDetails.add(new BasicNameValuePair("message_status_fr_fr",""+this.getMessage_status_fr_fr()));
+        followersDetails.add(new BasicNameValuePair("message_date",""+this.getMessage_date()));
+        followersDetails.add(new BasicNameValuePair("message_id_point_fk",""+this.getMessage_id_point_fk()));
+        followersDetails.add(new BasicNameValuePair("message_id_category_fk",""+this.getMessage_id_category_fk()));
+        followersDetails.add(new BasicNameValuePair("message_id_user_fk",""+this.getMessage_id_user_fk().getId()));
+        return followersDetails;
+    }
 
     public Message() {
     }

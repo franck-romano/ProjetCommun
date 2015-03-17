@@ -1,7 +1,11 @@
 package com.suricapp.models;
 import com.orm.SugarRecord;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  * Created by maxence on 17/03/15.
@@ -40,6 +44,24 @@ public class User extends SugarRecord<User>{
     private String user_phone;
     private String user_email;
     private int user_is_premium;
+
+
+    public ArrayList<NameValuePair> objectToNameValuePair()
+    {
+        ArrayList<NameValuePair> followersDetails = new ArrayList<>();
+        followersDetails.add(new BasicNameValuePair("user_pseudo",this.getUser_pseudo()));
+        followersDetails.add(new BasicNameValuePair("user_password",this.getUser_password()));
+        followersDetails.add(new BasicNameValuePair("user_name",""+""+this.getUser_name()));
+        followersDetails.add(new BasicNameValuePair("user_first_name",""+this.getUser_first_name()));
+        followersDetails.add(new BasicNameValuePair("user_date_creation",""+this.getUser_date_creation()));
+        followersDetails.add(new BasicNameValuePair("user_birthday",""+this.getUser_birthday()));
+        followersDetails.add(new BasicNameValuePair("user_situation_fr_fr",""+this.getUser_situation_fr_fr()));
+        followersDetails.add(new BasicNameValuePair("user_city",""+this.getUser_city()));
+        followersDetails.add(new BasicNameValuePair("user_phone",""+this.getUser_phone()));
+        followersDetails.add(new BasicNameValuePair("user_email",""+this.getUser_email()));
+        followersDetails.add(new BasicNameValuePair("user_is_premium",""+this.getUser_is_premium()));
+        return followersDetails;
+    }
 
     public User() {
     }

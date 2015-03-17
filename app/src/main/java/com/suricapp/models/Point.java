@@ -1,6 +1,11 @@
 package com.suricapp.models;
 import com.orm.SugarRecord;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
+
 /**
  * Created by maxence on 17/03/15.
  */
@@ -40,5 +45,13 @@ public class Point extends SugarRecord<Point> {
 
     public void setPoint_longitude(double point_longitude) {
         this.point_longitude = point_longitude;
+    }
+
+    public ArrayList<NameValuePair> objectToNameValuePair()
+    {
+        ArrayList<NameValuePair> followersDetails = new ArrayList<>();
+        followersDetails.add(new BasicNameValuePair("point_latitude",""+this.getPoint_latitude()));
+        followersDetails.add(new BasicNameValuePair("point_longitude",""+this.getPoint_longitude()));
+        return followersDetails;
     }
 }

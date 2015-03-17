@@ -1,6 +1,11 @@
 package com.suricapp.models;
 import com.orm.SugarRecord;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
+
 /**
  * Created by maxence on 17/03/15.
  */
@@ -40,5 +45,13 @@ public class Follower extends SugarRecord<Follower>{
 
     public void setFollowers_id_user_fk(User followers_id_user_fk) {
         this.followers_id_user_fk = followers_id_user_fk;
+    }
+
+    public ArrayList<NameValuePair> objectToNameValuePair()
+    {
+        ArrayList<NameValuePair> followersDetails = new ArrayList<>();
+        followersDetails.add(new BasicNameValuePair("followers_id_followers",this.getFollowers_id_followers().getId().toString()));
+        followersDetails.add(new BasicNameValuePair("followers_id_user",this.getFollowers_id_user_fk().getId().toString()));
+        return followersDetails;
     }
 }
