@@ -17,7 +17,7 @@ public class Inscription_2Activity extends ActionBarActivity {
         final TextView rayon_numeric = (TextView)findViewById(R.id.rayon_texte);
 
         // Initialiser le textView avec la valeur de départ.
-        rayon_numeric.setText(rayon.getProgress() + " kms");
+        rayon_numeric.setText(rayon.getProgress() + getString(R.string.kms));
 
         rayon.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progress = 0;
@@ -28,12 +28,12 @@ public class Inscription_2Activity extends ActionBarActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                rayon_numeric.setText(progress + " kms");
+                rayon_numeric.setText(progress + getString(R.string.kms));
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                rayon_numeric.setText(progress + " kms");
+                rayon_numeric.setText(progress + getString(R.string.kms));
             }
         });
     }

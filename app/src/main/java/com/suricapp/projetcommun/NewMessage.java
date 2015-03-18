@@ -38,38 +38,38 @@ public class NewMessage extends ActionBarActivity {
     }
 
     private void addDrawerItems(){
-        String[] itemArray = { "Nouveau Message", "Vue Timeline", "Vue Carte", "Mon profil", "Mes suiveurs", "Mes catégories", "Mes informations", "Déconnexion" };
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemArray);
-        mDrawerList.setAdapter(mAdapter);
+        String[] itemArray = { getString(R.string.new_message), getString(R.string.timeline_view), getString(R.string.map_view), getString(R.string.my_profile), getString(R.string.my_followers), getString(R.string.my_categories), getString(R.string.my_informations), getString(R.string.deconnexion) };
+                mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemArray);
+                mDrawerList.setAdapter(mAdapter);
 
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        Intent message = new Intent(NewMessage.this, NewMessage.class);
-                        startActivity(message);
-                        break;
-                    case 1:
-                        Intent timeline = new Intent(NewMessage.this, TimelineActivity.class);
-                        startActivity(timeline);
-                        break;
-                    case 2:
-                        Intent map = new Intent(NewMessage.this, MapActivity.class);
-                        startActivity(map);
-                        break;
-                    case 3:
-                        Intent profil = new Intent(NewMessage.this, ProfilActivity.class);
-                        startActivity(profil);
-                        break;
+                mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        switch (position) {
+                            case 0:
+                                Intent message = new Intent(NewMessage.this, NewMessage.class);
+                                startActivity(message);
+                                break;
+                            case 1:
+                                Intent timeline = new Intent(NewMessage.this, TimelineActivity.class);
+                                startActivity(timeline);
+                                break;
+                            case 2:
+                                Intent map = new Intent(NewMessage.this, MapActivity.class);
+                                startActivity(map);
+                                break;
+                            case 3:
+                                Intent profil = new Intent(NewMessage.this, ProfilActivity.class);
+                                startActivity(profil);
+                                break;
                     /*case 3:
                         Intent followers = new Intent(NewMessage.this, followers.class);
                         startActivity(followers);
                         break;*/
-                    case 5:
-                        Intent categorie = new Intent(NewMessage.this, CategoriesActivity.class);
-                        startActivity(categorie);
-                        break;
+                            case 5:
+                                Intent categorie = new Intent(NewMessage.this, CategoriesActivity.class);
+                                startActivity(categorie);
+                                break;
                     /*case 5:
                         Intent informations = new Intent(NewMessage.this, Information.class);
                         startActivity(informations);
@@ -78,24 +78,24 @@ public class NewMessage extends ActionBarActivity {
                         Intent deconnexion = new Intent(NewMessage.this, deconnexion.class);
                         startActivity(deconnexion);
                         break;*/
-                }
-            }
-        });
-    }
-
-    private void setupDrawer(){
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.drawer_open, R.string.drawer_close) {
-            /** Called when a drawer has settled in a completely open state. */
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle("Menu");
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                        }
+                    }
+                });
             }
 
-            /** Called when a drawer has settled in a completely closed state. */
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                getSupportActionBar().setTitle("Suric'app");
+            private void setupDrawer(){
+                mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.drawer_open, R.string.drawer_close) {
+                    /** Called when a drawer has settled in a completely open state. */
+                    public void onDrawerOpened(View drawerView) {
+                        super.onDrawerOpened(drawerView);
+                        getSupportActionBar().setTitle(getString(R.string.menu));
+                        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                    }
+
+                    /** Called when a drawer has settled in a completely closed state. */
+                    public void onDrawerClosed(View view) {
+                        super.onDrawerClosed(view);
+                        getSupportActionBar().setTitle(getString(R.string.app_name));
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };

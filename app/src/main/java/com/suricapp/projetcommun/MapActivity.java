@@ -26,16 +26,13 @@ public class MapActivity extends FragmentActivity implements LocationListener {
      */
     private GoogleMap googleMap;
     private LocationManager locationManager;
-    private Marker marker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        //Google Map
         createMapView();
-        //addMarker(45, 0);
 
         //Changement de vue vers la vue NewMessage
        ImageButton bouton = (ImageButton)findViewById(R.id.new_message);
@@ -49,6 +46,40 @@ public class MapActivity extends FragmentActivity implements LocationListener {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //Obtention de la référence du service
+        locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+
+        //Si le GPS est disponible, on s'y abonne
+        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            abonnementGPS();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        //On appelle la méthode pour se désabonner
+        desabonnementGPS();
+    }
+
+    /**
+     * Méthode permettant de s'abonner à la localisation par GPS.
+     */
+    public void abonnementGPS() {
+        //On s'abonne
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, this);
+    }
+
+    public void desabonnementGPS() {
+        //Si le GPS est disponible, on s'y abonne
+        locationManager.removeUpdates(this);
+    }
+
     /**
      * Initialises the mapview
      */
@@ -57,27 +88,20 @@ public class MapActivity extends FragmentActivity implements LocationListener {
          * Catch the null pointer exception that
          * may be thrown when initialising the
          */
+
         try {
             if(googleMap == null){
                 googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapView)).getMap();
-                LocationManager location = (LocationManager) this.getSystemService(LOCATION_SERVICE);
-                //Si le GPS est disponible, on s'y abonne
-                if(location.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                    location.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, this);
-                }
-                /*Permet d'afficher le compas sur l'UI*/
-                googleMap.getUiSettings().setCompassEnabled(true);
-                /*Permet d'afficher le bouton MaPosition*/
+                //Permet d'afficher le bouton MaPosition
                 googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+                //Autoriser la récupération de la position actuelle.
                 googleMap.setMyLocationEnabled(true);
-                googleMap.getMyLocation();
 
                 /**
-                 * If the  is still null after attempted initialisation,
-                 * show an error to the user
+                 * Si la Map est toujours null après initialisation on affiche une erreur via un Toast
                  */
                 if(googleMap == null) {
-                    Toast.makeText(getApplicationContext(), "Error creating ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.erreur_map), Toast.LENGTH_SHORT).show();
                 }
             }
         } catch (NullPointerException exception){
@@ -90,30 +114,31 @@ public class MapActivity extends FragmentActivity implements LocationListener {
      */
     private void addMarker(int longitude, int latitude) {
         if (null != googleMap) {
-            googleMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title("Vous êtes ici"));
+            googleMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title(getString(R.string.here)));
         }
     }
 
     @Override
-    public void onLocationChanged(Location location) {
-        //Mise à jour des coordonnées
-        final LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-        marker.setPosition(latLng);
+    public void onLocationChanged(final Location location) {
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()),15.0f));
     }
 
     @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
+    public void onProviderDisabled(final String provider) {
+        //Si le GPS est désactivé on se désabonne
+        if("gps".equals(provider)) {
+            desabonnementGPS();
+        }
     }
 
     @Override
-    public void onProviderEnabled(String provider) {
-
+    public void onProviderEnabled(final String provider) {
+        //Si le GPS est activé on s'abonne
+        if("gps".equals(provider)) {
+            abonnementGPS();
+        }
     }
 
     @Override
-    public void onProviderDisabled(String provider) {
-
-    }
+    public void onStatusChanged(final String provider, final int status, final Bundle extras) { }
 }

@@ -30,12 +30,12 @@ public class ConnexionActivity extends ActionBarActivity {
                     String mot = mdp.getText().toString();
 
                     if(ident.trim().length()==0)
-                        Toast.makeText(getApplicationContext(),"Veuillez remplir les champs identifiant et mot de passe svp", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),getString(R.string.message_connexion), Toast.LENGTH_SHORT).show();
                     else {
                         if ((ident.equals("toto")&&(mot.equals("toto"))))
                                 startActivity(intent);
                         else
-                            Toast.makeText(getApplicationContext(), "Identifiant ou MDP Incorrect", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), getString(R.string.erreur_connexion), Toast.LENGTH_SHORT).show();
                     }
                 }
             });

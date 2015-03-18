@@ -40,7 +40,7 @@ public class TimelineActivity extends ActionBarActivity {
 
 
     private void addDrawerItems(){
-        String[] itemArray = { "Nouveau Message", "Vue Timeline", "Vue Carte", "Mon profil", "Mes suiveurs", "Mes catégories", "Mes informations", "Déconnexion" };
+        String[] itemArray = { getString(R.string.new_message), getString(R.string.timeline_view), getString(R.string.map_view), getString(R.string.my_profile), getString(R.string.my_followers), getString(R.string.my_categories), getString(R.string.my_informations), getString(R.string.deconnexion) };
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemArray);
         mDrawerList.setAdapter(mAdapter);
 
@@ -90,14 +90,14 @@ public class TimelineActivity extends ActionBarActivity {
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle("Menu");
+                getSupportActionBar().setTitle(getString(R.string.menu));
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                getSupportActionBar().setTitle("Suric'app");
+                getSupportActionBar().setTitle(getString(R.string.app_name));
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
