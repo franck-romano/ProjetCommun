@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.Calendar;
 
 
-public class InscriptionActivity extends ActionBarActivity {
+public class InscriptionActivity extends ActionBarActivity implements View.OnClickListener{
 
     private DatePicker datePicker;
     private Calendar calendar;
@@ -71,5 +71,10 @@ public class InscriptionActivity extends ActionBarActivity {
     private void showDate(int year, int month, int day) {
         dateView.setText(new StringBuilder().append(day).append("/")
                 .append(month).append("/").append(year));
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

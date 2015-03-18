@@ -81,10 +81,6 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.suricapp.projetcommun" />
 
-        <activity
-            android:name=".SuricAppActionBarActivity"
-            android:label="@string/title_activity_suric_app_action_bar" >
-        </activity>
     </application>
 
 </manifest>

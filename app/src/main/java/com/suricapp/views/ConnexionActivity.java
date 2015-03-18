@@ -27,19 +27,19 @@ public class ConnexionActivity extends ActionBarActivity {
         TextView oubli = (TextView)findViewById(R.id.oubli);
         connexion= (Button)findViewById(R.id.connexion);
 
-        task= new HTTPAsyncTask(this);
+        //task= new HTTPAsyncTask(this);
        /* ArrayList<NameValuePair> listNameValuePair = new ArrayList<>();
         listNameValuePair.add(new BasicNameValuePair("nom","Mimy"));
         listNameValuePair.add(new BasicNameValuePair("prenom","Zeubi"));*/
-        task.execute(null,"http://suricapp.esy.es/ws.php/d_user/user_mail/mailsdugars","GET",null);
-
-
+        //task.execute(null,"http://suricapp.esy.es/ws.php/d_user/user_mail/mailsdugars","GET",null);
+        /**
         task.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
             @Override
             public void setMyTaskComplete(String message) {
                 id.setText(message);
             }
         });
+         */
 
             connexion.setOnClickListener(new View.OnClickListener() {
                 @Override
