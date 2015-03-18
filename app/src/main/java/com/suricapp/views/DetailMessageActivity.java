@@ -14,73 +14,15 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
-public class DetailMessageActivity extends ActionBarActivity {
-
-    //Variables pour le menu
-    private ListView mDrawerList;
-    private ArrayAdapter<String> mAdapter;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private DrawerLayout mDrawerLayout;
+public class DetailMessageActivity extends SuricAppActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_message);
 
-        mDrawerList = (ListView)findViewById(R.id.navList);
-        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-
-        addDrawerItems();
-        setupDrawer();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-    }
-
-    private void addDrawerItems(){
-        String[] itemArray = { "Nouveau Message", "Vue Timeline", "Vue Carte", "Mon profil", "Mes suiveurs", "Mes catégories", "Mes informations", "Déconnexion" };
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemArray);
-        mDrawerList.setAdapter(mAdapter);
-
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(DetailMessageActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void setupDrawer(){
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.drawer_open, R.string.drawer_close) {
-            /** Called when a drawer has settled in a completely open state. */
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle("Menu");
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-            }
-
-            /** Called when a drawer has settled in a completely closed state. */
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                getSupportActionBar().setTitle("Suric'app");
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-            }
-        };
-        mDrawerToggle.setDrawerIndicatorEnabled(true);
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
@@ -90,15 +32,4 @@ public class DetailMessageActivity extends ActionBarActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

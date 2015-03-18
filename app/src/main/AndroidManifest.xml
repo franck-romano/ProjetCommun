@@ -19,15 +19,15 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.suricapp.views.InscriptionActivity"
+            android:name=".InscriptionActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.suricapp.views.Inscription_2Activity"
+            android:name=".Inscription_2Activity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.suricapp.views.ConnexionActivity"
+            android:name=".ConnexionActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,15 +36,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.suricapp.views.NewMessage"
+            android:name=".NewMessage"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.suricapp.views.DetailMessageActivity"
+            android:name=".DetailMessageActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.suricapp.views.MapActivity"
+            android:name=".MapActivity"
             android:label="@string/app_name" >
         </activity>
 
@@ -56,18 +56,17 @@
             android:value="AIzaSyCX2kksUnbBg5DFYk6FP6wzrg-W0IIUhUc" />
 
         <activity
-            android:name="com.suricapp.views.TimelineActivity"
+            android:name=".TimelineActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.suricapp.views.ProfilActivity"
+            android:name=".ProfilActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.suricapp.views.CategoriesActivity"
+            android:name=".CategoriesActivity"
             android:label="@string/title_activity_categories" >
         </activity>
-
 
         <meta-data
             android:name="DATABASE"
@@ -81,6 +80,11 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.suricapp.projetcommun" />
+
+        <activity
+            android:name=".SuricAppActionBarActivity"
+            android:label="@string/title_activity_suric_app_action_bar" >
+        </activity>
     </application>
 
 </manifest>
