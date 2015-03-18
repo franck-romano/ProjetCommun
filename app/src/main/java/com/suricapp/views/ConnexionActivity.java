@@ -11,34 +11,33 @@ import android.widget.Toast;
 import com.suricapp.rest.client.HTTPAsyncTask;
 import com.suricapp.rest.client.RestClient;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-
-import java.util.ArrayList;
-
 
 public class ConnexionActivity extends ActionBarActivity {
 
-    private  Button connexion;
+    private  TextView id ;
+    private Button connexion;
     private RestClient restClient;
+    private  HTTPAsyncTask task ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connexion);
-
+        id= (TextView)findViewById(R.id.identifiant);
         TextView inscription = (TextView)findViewById(R.id.inscription);
         TextView oubli = (TextView)findViewById(R.id.oubli);
         connexion= (Button)findViewById(R.id.connexion);
 
-        HTTPAsyncTask task = new HTTPAsyncTask(this);
+        task= new HTTPAsyncTask(this);
        /* ArrayList<NameValuePair> listNameValuePair = new ArrayList<>();
         listNameValuePair.add(new BasicNameValuePair("nom","Mimy"));
         listNameValuePair.add(new BasicNameValuePair("prenom","Zeubi"));*/
-        task.execute(null,"http://suricapp.esy.es/ws.php/d_category","GET",null);
+        task.execute(null,"http://suricapp.esy.es/ws.php/d_user/user_mail/mailsdugars","GET",null);
+
+
         task.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
             @Override
             public void setMyTaskComplete(String message) {
-
+                id.setText(message);
             }
         });
 

@@ -3,30 +3,23 @@ package com.suricapp.rest.client;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import org.json.JSONException;
+
 /**
  * Created by Franck on 17/03/15.
  */
 public class HTTPAsyncTask extends AsyncTask<Object,Void,String> {
-
     /**
      *
      */
     RestClient restClient = new RestClient();
     public HTTPAsyncTask(Context context){}
+
+    public interface OnTaskComplete {
+        public void setMyTaskComplete(String message) throws JSONException;
+    }
     private OnTaskComplete onTaskComplete;
 
-    /**
-     *
-     */
-    public interface OnTaskComplete {
-        public void setMyTaskComplete(String message);
-    }
-
-    /**
-     *
-     *
-     * @param onTaskComplete
-     */
     public void setMyTaskCompleteListener(OnTaskComplete onTaskComplete) {
         this.onTaskComplete = onTaskComplete;
     }
@@ -34,7 +27,7 @@ public class HTTPAsyncTask extends AsyncTask<Object,Void,String> {
     /**
      * Run the specified query according to its name in
      * @param params a set of Object
-     *  params[0] = login / password
+     *  params[0] = an array composed of {login /password}
         params[1] = URL to reach
         params[2]= method type {GET,PUT,POST,DELETE}
         params[3] = parameters used only in PUT,POST
@@ -42,7 +35,7 @@ public class HTTPAsyncTask extends AsyncTask<Object,Void,String> {
      */
     @Override
     protected String doInBackground(Object... params) {
-        String credentials = (String)params[0];
+        String []credentials = (String[])params[0];
         String URL = (String)params[1];
         String methodName = (String)params[2];
         Object parameters =params[3];

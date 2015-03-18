@@ -2,12 +2,21 @@ package com.suricapp.views;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.suricapp.models.User;
+import com.suricapp.rest.client.HTTPAsyncTask;
+import com.suricapp.rest.client.RestClient;
+import com.suricapp.suricapp.utils.JsonUtils;
 
-public class Inscription_2Activity extends ActionBarActivity {
+import org.json.JSONException;
 
+
+public class Inscription_2Activity extends ActionBarActivity implements View.OnClickListener{
+
+    private HTTPAsyncTask task;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,5 +45,23 @@ public class Inscription_2Activity extends ActionBarActivity {
                 rayon_numeric.setText(progress + " kms");
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        User max = new User();
+        switch (v.getId())
+        {
+            case R.id.action_bar:
+                task = new HTTPAsyncTask(this);
+                task.execute(null,"http://suricapp.esy.es/ws.php/d_user","POST",max.objectToNameValuePair());
+                task.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
+                    @Override
+                    public void setMyTaskComplete(String message) throws JSONException {
+                        JsonUtils.StringToJSON(message);
+                    }
+                });
+                break;
+        }
     }
 }
