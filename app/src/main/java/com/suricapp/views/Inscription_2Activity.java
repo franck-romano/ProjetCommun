@@ -1,4 +1,4 @@
-package com.suricapp.projetcommun;
+package com.suricapp.views;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.suricapp.projetcommun" >
+    package="com.suricapp.views" >
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -68,7 +68,6 @@
             android:label="@string/title_activity_categories" >
         </activity>
 
-
         <meta-data
             android:name="DATABASE"
             android:value="suricapp.db" />
@@ -81,6 +80,11 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.suricapp.projetcommun" />
+
+        <activity
+            android:name=".SuricAppActionBarActivity"
+            android:label="@string/title_activity_suric_app_action_bar" >
+        </activity>
     </application>
 
 </manifest>

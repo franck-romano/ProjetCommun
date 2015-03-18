@@ -1,4 +1,4 @@
-package com.suricapp.projetcommun;
+package com.suricapp.views;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
