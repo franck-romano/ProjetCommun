@@ -1,11 +1,8 @@
-package com.suricapp.views;
+package com.example.nicolas.projetcommun;
 
-import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -14,7 +11,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
-public class MapActivity extends FragmentActivity{
+public class map extends FragmentActivity{
 
     /**
      * Variables pour Google Maps
@@ -29,17 +26,6 @@ public class MapActivity extends FragmentActivity{
         //Google Map
         createMapView();
         addMarker(45, 0);
-
-        //Changement de vue
-       ImageButton bouton = (ImageButton)findViewById(R.id.new_message);
-
-        bouton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MapActivity.this, NewMessage.class);
-                startActivity(intent);
-            }
-        });
     }
 
     /**
@@ -48,24 +34,24 @@ public class MapActivity extends FragmentActivity{
     private void createMapView(){
         /**
          * Catch the null pointer exception that
-         * may be thrown when initialising the
+         * may be thrown when initialising the map
          */
         try {
             if(null == googleMap){
                 googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapView)).getMap();
                 /*Permet d'activer le zoom sur l'UI*/
-                //googleMap.getUiSettings().setZoomControlsEnabled(true);
+                googleMap.getUiSettings().setZoomControlsEnabled(true);
                 /*Permet d'afficher le compas sur l'UI*/
                 googleMap.getUiSettings().setCompassEnabled(true);
                 /*Permet d'afficher le bouton MaPosition*/
                 googleMap.getUiSettings().setMyLocationButtonEnabled(true);
 
                 /**
-                 * If the  is still null after attempted initialisation,
+                 * If the map is still null after attempted initialisation,
                  * show an error to the user
                  */
                 if(null == googleMap) {
-                    Toast.makeText(getApplicationContext(), "Error creating ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Error creating map", Toast.LENGTH_SHORT).show();
                 }
             }
         } catch (NullPointerException exception){

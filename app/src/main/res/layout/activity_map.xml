@@ -1,6 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.nicolas.projetcommun.map">
@@ -19,17 +18,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/mapView"
                 android:name="com.google.android.gms.maps.MapFragment"
-                tools:layout="@layout/activity_map">
-            <ImageButton
-                android:id="@+id/new_message"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_gravity="right|bottom"
-                android:src="@drawable/message_transp"
-                android:background="#DEDEDE"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"/>
-            </fragment>
+                tools:layout="@layout/activity_map" />
         </FrameLayout>
         <ListView
             android:id="@+id/navList"

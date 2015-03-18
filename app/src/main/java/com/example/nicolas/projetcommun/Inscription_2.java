@@ -1,4 +1,4 @@
-package com.suricapp.views;
+package com.example.nicolas.projetcommun;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 
-public class Inscription_2Activity extends ActionBarActivity {
+public class Inscription_2 extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

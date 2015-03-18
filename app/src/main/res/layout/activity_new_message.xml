@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.nicolas.projetcommun.NewMessage"
     android:orientation="vertical"
-    android:background="#DEDEDE"
     android:weightSum="1">
     <android.support.v4.widget.DrawerLayout
         android:layout_width="match_parent"
