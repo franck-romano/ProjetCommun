@@ -8,9 +8,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.suricapp.rest.client.HTTPAsyncTask;
+import com.suricapp.rest.client.RestClient;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
+
 
 public class ConnexionActivity extends ActionBarActivity {
 
+    private  Button connexion;
+    private RestClient restClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +28,19 @@ public class ConnexionActivity extends ActionBarActivity {
 
         TextView inscription = (TextView)findViewById(R.id.inscription);
         TextView oubli = (TextView)findViewById(R.id.oubli);
-        final Button connexion = (Button)findViewById(R.id.connexion);
+        connexion= (Button)findViewById(R.id.connexion);
+
+        HTTPAsyncTask task = new HTTPAsyncTask(this);
+       /* ArrayList<NameValuePair> listNameValuePair = new ArrayList<>();
+        listNameValuePair.add(new BasicNameValuePair("nom","Mimy"));
+        listNameValuePair.add(new BasicNameValuePair("prenom","Zeubi"));*/
+        task.execute(null,"http://suricapp.esy.es/ws.php/d_category","GET",null);
+        task.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
+            @Override
+            public void setMyTaskComplete(String message) {
+
+            }
+        });
 
             connexion.setOnClickListener(new View.OnClickListener() {
                 @Override
