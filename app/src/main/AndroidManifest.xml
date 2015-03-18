@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.suricapp.projetcommun" >
+    package="com.suricapp.views" >
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -19,15 +19,15 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".InscriptionActivity"
+            android:name="com.suricapp.views.InscriptionActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".Inscription_2Activity"
+            android:name="com.suricapp.views.Inscription_2Activity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".ConnexionActivity"
+            android:name="com.suricapp.views.ConnexionActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,15 +36,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".NewMessage"
+            android:name="com.suricapp.views.NewMessage"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".DetailMessageActivity"
+            android:name="com.suricapp.views.DetailMessageActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".MapActivity"
+            android:name="com.suricapp.views.MapActivity"
             android:label="@string/app_name" >
         </activity>
 
@@ -56,15 +56,15 @@
             android:value="AIzaSyCX2kksUnbBg5DFYk6FP6wzrg-W0IIUhUc" />
 
         <activity
-            android:name=".TimelineActivity"
+            android:name="com.suricapp.views.TimelineActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".ProfilActivity"
+            android:name="com.suricapp.views.ProfilActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".CategoriesActivity"
+            android:name="com.suricapp.views.CategoriesActivity"
             android:label="@string/title_activity_categories" >
         </activity>
 
