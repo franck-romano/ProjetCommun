@@ -1,4 +1,4 @@
-package com.example.nicolas.projetcommun;
+package com.suricapp.views;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -8,9 +8,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.suricapp.rest.client.HTTPAsyncTask;
+import com.suricapp.rest.client.RestClient;
 
-public class connexion extends ActionBarActivity {
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
+import java.util.ArrayList;
+
+
+public class ConnexionActivity extends ActionBarActivity {
+
+    private  Button connexion;
+    private RestClient restClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,14 +28,26 @@ public class connexion extends ActionBarActivity {
 
         TextView inscription = (TextView)findViewById(R.id.inscription);
         TextView oubli = (TextView)findViewById(R.id.oubli);
-        final Button connexion = (Button)findViewById(R.id.connexion);
+        connexion= (Button)findViewById(R.id.connexion);
+
+        HTTPAsyncTask task = new HTTPAsyncTask(this);
+       /* ArrayList<NameValuePair> listNameValuePair = new ArrayList<>();
+        listNameValuePair.add(new BasicNameValuePair("nom","Mimy"));
+        listNameValuePair.add(new BasicNameValuePair("prenom","Zeubi"));*/
+        task.execute(null,"http://suricapp.esy.es/ws.php/d_category","GET",null);
+        task.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
+            @Override
+            public void setMyTaskComplete(String message) {
+
+            }
+        });
 
             connexion.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     TextView id = (TextView)findViewById(R.id.identifiant);
                     TextView mdp = (TextView)findViewById(R.id.mdp);
-                    Intent intent = new Intent(connexion.this,timeline.class);
+                    Intent intent = new Intent(ConnexionActivity.this,TimelineActivity.class);
                     String ident = id.getText().toString();
                     String mot = mdp.getText().toString();
 
@@ -43,7 +65,7 @@ public class connexion extends ActionBarActivity {
         inscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(connexion.this, Inscription.class);
+                Intent intent = new Intent(ConnexionActivity.this, InscriptionActivity.class);
                 startActivity(intent);
             }
         });

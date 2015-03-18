@@ -2,10 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nicolas.projetcommun.NewMessage"
-    android:orientation="vertical"
     android:background="#DEDEDE"
-    android:weightSum="1">
+    tools:context="com.suricapp.views.CategoriesActivity"
+    android:orientation="vertical">
     <android.support.v4.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,54 +14,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                >
-
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ecrire un nouveau message"
+                    android:text="Mes Catégories"
                     android:textStyle="bold"
                     android:textColor="#ff000000"
                     android:gravity="center"
-                    android:layout_weight="0.11"
                     android:paddingTop="20dp"
                     android:textSize="20sp"/>
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Votre message :"
-                    android:textStyle="bold"
-                    android:textColor="#ff000000"
-                    android:gravity="left"
-                    android:paddingLeft="55dp"
-                    android:layout_marginTop="20dp"/>
-
-                <EditText
-                    android:id="@+id/message"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:ems="10"
-                    android:layout_weight="0.40"
-                    android:layout_marginLeft="55dp"
-                    android:layout_marginRight="55dp"
-                    android:layout_marginTop="20dp"/>
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Catégorie(s) associée(s) :"
-                    android:textStyle="bold"
-                    android:textColor="#ff000000"
-                    android:gravity="left"
-                    android:paddingLeft="55dp"
-                    android:layout_marginTop="20dp"/>
-
                 <GridLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -70,7 +33,7 @@
                     android:rowCount="4"
                     android:orientation="horizontal"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="200dp">
                     <CheckBox
                         android:id="@+id/categorie_1"
                         android:layout_gravity="center_horizontal"/>
@@ -132,7 +95,11 @@
                     android:layout_height="wrap_content"
                     android:text="Envoyer"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#063040"
+                    android:textColor="#ffffff"
+                    android:focusableInTouchMode="false" />
             </LinearLayout>
         </FrameLayout>
         <ListView
