@@ -1,4 +1,4 @@
-package com.example.nicolas.projetcommun;
+package com.suricapp.projetcommun;
 
 import android.content.res.Configuration;
 import android.support.v4.widget.DrawerLayout;
@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
-public class DetailMessage extends ActionBarActivity {
+public class DetailMessageActivity extends ActionBarActivity {
 
     //Variables pour le menu
     private ListView mDrawerList;
@@ -45,7 +45,7 @@ public class DetailMessage extends ActionBarActivity {
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(DetailMessage.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailMessageActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
             }
         });
     }

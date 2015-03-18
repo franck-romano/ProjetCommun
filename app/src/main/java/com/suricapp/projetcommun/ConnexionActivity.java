@@ -1,4 +1,4 @@
-package com.example.nicolas.projetcommun;
+package com.suricapp.projetcommun;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class connexion extends ActionBarActivity {
+public class ConnexionActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class connexion extends ActionBarActivity {
                 public void onClick(View v) {
                     TextView id = (TextView)findViewById(R.id.identifiant);
                     TextView mdp = (TextView)findViewById(R.id.mdp);
-                    Intent intent = new Intent(connexion.this,timeline.class);
+                    Intent intent = new Intent(ConnexionActivity.this,TimelineActivity.class);
                     String ident = id.getText().toString();
                     String mot = mdp.getText().toString();
 
@@ -43,7 +43,7 @@ public class connexion extends ActionBarActivity {
         inscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(connexion.this, Inscription.class);
+                Intent intent = new Intent(ConnexionActivity.this, InscriptionActivity.class);
                 startActivity(intent);
             }
         });

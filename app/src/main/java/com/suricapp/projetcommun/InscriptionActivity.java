@@ -1,4 +1,4 @@
-package com.example.nicolas.projetcommun;
+package com.suricapp.projetcommun;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.Calendar;
 
 
-public class Inscription extends ActionBarActivity {
+public class InscriptionActivity extends ActionBarActivity {
 
     private DatePicker datePicker;
     private Calendar calendar;
@@ -36,7 +36,7 @@ public class Inscription extends ActionBarActivity {
         bouton_envoyer.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Inscription.this, Inscription_2.class);
+                Intent intent = new Intent(InscriptionActivity.this, Inscription_2Activity.class);
                 startActivity(intent);
             }
         });

@@ -1,4 +1,4 @@
-package com.example.nicolas.projetcommun;
+package com.suricapp.projetcommun;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -12,10 +12,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 
-public class profil extends ActionBarActivity {
+public class CategoriesActivity extends ActionBarActivity {
 
     //Variables pour le menu
     private ListView mDrawerList;
@@ -26,7 +25,7 @@ public class profil extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profil);
+        setContentView(R.layout.activity_categories);
 
         mDrawerList = (ListView)findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -49,29 +48,29 @@ public class profil extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        Intent message = new Intent(profil.this, NewMessage.class);
+                        Intent message = new Intent(CategoriesActivity.this, NewMessage.class);
                         startActivity(message);
                         break;
                     case 1:
-                        Intent timeline = new Intent(profil.this, timeline.class);
+                        Intent timeline = new Intent(CategoriesActivity.this, TimelineActivity.class);
                         startActivity(timeline);
                         break;
                     case 2:
-                        Intent map = new Intent(profil.this, map.class);
+                        Intent map = new Intent(CategoriesActivity.this, MapActivity.class);
                         startActivity(map);
                         break;
                     case 3:
-                        Intent profil = new Intent(profil.this, profil.class);
+                        Intent profil = new Intent(CategoriesActivity.this, ProfilActivity.class);
                         startActivity(profil);
                         break;
                     /*case 3:
                         Intent followers = new Intent(NewMessage.this, followers.class);
                         startActivity(followers);
                         break;*/
-                    /*case 4:
-                        Intent categorie = new Intent(NewMessage.this, categorie.class);
+                    case 5:
+                        Intent categorie = new Intent(CategoriesActivity.this, CategoriesActivity.class);
                         startActivity(categorie);
-                        break;*/
+                        break;
                     /*case 5:
                         Intent informations = new Intent(NewMessage.this, Information.class);
                         startActivity(informations);
@@ -121,7 +120,7 @@ public class profil extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_detail_message, menu);
+        getMenuInflater().inflate(R.menu.menu_new_message, menu);
         return true;
     }
 

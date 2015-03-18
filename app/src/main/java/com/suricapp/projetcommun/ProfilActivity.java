@@ -1,4 +1,4 @@
-package com.example.nicolas.projetcommun;
+package com.suricapp.projetcommun;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -12,10 +12,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 
-public class timeline extends ActionBarActivity {
+public class ProfilActivity extends ActionBarActivity {
 
     //Variables pour le menu
     private ListView mDrawerList;
@@ -26,7 +25,7 @@ public class timeline extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timeline);
+        setContentView(R.layout.activity_profil);
 
         mDrawerList = (ListView)findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -47,37 +46,37 @@ public class timeline extends ActionBarActivity {
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
+                switch (position) {
                     case 0:
-                        Intent message = new Intent(timeline.this, NewMessage.class);
+                        Intent message = new Intent(ProfilActivity.this, NewMessage.class);
                         startActivity(message);
                         break;
                     case 1:
-                        Intent timeline = new Intent(timeline.this, timeline.class);
+                        Intent timeline = new Intent(ProfilActivity.this, TimelineActivity.class);
                         startActivity(timeline);
                         break;
                     case 2:
-                        Intent map = new Intent(timeline.this, map.class);
+                        Intent map = new Intent(ProfilActivity.this, MapActivity.class);
                         startActivity(map);
                         break;
                     case 3:
-                        Intent profil = new Intent(timeline.this, profil.class);
+                        Intent profil = new Intent(ProfilActivity.this, ProfilActivity.class);
                         startActivity(profil);
                         break;
                     /*case 3:
-                        Intent followers = new Intent(timeline.this, followers.class);
+                        Intent followers = new Intent(NewMessage.this, followers.class);
                         startActivity(followers);
                         break;*/
-                    /*case 4:
-                        Intent categorie = new Intent(timeline.this, categorie.class);
+                    case 5:
+                        Intent categorie = new Intent(ProfilActivity.this, CategoriesActivity.class);
                         startActivity(categorie);
-                        break;*/
+                        break;
                     /*case 5:
-                        Intent informations = new Intent(timeline.this, Information.class);
+                        Intent informations = new Intent(NewMessage.this, Information.class);
                         startActivity(informations);
                         break;*/
                     /*case 6:
-                        Intent deconnexion = new Intent(timeline.this, deconnexion.class);
+                        Intent deconnexion = new Intent(NewMessage.this, deconnexion.class);
                         startActivity(deconnexion);
                         break;*/
                 }

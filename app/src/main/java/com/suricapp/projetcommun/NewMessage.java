@@ -1,4 +1,4 @@
-package com.example.nicolas.projetcommun;
+package com.suricapp.projetcommun;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 
 public class NewMessage extends ActionBarActivity {
@@ -52,25 +51,25 @@ public class NewMessage extends ActionBarActivity {
                         startActivity(message);
                         break;
                     case 1:
-                        Intent timeline = new Intent(NewMessage.this, timeline.class);
+                        Intent timeline = new Intent(NewMessage.this, TimelineActivity.class);
                         startActivity(timeline);
                         break;
                     case 2:
-                        Intent map = new Intent(NewMessage.this, map.class);
+                        Intent map = new Intent(NewMessage.this, MapActivity.class);
                         startActivity(map);
                         break;
                     case 3:
-                        Intent profil = new Intent(NewMessage.this, profil.class);
+                        Intent profil = new Intent(NewMessage.this, ProfilActivity.class);
                         startActivity(profil);
                         break;
                     /*case 3:
                         Intent followers = new Intent(NewMessage.this, followers.class);
                         startActivity(followers);
                         break;*/
-                    /*case 4:
-                        Intent categorie = new Intent(NewMessage.this, categorie.class);
+                    case 5:
+                        Intent categorie = new Intent(NewMessage.this, CategoriesActivity.class);
                         startActivity(categorie);
-                        break;*/
+                        break;
                     /*case 5:
                         Intent informations = new Intent(NewMessage.this, Information.class);
                         startActivity(informations);
