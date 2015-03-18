@@ -1,4 +1,4 @@
-package com.suricapp.projetcommun;
+package com.suricapp.views;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-<<<<<<< HEAD:app/src/main/java/com/suricapp/views/ConnexionActivity.java
 import com.suricapp.rest.client.HTTPAsyncTask;
 import com.suricapp.rest.client.RestClient;
 
@@ -19,11 +18,6 @@ public class ConnexionActivity extends ActionBarActivity {
     private Button connexion;
     private RestClient restClient;
     private  HTTPAsyncTask task ;
-=======
-
-public class ConnexionActivity extends ActionBarActivity {
-
->>>>>>> test:app/src/main/java/com/suricapp/projetcommun/ConnexionActivity.java
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +25,6 @@ public class ConnexionActivity extends ActionBarActivity {
         id= (TextView)findViewById(R.id.identifiant);
         TextView inscription = (TextView)findViewById(R.id.inscription);
         TextView oubli = (TextView)findViewById(R.id.oubli);
-<<<<<<< HEAD:app/src/main/java/com/suricapp/views/ConnexionActivity.java
         connexion= (Button)findViewById(R.id.connexion);
 
         task= new HTTPAsyncTask(this);
@@ -47,9 +40,6 @@ public class ConnexionActivity extends ActionBarActivity {
                 id.setText(message);
             }
         });
-=======
-        final Button connexion = (Button)findViewById(R.id.connexion);
->>>>>>> test:app/src/main/java/com/suricapp/projetcommun/ConnexionActivity.java
 
             connexion.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -61,12 +51,12 @@ public class ConnexionActivity extends ActionBarActivity {
                     String mot = mdp.getText().toString();
 
                     if(ident.trim().length()==0)
-                        Toast.makeText(getApplicationContext(),getString(R.string.message_connexion), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Veuillez remplir les champs identifiant et mot de passe svp", Toast.LENGTH_SHORT).show();
                     else {
                         if ((ident.equals("toto")&&(mot.equals("toto"))))
                                 startActivity(intent);
                         else
-                            Toast.makeText(getApplicationContext(), getString(R.string.erreur_connexion), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Identifiant ou MDP Incorrect", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

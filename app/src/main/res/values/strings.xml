@@ -3,18 +3,8 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="title_activity_categories">Categories</string>
-    <string name="new_message">Nouveau Message</string>
-    <string name="timeline_view">Vue Timeline</string>
-    <string name="map_view">Vue Carte</string>
-    <string name="my_profile">Mon profil</string>
-    <string name="my_followers">Mes suiveurs</string>
-    <string name="my_categories">Mes catégories</string>
-    <string name="my_informations">Mes informations</string>
-    <string name="deconnexion">Déconnexion</string>
-    <string name="menu">Menu</string>
-    <string name="message_connexion">Veuillez remplir les champs identifiant et mot de passe svp</string>
-    <string name="erreur_connexion">Identifiant ou MDP Incorrect</string>
-    <string name="kms"> kms</string>
-    <string name="here">Vous êtes ici</string>
-    <string name="erreur_map">Création de la map à échoué</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_suric_app_action_bar">SuricAppActionBarActivity</string>
 </resources>
