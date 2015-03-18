@@ -4,27 +4,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="#DEDEDE"
     android:weightSum="1">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_gravity="center"
-        android:src="@drawable/bandeau"/>
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Inscrivez-vous"
+        android:text="Inscrivez-vous sur Suric\'app"
+        android:textStyle="bold"
         android:textColor="#ff000000"
         android:gravity="center"
         android:layout_weight="0.11"
+        android:textAllCaps="true"
         android:textSize="20sp"/>
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/first_step"
         android:src="@drawable/appli1"/>
 
@@ -117,8 +111,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Date"
-            android:textColor="#ffffff"
-            android:background="#063040"
             android:onClick="setDate"/>
     </LinearLayout>
     <LinearLayout
@@ -139,7 +131,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/password"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:hint="Password"
             android:layout_weight="1" />
     </LinearLayout>
@@ -161,7 +153,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/password2"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:hint="Password"
             android:layout_weight="1" />
     </LinearLayout>
@@ -174,10 +166,8 @@
         <Button
             android:id="@+id/suivant"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#063040"
+            android:layout_height="fill_parent"
             android:layout_gravity="center_horizontal"
-            android:text="Etape suivante"
-            android:textColor="#ffffff"/>
+            android:text="Etape suivante" />
     </LinearLayout>
 </LinearLayout>

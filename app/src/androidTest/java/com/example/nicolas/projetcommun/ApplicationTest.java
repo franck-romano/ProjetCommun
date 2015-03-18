@@ -1,4 +1,4 @@
-package com.suricapp.views;
+package com.example.nicolas.projetcommun;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

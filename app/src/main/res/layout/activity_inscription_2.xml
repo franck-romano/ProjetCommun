@@ -3,29 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#DEDEDE"
     android:weightSum="1"
     tools:context="com.example.nicolas.projetcommun.Inscription_2">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_gravity="center"
-        android:src="@drawable/bandeau"/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Inscrivez-vous"
+        android:text="Inscrivez-vous sur Suric\'app"
+        android:textStyle="bold"
         android:textColor="#ff000000"
         android:gravity="center"
         android:layout_weight="0.11"
+        android:textAllCaps="true"
         android:textSize="20sp"/>
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/second_step"
         android:src="@drawable/appli1_2"/>
     <TextView
@@ -40,61 +33,58 @@
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp">
+        android:stretchColumns="1">
         <TableRow>
             <ImageButton
                 android:id="@+id/categorie_1"
                 android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <ImageButton
                 android:id="@+id/categorie_2"
                 android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <ImageButton
                 android:id="@+id/categorie_3"
                 android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <ImageButton
                 android:id="@+id/categorie_4"
                 android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <ImageButton
                 android:id="@+id/categorie_5"
                 android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </TableRow>
         <TableRow>
             <ImageButton
                 android:id="@+id/categorie_6"
                 android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <ImageButton
                 android:id="@+id/categorie_7"
                 android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <ImageButton
                 android:id="@+id/categorie_8"
                 android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <ImageButton
                 android:id="@+id/categorie_9"
                 android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <ImageButton
                 android:id="@+id/categorie_10"
-                android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
+                android:src="@drawable/icone_android"/>
         </TableRow>
     </TableLayout>
     <TextView
@@ -105,7 +95,7 @@
         android:textColor="#ff000000"
         android:gravity="left"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="10dp"/>
     <SeekBar
         android:id="@+id/rayon"
         android:layout_width="fill_parent"
@@ -123,10 +113,8 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="#063040"
+        android:layout_marginTop="20dp"
         android:id="@+id/terminer"
         android:layout_gravity="center_horizontal"
-        android:text="TERMINER"
-        android:textColor="#ffffff"/>
+        android:text="TERMINER"/>
 </LinearLayout>
