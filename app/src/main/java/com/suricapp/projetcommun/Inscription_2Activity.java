@@ -1,4 +1,4 @@
-package com.suricapp.views;
+package com.suricapp.projetcommun;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -26,7 +26,7 @@ public class Inscription_2Activity extends ActionBarActivity implements View.OnC
         final TextView rayon_numeric = (TextView)findViewById(R.id.rayon_texte);
 
         // Initialiser le textView avec la valeur de départ.
-        rayon_numeric.setText(rayon.getProgress() + " kms");
+        rayon_numeric.setText(rayon.getProgress() + getString(R.string.kms));
 
         rayon.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progress = 0;
@@ -37,12 +37,12 @@ public class Inscription_2Activity extends ActionBarActivity implements View.OnC
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                rayon_numeric.setText(progress + " kms");
+                rayon_numeric.setText(progress + getString(R.string.kms));
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                rayon_numeric.setText(progress + " kms");
+                rayon_numeric.setText(progress + getString(R.string.kms));
             }
         });
     }

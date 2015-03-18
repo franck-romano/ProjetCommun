@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.suricapp.views" >
+    package="com.suricapp.projetcommun" >
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -12,6 +12,8 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_GPS"/>
+    <uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS"/>
 
     <application
         android:allowBackup="true"
@@ -53,7 +55,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCX2kksUnbBg5DFYk6FP6wzrg-W0IIUhUc" />
+            android:value="AIzaSyANbOcuadj75b5hhO4SH_NvE78d3lI64ro" />
 
         <activity
             android:name=".TimelineActivity"
@@ -68,6 +70,7 @@
             android:label="@string/title_activity_categories" >
         </activity>
 
+
         <meta-data
             android:name="DATABASE"
             android:value="suricapp.db" />
@@ -80,11 +83,6 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.suricapp.projetcommun" />
-
-        <activity
-            android:name=".SuricAppActionBarActivity"
-            android:label="@string/title_activity_suric_app_action_bar" >
-        </activity>
     </application>
 
 </manifest>
