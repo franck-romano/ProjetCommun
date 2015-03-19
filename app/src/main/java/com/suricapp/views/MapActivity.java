@@ -53,7 +53,6 @@ public class MapActivity extends FragmentActivity implements LocationListener{
          * Catch the null pointer exception that
          * may be thrown when initialising the
          */
-
         try {
             if(googleMap == null){
                 googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapView)).getMap();
@@ -93,7 +92,8 @@ public class MapActivity extends FragmentActivity implements LocationListener{
 
     @Override
     public void onLocationChanged(final Location location) {
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 15.0f));
+        final LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
     }
 
     @Override
