@@ -55,7 +55,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyANbOcuadj75b5hhO4SH_NvE78d3lI64ro"/>
+            android:value="AIzaSyDw5dnMXgL4WKpJi7UydtqKhmGupvo3O20"/>
 
         <activity
             android:name=".TimelineActivity"
