@@ -4,6 +4,9 @@
     <string name="drawer_open">Ouvrir menu de navigation</string>
     <string name="drawer_close">Fermer menu de navigation</string>
 
+    <string name="hello_world">Bonjour</string>
+    <string name="action_settings">Paramètres</string>
+
     <!--String pour la vue Map-->
     <string name="erreur_map">Erreur de création de la map Google</string>
     <string name="here">Vous êtes ici</string>
