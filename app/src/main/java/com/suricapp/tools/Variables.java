@@ -5,6 +5,5 @@ package com.suricapp.tools;
  */
 public class Variables {
 
-    public final static String[] itemArray = { "Nouveau Message", "Vue Timeline", "Vue Carte",
-            "Mon profil", "Mes suiveurs", "Mes catégories", "Mes informations", "Déconnexion" };
+    public final static String[] itemArray = { "Nouveau Message", "Vue Timeline", "Vue Carte","Mon profil", "Mes suiveurs", "Mes catégories", "Mes informations", "Déconnexion" };
 }

@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Suric\'app</string>
+    <string name="menu_name">Menu</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="title_activity_categories">Categories</string>
 
+<<<<<<< HEAD
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
@@ -13,4 +14,13 @@
 
     <!-- Text Colors -->
     <color name="normal_text_color">#063040</color>
+=======
+    <!--String pour la vue Map-->
+    <string name="erreur_map">Erreur de création de la map Google</string>
+    <string name="here">Vous êtes ici</string>
+
+    <!--Activity_categories-->
+
+
+>>>>>>> 99fa539e59ad2a904d43de524173b55ee371b133
 </resources>
