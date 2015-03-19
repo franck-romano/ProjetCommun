@@ -68,6 +68,7 @@ public class MapActivity extends FragmentActivity implements LocationListener{
                 googleMap.getUiSettings().setMyLocationButtonEnabled(true);
                 //Autoriser la récupération de la position actuelle.
                 googleMap.setMyLocationEnabled(true);
+                googleMap.getMyLocation();
 
                 /**
                  * Si la Map est toujours null après initialisation on affiche une erreur via un Toast
@@ -91,9 +92,9 @@ public class MapActivity extends FragmentActivity implements LocationListener{
     }
 
     @Override
-    public void onLocationChanged(final Location location) {
+    public void onLocationChanged(Location location) {
         final LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15.0f));
     }
 
     @Override
