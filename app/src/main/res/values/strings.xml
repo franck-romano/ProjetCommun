@@ -2,9 +2,6 @@
     <string name="app_name">Suric\'app</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="title_activity_categories">Categories</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_suric_app_action_bar">SuricAppActionBarActivity</string>
+    <string name="erreur_map">Erreur de création de la map Google</string>
+    <string name="here">Vous êtes ici</string>
 </resources>
