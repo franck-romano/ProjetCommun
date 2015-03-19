@@ -21,12 +21,14 @@ public class Category extends SugarRecord<Category>{
      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
      */
 
+    private int category_id;
     private String category_label;
     private String category_description;
 
     public ArrayList<NameValuePair> objectToNameValuePair()
     {
         ArrayList<NameValuePair> followersDetails = new ArrayList<>();
+        followersDetails.add(new BasicNameValuePair("category_id",""+this.getCategory_id()));
         followersDetails.add(new BasicNameValuePair("category_label",this.getCategory_label()));
         followersDetails.add(new BasicNameValuePair("category_description",this.getCategory_description()));
         return followersDetails;
@@ -35,7 +37,16 @@ public class Category extends SugarRecord<Category>{
     public Category() {
     }
 
-    public Category(String category_label, String category_description) {
+    public int getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
+    }
+
+    public Category(int category_id, String category_label, String category_description) {
+        this.category_id = category_id;
         this.category_label = category_label;
         this.category_description = category_description;
     }

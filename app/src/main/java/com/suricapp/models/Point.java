@@ -20,8 +20,23 @@ public class Point extends SugarRecord<Point> {
      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
      */
 
+    private int point_id;
     private double point_latitude;
     private double point_longitude;
+
+    public int getPoint_id() {
+        return point_id;
+    }
+
+    public Point(int point_id, double point_latitude, double point_longitude) {
+        this.point_id = point_id;
+        this.point_latitude = point_latitude;
+        this.point_longitude = point_longitude;
+    }
+
+    public void setPoint_id(int point_id) {
+        this.point_id = point_id;
+    }
 
     public Point() {
     }

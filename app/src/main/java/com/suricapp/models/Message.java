@@ -33,6 +33,7 @@ public class Message extends SugarRecord<Message> {
      ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
      */
 
+    private int message_id;
     private String message_title_fr_fr;
     private String message_content_fr_fr;
     private int message_nb_like;
@@ -55,16 +56,39 @@ public class Message extends SugarRecord<Message> {
         followersDetails.add(new BasicNameValuePair("message_nb_report",""+this.getMessage_nb_report()));
         followersDetails.add(new BasicNameValuePair("message_status_fr_fr",""+this.getMessage_status_fr_fr()));
         followersDetails.add(new BasicNameValuePair("message_date",""+this.getMessage_date()));
-        followersDetails.add(new BasicNameValuePair("message_id_point_fk",""+this.getMessage_id_point_fk()));
-        followersDetails.add(new BasicNameValuePair("message_id_category_fk",""+this.getMessage_id_category_fk()));
-        followersDetails.add(new BasicNameValuePair("message_id_user_fk",""+this.getMessage_id_user_fk().getId()));
+        followersDetails.add(new BasicNameValuePair("message_id_point_fk",""+this.getMessage_id_point_fk().getPoint_id()));
+        followersDetails.add(new BasicNameValuePair("message_id_category_fk",""+this.getMessage_id_category_fk().getCategory_id()));
+        followersDetails.add(new BasicNameValuePair("message_id_user_fk",""+this.getMessage_id_user_fk().getUser_id()));
         return followersDetails;
     }
 
     public Message() {
     }
 
+    public int getMessage_id() {
+        return message_id;
+    }
+
+    public void setMessage_id(int message_id) {
+        this.message_id = message_id;
+    }
+
     public Message(String message_title_fr_fr, String message_content_fr_fr, int message_nb_like, int message_nb_unlike, int message_nb_view, int message_nb_report, String message_status_fr_fr, Date message_date, Point message_id_point_fk, Category message_id_category_fk, User message_id_user_fk) {
+        this.message_title_fr_fr = message_title_fr_fr;
+        this.message_content_fr_fr = message_content_fr_fr;
+        this.message_nb_like = message_nb_like;
+        this.message_nb_unlike = message_nb_unlike;
+        this.message_nb_view = message_nb_view;
+        this.message_nb_report = message_nb_report;
+        this.message_status_fr_fr = message_status_fr_fr;
+        this.message_date = message_date;
+        this.message_id_point_fk = message_id_point_fk;
+        this.message_id_category_fk = message_id_category_fk;
+        this.message_id_user_fk = message_id_user_fk;
+    }
+
+    public Message(int message_id, String message_title_fr_fr, String message_content_fr_fr, int message_nb_like, int message_nb_unlike, int message_nb_view, int message_nb_report, String message_status_fr_fr, Date message_date, Point message_id_point_fk, Category message_id_category_fk, User message_id_user_fk) {
+        this.message_id = message_id;
         this.message_title_fr_fr = message_title_fr_fr;
         this.message_content_fr_fr = message_content_fr_fr;
         this.message_nb_like = message_nb_like;

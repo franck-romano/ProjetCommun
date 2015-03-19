@@ -26,7 +26,7 @@ public class Comment extends SugarRecord<Comment>{
      KEY `comment_user_id_fk` (`comment_user_id_fk`)
      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
      */
-
+    private int comment_id;
     private Date comment_date;
     private String comment_content_fr_fr;
     private Message comment_message_id_fk;
@@ -35,21 +35,31 @@ public class Comment extends SugarRecord<Comment>{
     public ArrayList<NameValuePair> objectToNameValuePair()
     {
         ArrayList<NameValuePair> followersDetails = new ArrayList<>();
+        followersDetails.add(new BasicNameValuePair("comment_id",""+this.getComment_id()));
         followersDetails.add(new BasicNameValuePair("comment_date",this.getComment_date().toString()));
         followersDetails.add(new BasicNameValuePair("comment_content_fr_fr",this.getComment_content_fr_fr()));
-        followersDetails.add(new BasicNameValuePair("comment_message_id_fk",this.getComment_message_id_fk().getId().toString()));
-        followersDetails.add(new BasicNameValuePair("comment_user_id_fk",this.getComment_user_id_fk().getId().toString()));
+        followersDetails.add(new BasicNameValuePair("comment_message_id_fk",""+this.getComment_message_id_fk().getMessage_id()));
+        followersDetails.add(new BasicNameValuePair("comment_user_id_fk",""+this.getComment_user_id_fk().getUser_id()));
         return followersDetails;
     }
 
     public Comment() {
     }
 
-    public Comment(Date comment_date, String comment_content_fr_fr, Message comment_message_id_fk, User comment_user_id_fk) {
+    public Comment(int comment_id, Date comment_date, String comment_content_fr_fr, Message comment_message_id_fk, User comment_user_id_fk) {
+        this.comment_id = comment_id;
         this.comment_date = comment_date;
         this.comment_content_fr_fr = comment_content_fr_fr;
         this.comment_message_id_fk = comment_message_id_fk;
         this.comment_user_id_fk = comment_user_id_fk;
+    }
+
+    public int getComment_id() {
+        return comment_id;
+    }
+
+    public void setComment_id(int comment_id) {
+        this.comment_id = comment_id;
     }
 
     public Date getComment_date() {

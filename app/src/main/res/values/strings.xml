@@ -6,5 +6,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_suric_app_action_bar">SuricAppActionBarActivity</string>
+
+    <!-- Text activity inscription -->
+    <string name="inscrivez_vous">Subscribe</string>
+
+
+    <!-- Text Colors -->
+    <color name="normal_text_color">#063040</color>
 </resources>

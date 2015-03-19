@@ -32,6 +32,7 @@ public class User extends SugarRecord<User>{
      ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
      */
 
+    private int user_id;
     private String user_pseudo;
     private String user_password;
     private String user_name;
@@ -45,6 +46,29 @@ public class User extends SugarRecord<User>{
     private String user_email;
     private int user_is_premium;
 
+    public User(int user_id, String user_pseudo, String user_password, String user_name, String user_first_name, Date user_date_creation, Date user_birthday, String user_situation_fr_fr, String user_city, String user_picture, String user_phone, String user_email, int user_is_premium) {
+        this.user_id = user_id;
+        this.user_pseudo = user_pseudo;
+        this.user_password = user_password;
+        this.user_name = user_name;
+        this.user_first_name = user_first_name;
+        this.user_date_creation = user_date_creation;
+        this.user_birthday = user_birthday;
+        this.user_situation_fr_fr = user_situation_fr_fr;
+        this.user_city = user_city;
+        this.user_picture = user_picture;
+        this.user_phone = user_phone;
+        this.user_email = user_email;
+        this.user_is_premium = user_is_premium;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
 
     public ArrayList<NameValuePair> objectToNameValuePair()
     {

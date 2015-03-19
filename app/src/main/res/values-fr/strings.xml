@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Suric\'app</string>
+    <string name="drawer_open">Ouvrir menu de navigation</string>
+    <string name="drawer_close">Fermer menu de navigation</string>
+    <string name="title_activity_categories">Categories</string>
+
+    <string name="hello_world">Bonjour</string>
+    <string name="action_settings">Paramétres</string>
+
+    <!-- Text activity inscription -->
+    <string name="inscrivez_vous">S\'inscrire</string>
+</resources>

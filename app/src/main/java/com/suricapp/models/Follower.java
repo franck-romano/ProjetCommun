@@ -50,8 +50,8 @@ public class Follower extends SugarRecord<Follower>{
     public ArrayList<NameValuePair> objectToNameValuePair()
     {
         ArrayList<NameValuePair> followersDetails = new ArrayList<>();
-        followersDetails.add(new BasicNameValuePair("followers_id_followers",this.getFollowers_id_followers().getId().toString()));
-        followersDetails.add(new BasicNameValuePair("followers_id_user",this.getFollowers_id_user_fk().getId().toString()));
+        followersDetails.add(new BasicNameValuePair("followers_id_followers",""+this.getFollowers_id_followers().getUser_id()));
+        followersDetails.add(new BasicNameValuePair("followers_id_user",""+this.getFollowers_id_user_fk().getUser_id()));
         return followersDetails;
     }
 }
