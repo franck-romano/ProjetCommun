@@ -17,29 +17,66 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
 
     private DatePicker datePicker;
     private Calendar calendar;
-    private TextView dateView;
+
+    // Text View from view
+    private TextView mDateView;
+    private TextView mLoginTextView;
+    private TextView mEmailtexTextView;
+    private TextView mCityTextView;
+    private TextView mPasswordTextView;
+    private TextView mConfirmationTextView;
+
+    // Button from view
+    private Button mNextStepButton;
+
+    // Date picker
     private int year, month, day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
-        dateView = (TextView) findViewById(R.id.date);
+
+        // Date picker initialization
+        mDateView = (TextView) findViewById(R.id.date);
+        wakeUpDate();
+
+        //textView initialization
+        mLoginTextView = (TextView) findViewById(R.id.activity_inscription_pseudo);
+        mEmailtexTextView = (TextView) findViewById(R.id.activity_inscription_mail);
+        mCityTextView = (TextView) findViewById(R.id.activity_inscription_ville);
+        mLoginTextView = (TextView) findViewById(R.id.activity_inscription_pseudo);
+        mPasswordTextView = (TextView) findViewById(R.id.activity_inscription_password);
+        mConfirmationTextView = (TextView) findViewById(R.id.activity_inscription_confirmation);
+
+        // Button settings
+        mNextStepButton = (Button) findViewById(R.id.activity_inscription_suivant);
+        mNextStepButton.setOnClickListener(this);
+        Intent intent = new Intent(InscriptionActivity.this, Inscription_2Activity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.activity_inscription_suivant:
+
+                break;
+        }
+    }
+
+    /**
+     * Initialize date picker
+     *
+     */
+    private void wakeUpDate()
+    {
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         showDate(year, month+1, day);
-
-        final Button bouton_envoyer = (Button)findViewById(R.id.suivant);
-
-        bouton_envoyer.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(InscriptionActivity.this, Inscription_2Activity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     @SuppressWarnings("deprecation")
@@ -69,12 +106,7 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
     };
 
     private void showDate(int year, int month, int day) {
-        dateView.setText(new StringBuilder().append(day).append("/")
+        mDateView.setText(new StringBuilder().append(day).append("/")
                 .append(month).append("/").append(year));
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 }

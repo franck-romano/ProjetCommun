@@ -7,6 +7,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <!-- General text -->
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+
     <!--String pour la vue Map-->
     <string name="erreur_map">Error creating google Maps</string>
     <string name="here">Your Position</string>
@@ -15,7 +19,19 @@
 
     <!-- Text activity inscription -->
     <string name="inscrivez_vous">Subscribe</string>
-
+    <string name="pseudo_">Login :</string>
+    <string name="mail_"> Email :</string>
+    <string name="ville_">City :</string>
+    <string name="date_naissance_">Birthday :</string>
+    <string name="mot_de_passe_">Password :</string>
+    <string name="confirmation_">Confirmation :</string>
+    <string name="pseudo">Login</string>
+    <string name="mail"> Email</string>
+    <string name="ville">City</string>
+    <string name="date_naissance">Birthday</string>
+    <string name="mot_de_passe">Password</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="etape_suivante">Next step</string>
 
     <!-- Text Colors -->
     <color name="normal_text_color">#063040</color>

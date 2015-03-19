@@ -48,16 +48,16 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Pseudo : "
+                android:text="@string/pseudo_"
                 android:textStyle="bold"
                 android:textColor="@color/normal_text_color"
                 android:gravity="center"
                 />
             <EditText
-                android:id="@+id/pseudo"
+                android:id="@+id/activity_inscription_pseudo"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="Pseudo"
+                android:hint="@string/pseudo"
                 android:inputType="text"
                 android:layout_weight="1"
                 />
@@ -70,16 +70,16 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Mail : "
+                android:text="@string/mail_"
                 android:textStyle="bold"
                 android:textColor="@color/normal_text_color"
                 android:gravity="center"
                 />
             <EditText
-                android:id="@+id/mail"
+                android:id="@+id/activity_inscription_mail"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="Mail"
+                android:hint="@string/mail"
                 android:inputType="text"
                 android:layout_weight="1"
                 />
@@ -92,16 +92,16 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Ville : "
+                android:text="@string/ville_"
                 android:textStyle="bold"
                 android:textColor="@color/normal_text_color"
                 android:gravity="center"
                 />
             <EditText
-                android:id="@+id/ville"
+                android:id="@+id/activity_inscription_ville"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Ville"
+                android:hint="@string/ville"
                 android:inputType="text"
                 />
         </LinearLayout>
@@ -113,15 +113,15 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Date de naissance : "
+                android:text="@string/date_naissance_"
                 android:textStyle="bold"
                 android:textColor="@color/normal_text_color"
                 android:gravity="center"/>
             <Button
-                android:id="@+id/date"
+                android:id="@+id/activity_inscription_date"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:text="Date"
+                android:text="@string/date_naissance"
                 android:textColor="#ffffff"
                 android:background="@color/normal_text_color"
                 android:onClick="setDate"/>
@@ -132,9 +132,9 @@
             android:orientation="horizontal"
             android:layout_weight="1">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Mot de Passe : "
+                android:text="@string/mot_de_passe_"
                 android:textStyle="bold"
                 android:textColor="@color/normal_text_color"
                 android:gravity="center"
@@ -142,9 +142,9 @@
             <EditText
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/password"
+                android:id="@+id/activity_inscription_password"
                 android:inputType="textPassword"
-                android:hint="Password"
+                android:hint="@string/mot_de_passe"
                 android:layout_weight="1" />
         </LinearLayout>
         <LinearLayout
@@ -155,7 +155,7 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Confirmation :"
+                android:text="@string/confirmation_"
                 android:textStyle="bold"
                 android:textColor="@color/normal_text_color"
                 android:gravity="center"
@@ -163,9 +163,9 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/password2"
+                android:id="@+id/activity_inscription_confirmation"
                 android:inputType="textPassword"
-                android:hint="Password"
+                android:hint="@string/confirmation"
                 android:layout_weight="1" />
         </LinearLayout>
         <LinearLayout
@@ -175,12 +175,14 @@
             android:gravity="center_horizontal"
             android:layout_weight="1">
             <Button
-                android:id="@+id/suivant"
+                android:id="@+id/activity_inscription_suivant"
                 android:layout_width="wrap_content"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
                 android:layout_height="wrap_content"
                 android:background="#063040"
                 android:layout_gravity="center_horizontal"
-                android:text="Etape suivante"
+                android:text="@string/etape_suivante"
                 android:textColor="#ffffff"/>
         </LinearLayout>
     </LinearLayout>
