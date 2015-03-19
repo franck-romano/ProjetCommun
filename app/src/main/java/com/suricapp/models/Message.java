@@ -49,6 +49,7 @@ public class Message extends SugarRecord<Message> {
     public ArrayList<NameValuePair> objectToNameValuePair()
     {
         ArrayList<NameValuePair> followersDetails = new ArrayList<>();
+        followersDetails.add(new BasicNameValuePair("message_id",""+this.getMessage_id()));
         followersDetails.add(new BasicNameValuePair("message_title_fr_fr",this.getMessage_title_fr_fr()));
         followersDetails.add(new BasicNameValuePair("message_content_fr_fr",this.getMessage_content_fr_fr()));
         followersDetails.add(new BasicNameValuePair("message_nb_like",""+""+this.getMessage_nb_like()));

@@ -73,6 +73,7 @@ public class User extends SugarRecord<User>{
     public ArrayList<NameValuePair> objectToNameValuePair()
     {
         ArrayList<NameValuePair> followersDetails = new ArrayList<>();
+        followersDetails.add(new BasicNameValuePair("user_id",""+this.getUser_id()));
         followersDetails.add(new BasicNameValuePair("user_pseudo",this.getUser_pseudo()));
         followersDetails.add(new BasicNameValuePair("user_password",this.getUser_password()));
         followersDetails.add(new BasicNameValuePair("user_name",""+""+this.getUser_name()));

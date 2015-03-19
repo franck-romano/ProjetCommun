@@ -65,6 +65,7 @@ public class Point extends SugarRecord<Point> {
     public ArrayList<NameValuePair> objectToNameValuePair()
     {
         ArrayList<NameValuePair> followersDetails = new ArrayList<>();
+        followersDetails.add(new BasicNameValuePair("point_id",""+""+this.getPoint_id()));
         followersDetails.add(new BasicNameValuePair("point_latitude",""+this.getPoint_latitude()));
         followersDetails.add(new BasicNameValuePair("point_longitude",""+this.getPoint_longitude()));
         return followersDetails;
