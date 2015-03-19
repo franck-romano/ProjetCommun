@@ -12,12 +12,15 @@ import com.suricapp.rest.client.HTTPAsyncTask;
 import com.suricapp.rest.client.RestClient;
 
 
-public class ConnexionActivity extends ActionBarActivity {
+public class ConnexionActivity extends ActionBarActivity implements View.OnClickListener {
 
     private  TextView id ;
     private Button connexion;
     private RestClient restClient;
     private  HTTPAsyncTask task ;
+
+    private TextView 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,5 +71,10 @@ public class ConnexionActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
