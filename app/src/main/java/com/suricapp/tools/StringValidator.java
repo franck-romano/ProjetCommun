@@ -16,7 +16,7 @@ public class StringValidator {
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     private static final String PASSWORD_PATTERN =
-            "((?=.*\\\\d)(?=.*[a-z])(?=.*[@#$%]).{6,20})";
+            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,16}$";
 
     public StringValidator()
     {
@@ -33,6 +33,7 @@ public class StringValidator {
      */
     public boolean validateEmail(final String hex) {
 
+        matcher = null;
         matcher = patternEmail.matcher(hex);
         return matcher.matches();
 
@@ -47,6 +48,7 @@ public class StringValidator {
      */
     public boolean validatePassword(final String hex) {
 
+        matcher = null;
         matcher = patternPassword.matcher(hex);
         return matcher.matches();
 

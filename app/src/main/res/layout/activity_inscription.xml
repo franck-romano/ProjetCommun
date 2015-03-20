@@ -22,7 +22,7 @@
             android:text="@string/inscrivez_vous"
             android:textColor="@color/normal_text_color"
             android:gravity="center"
-            android:textSize="50sp"
+            android:textSize="40sp"
             android:layout_gravity="center"/>
     </LinearLayout>
     <ImageView

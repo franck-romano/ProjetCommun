@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -72,7 +73,8 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
                 public void setMyTaskComplete(String message) {
                 id.setText(message);
                 }
-                });*/
+                });
+                 */
                 StringValidator testString = new StringValidator();
                 if(mPasswordTextView.getText().toString().trim().matches("")
                         || mLoginTextView.getText().toString().trim().matches("")
@@ -91,6 +93,7 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
                 {
                     DialogCreation.createDialog(this,getString(R.string.differentPwd),getString(R.string.differentPwd_desc));
                 }
+
                 else if(!testString.validatePassword(mPasswordTextView.getText().toString()))
                 {
                     DialogCreation.createDialog(this,getString(R.string.bad_password),getString(R.string.bad_password_desc));
