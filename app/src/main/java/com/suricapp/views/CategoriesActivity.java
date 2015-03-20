@@ -31,4 +31,9 @@ public class CategoriesActivity extends SuricappActionBar {
         return true;
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.finish();
+    }
 }

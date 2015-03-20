@@ -31,4 +31,11 @@ public class DetailMessageActivity extends SuricappActionBar {
         getMenuInflater().inflate(R.menu.menu_detail_message, menu);
         return true;
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.finish();
+    }
+
 }
