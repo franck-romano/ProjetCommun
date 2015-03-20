@@ -2,18 +2,26 @@ package com.suricapp.views;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import com.suricapp.models.User;
+import com.suricapp.rest.client.HTTPAsyncTask;
 import com.suricapp.tools.DialogCreation;
 import com.suricapp.tools.StringValidator;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.sql.Date;
 import java.util.Calendar;
 
 
@@ -53,6 +61,53 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
         mPasswordTextView = (TextView) findViewById(R.id.activity_inscription_password);
         mConfirmationTextView = (TextView) findViewById(R.id.activity_inscription_confirmation);
 
+        mLoginTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                {
+                    HTTPAsyncTask taskPseudo= new HTTPAsyncTask(getLocalContext());
+                    taskPseudo.execute(null,"http://suricapp.esy.es/ws.php/d_user/?user_pseudo="+mLoginTextView.getText().toString(),"GET",null);
+                    taskPseudo.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
+                        @Override
+                        public void setMyTaskComplete(String message){
+                            JSONObject obj = null;
+                            try {
+                                obj = new JSONObject(message);
+                            } catch (JSONException e) {
+                                DialogCreation.createDialog(getLocalContext(),getString(R.string.pseudo_used),getString(R.string.pseudo_used_desc));
+                                mLoginTextView.requestFocus();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+        mEmailtexTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                {
+                    HTTPAsyncTask taskEmail= new HTTPAsyncTask(getLocalContext());
+                    taskEmail.execute(null,"http://suricapp.esy.es/ws.php/d_user/?user_email="+mEmailtexTextView.getText().toString(),"GET",null);
+                    taskEmail.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
+                        @Override
+                        public void setMyTaskComplete(String message){
+                            JSONObject obj = null;
+                            try {
+                                obj = new JSONObject(message);
+                            } catch (JSONException e) {
+                                DialogCreation.createDialog(getLocalContext(),getString(R.string.email_used),getString(R.string.email_used_desc));
+                                mEmailtexTextView.requestFocus();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+
         // Button settings
         mNextStepButton = (Button) findViewById(R.id.activity_inscription_suivant);
         mNextStepButton.setOnClickListener(this);
@@ -62,19 +117,7 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
     public void onClick(View v) {
         switch (v.getId())
         {
-            case R.id.activity_inscription_suivant:
-
-                //HTTPAsyncTask task= new HTTPAsyncTask(this);
-
-                //task.execute(null,"http://suricapp.esy.es/ws.php/d_user/user_/mailsdugars","GET",null);
-                /**
-                 task.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
-                @Override
-                public void setMyTaskComplete(String message) {
-                id.setText(message);
-                }
-                });
-                 */
+           case R.id.activity_inscription_suivant:
                 StringValidator testString = new StringValidator();
                 if(mPasswordTextView.getText().toString().trim().matches("")
                         || mLoginTextView.getText().toString().trim().matches("")
@@ -87,7 +130,7 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
                 }
                 else if(!testString.validateEmail(mEmailtexTextView.getText().toString()))
                 {
-                DialogCreation.createDialog(this,getString(R.string.bad_email),getString(R.string.bad_email_desc));
+                    DialogCreation.createDialog(this,getString(R.string.bad_email),getString(R.string.bad_email_desc));
                 }
                 else if(!mPasswordTextView.getText().toString().equals(mConfirmationTextView.getText().toString()))
                 {
@@ -98,9 +141,15 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
                 {
                     DialogCreation.createDialog(this,getString(R.string.bad_password),getString(R.string.bad_password_desc));
                 }
-                else
-                {
+                else {
+                    User user = new User();
+                    user.setUser_pseudo(mLoginTextView.getText().toString());
+                    user.setUser_email(mEmailtexTextView.getText().toString());
+                    user.setUser_city(mCityTextView.getText().toString());
+                    user.setUser_birthday(new Date(year,month,day));
+                    user.setUser_password(mPasswordTextView.getText().toString());
                     Intent intent = new Intent(InscriptionActivity.this, Inscription_2Activity.class);
+                    intent.putExtra("user",user);
                     startActivity(intent);
                     break;
                 }
@@ -149,5 +198,10 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
     private void showDate(int year, int month, int day) {
         mDateView.setText(new StringBuilder().append(day).append("/")
                 .append(month).append("/").append(year));
+    }
+
+    private Context getLocalContext()
+    {
+        return this;
     }
 }

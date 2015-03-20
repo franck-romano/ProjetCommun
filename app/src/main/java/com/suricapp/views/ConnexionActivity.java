@@ -3,15 +3,21 @@ package com.suricapp.views;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.suricapp.models.Category;
 import com.suricapp.rest.client.HTTPAsyncTask;
 import com.suricapp.rest.client.RestClient;
 import com.suricapp.tools.CheckConnection;
 import com.suricapp.tools.DialogCreation;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class ConnexionActivity extends ActionBarActivity implements View.OnClickListener {
@@ -35,6 +41,9 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
         TextView oubli = (TextView)findViewById(R.id.activity_connexion_oubli);
         connexion= (Button)findViewById(R.id.activity_connexion_connexion);
 
+
+        // check categories if newer add it.
+        checkCategories();
         //task= new HTTPAsyncTask(this);
        /* ArrayList<NameValuePair> listNameValuePair = new ArrayList<>();
         listNameValuePair.add(new BasicNameValuePair("nom","Mimy"));
@@ -85,5 +94,28 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
                     DialogCreation.createDialog(this,getString(R.string.no_network_available),getString(R.string.no_network_available_desc));
                 }
         }
+    }
+
+    private void checkCategories()
+    {
+//        http://suricapp.esy.es/ws.php/d_category
+
+        HTTPAsyncTask taskPseudo= new HTTPAsyncTask(getApplicationContext());
+        taskPseudo.execute(null,"http://suricapp.esy.es/ws.php/d_category","GET",null);
+        taskPseudo.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
+            @Override
+            public void setMyTaskComplete(String message) {
+                JSONArray jarray = null;
+                try {
+                    jarray = new JSONArray(message);
+                    Log.w("LG","iozubvizbvizbzivubzviuzbvi");
+                    long tmp = Category.count(Category.class,null,null);
+                    Log.w("LG",""+tmp);
+                } catch (JSONException e) {
+                    Log.w("EXCEPTION",e.toString());
+                }
+            }
+        });
+
     }
 }

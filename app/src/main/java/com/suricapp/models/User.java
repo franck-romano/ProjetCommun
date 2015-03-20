@@ -4,13 +4,14 @@ import com.orm.SugarRecord;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 
 /**
  * Created by maxence on 17/03/15.
  */
-public class User extends SugarRecord<User>{
+public class User extends SugarRecord<User> implements Serializable{
 
     /**
      *

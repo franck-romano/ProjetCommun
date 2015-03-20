@@ -16,7 +16,7 @@ public class HTTPAsyncTask extends AsyncTask<Object,Void,String> {
     public HTTPAsyncTask(Context context){}
 
     public interface OnTaskComplete {
-        public void setMyTaskComplete(String message) throws JSONException;
+        public void setMyTaskComplete(String message);
     }
     private OnTaskComplete onTaskComplete;
 

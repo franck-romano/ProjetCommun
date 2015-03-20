@@ -57,8 +57,8 @@ public class Inscription_2Activity extends ActionBarActivity implements View.OnC
                 task.execute(null,"http://suricapp.esy.es/ws.php/d_user","POST",max.objectToNameValuePair());
                 task.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
                     @Override
-                    public void setMyTaskComplete(String message) throws JSONException {
-                        JsonUtils.StringToJSON(message);
+                    public void setMyTaskComplete(String message){
+                        //JsonUtils.StringToJSON(message);
                     }
                 });
                 break;

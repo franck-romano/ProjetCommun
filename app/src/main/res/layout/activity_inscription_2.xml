@@ -7,27 +7,33 @@
     android:weightSum="1"
     tools:context="com.example.nicolas.projetcommun.Inscription_2">
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_gravity="center"
-        android:src="@drawable/bandeau"/>
-    <TextView
-        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Inscrivez-vous"
-        android:textColor="#ff000000"
-        android:gravity="center"
-        android:layout_weight="0.11"
-        android:textSize="20sp"/>
+        android:layout_margin="10sp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inscrivez_vous"
+            android:textColor="@color/normal_text_color"
+            android:gravity="center"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+    </LinearLayout>
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
-        android:id="@+id/second_step"
-        android:src="@drawable/appli1_2"/>
+        android:id="@+id/activity_inscription_first_step"
+        android:src="@drawable/appli1"
+        android:layout_marginTop="-40sp"/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -42,60 +48,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp">
-        <TableRow>
-            <ImageButton
-                android:id="@+id/categorie_1"
-                android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
-            <ImageButton
-                android:id="@+id/categorie_2"
-                android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
-            <ImageButton
-                android:id="@+id/categorie_3"
-                android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
-            <ImageButton
-                android:id="@+id/categorie_4"
-                android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
-            <ImageButton
-                android:id="@+id/categorie_5"
-                android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
-        </TableRow>
-        <TableRow>
-            <ImageButton
-                android:id="@+id/categorie_6"
-                android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
-            <ImageButton
-                android:id="@+id/categorie_7"
-                android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
-            <ImageButton
-                android:id="@+id/categorie_8"
-                android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
-            <ImageButton
-                android:id="@+id/categorie_9"
-                android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
-            <ImageButton
-                android:id="@+id/categorie_10"
-                android:src="@drawable/icone_android"
-                android:layout_width="64dp"
-                android:layout_height="64dp"/>
-        </TableRow>
     </TableLayout>
     <TextView
         android:layout_width="fill_parent"

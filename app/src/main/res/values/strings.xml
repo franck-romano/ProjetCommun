@@ -40,9 +40,27 @@
     <string name="champs_requis_desc">Veuillez renseigner tous les champs pour continuer.</string>
     <string name="bad_password">Mot de passe incorrect !</string>
     <string name="bad_password_desc">Le mot de passe doit contenir 6 caractères, une minuscule, une majuscule et un chiffre.</string>
+    <string name="pseudo_used">Pseudo déjà utilisé !</string>
+    <string name="pseudo_used_desc">Le pseudo que vous avez rentré est déjà utilisé.</string>
+    <string name="email_used">Email déjà utilisé !</string>
+    <string name="email_used_desc">L\'adresse email que vous avez rentré est déjà utilisé.</string>
+
+
+    <!-- Activity write message -->
+    <string name="ecrire_message">Ecrire un nouveau message</string>
+    <string name="votre_message_">Votre message :</string>
+    <string name="votre_message">Votre message</string>
+    <string name="categories_choice">Catégorie(s) associée(s) :</string>
+    <string name="transport">Transport</string>
+    <string name="rencontre">Rencontre</string>
+    <string name="co_voiturage">Co-voiturage</string>
+    <string name="autorites">Autorités</string>
+    <string name="evenement">Evènement</string>
+    <string name="promotion">Promotion</string>
 
     <!-- Text Colors -->
     <color name="normal_text_color">#063040</color>
+    <color name="normal_text_clear_color">#0F6878</color>
     <color name="white">#ffffff</color>
 
     <!-- Connexion activity Text -->
