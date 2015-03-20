@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import com.suricapp.tools.DialogCreation;
+import com.suricapp.tools.StringValidator;
+
 import java.util.Calendar;
 
 
@@ -38,7 +41,7 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
         setContentView(R.layout.activity_inscription);
 
         // Date picker initialization
-        mDateView = (TextView) findViewById(R.id.date);
+        mDateView = (TextView) findViewById(R.id.activity_inscription_date);
         wakeUpDate();
 
         //textView initialization
@@ -52,8 +55,6 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
         // Button settings
         mNextStepButton = (Button) findViewById(R.id.activity_inscription_suivant);
         mNextStepButton.setOnClickListener(this);
-        Intent intent = new Intent(InscriptionActivity.this, Inscription_2Activity.class);
-        startActivity(intent);
     }
 
     @Override
@@ -62,7 +63,44 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
         {
             case R.id.activity_inscription_suivant:
 
-                break;
+                //HTTPAsyncTask task= new HTTPAsyncTask(this);
+
+                //task.execute(null,"http://suricapp.esy.es/ws.php/d_user/user_/mailsdugars","GET",null);
+                /**
+                 task.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
+                @Override
+                public void setMyTaskComplete(String message) {
+                id.setText(message);
+                }
+                });*/
+                StringValidator testString = new StringValidator();
+                if(mPasswordTextView.getText().toString().trim().matches("")
+                        || mLoginTextView.getText().toString().trim().matches("")
+                        || mEmailtexTextView.getText().toString().trim().matches("")
+                        || mCityTextView.getText().toString().trim().matches("")
+                        || mDateView.getText().toString().trim().matches("")
+                        || mConfirmationTextView.getText().toString().trim().matches(""))
+                {
+                    DialogCreation.createDialog(this,getString(R.string.champs_requis),getString(R.string.champs_requis_desc));
+                }
+                else if(!testString.validateEmail(mEmailtexTextView.getText().toString()))
+                {
+                DialogCreation.createDialog(this,getString(R.string.bad_email),getString(R.string.bad_email_desc));
+                }
+                else if(!mPasswordTextView.getText().toString().equals(mConfirmationTextView.getText().toString()))
+                {
+                    DialogCreation.createDialog(this,getString(R.string.differentPwd),getString(R.string.differentPwd_desc));
+                }
+                else if(!testString.validatePassword(mPasswordTextView.getText().toString()))
+                {
+                    DialogCreation.createDialog(this,getString(R.string.bad_password),getString(R.string.bad_password_desc));
+                }
+                else
+                {
+                    Intent intent = new Intent(InscriptionActivity.this, Inscription_2Activity.class);
+                    startActivity(intent);
+                    break;
+                }
         }
     }
 

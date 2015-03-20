@@ -16,56 +16,62 @@
         android:layout_marginTop="40dp"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Identifiant :"
-            android:textColor="#ff000000"
-            android:paddingLeft="20dp"/>
+            android:text="@string/identifiant_"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/normal_text_color"/>
         <EditText
-            android:id="@+id/identifiant"
+            android:id="@+id/activity_connexion_identifiant"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/identifiant"
             android:inputType="text"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Mot de passe :"
-            android:textColor="#ff000000"
-            android:paddingLeft="20dp"/>
+            android:text="@string/mot_de_passe_"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/normal_text_color"/>
         <EditText
-            android:id="@+id/mdp"
+            android:id="@+id/activity_connexion_mot_de_passe"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/mot_de_passe"
             android:inputType="textPassword"/>
     </LinearLayout>
     <Button
-        android:id="@+id/connexion"
+        android:id="@+id/activity_connexion_connexion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Connexion"
-        android:textColor="#ffffff"
-        android:background="#063040"
+        android:text="@string/connexion"
+        android:textColor="@color/white"
+        android:background="@color/normal_text_color"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"/>
     <TextView
-        android:id="@+id/inscription"
+        android:id="@+id/activity_connexion_inscription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:text="S\'inscrire"
+        android:text="@string/inscrivez_vous"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"/>
     <TextView
-        android:id="@+id/oubli"
+        android:id="@+id/activity_connexion_oubli"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:text="Mot de passe oublié"
+        android:text="@string/forgotPwd"
         android:layout_gravity="center_horizontal"/>
 </LinearLayout>

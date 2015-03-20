@@ -32,5 +32,21 @@
     <string name="mot_de_passe">Mot de passe</string>
     <string name="confirmation">Confirmation</string>
     <string name="etape_suivante">Etape suivante</string>
+    <string name="differentPwd">Mot de passe différent !</string>
+    <string name="differentPwd_desc">Les mots de passes doivent être identiques !</string>
+    <string name="bad_email">Adresse email incorrecte !</string>
+    <string name="bad_email_desc">L\'adresse email doit être de la forme suivante exemple@exemple.fr.</string>
+    <string name="champs_requis">Tous les champs sont requis !</string>
+    <string name="champs_requis_desc">Veuillez renseigner tous les champs pour continuer.</string>
+    <string name="bad_password">Mot de passe incorrect !</string>
+    <string name="bad_password_desc">Le mot de passe doit contenir 6 caractères, une minuscule, une majuscule et un chiffre.</string>
+
+    <!-- Connexion activity Text -->
+    <string name="identifiant_">Identifiant :</string>
+    <string name="identifiant">Identifiant</string>
+    <string name="connexion">Connexion</string>
+    <string name="forgotPwd">Mot de passe oublié</string>
+    <string name="no_network_available">Pas de connexion !</string>
+    <string name="no_network_available_desc">Vous ne disposez d\'aucune connexion réessayez plus tard.</string>
 
 </resources>

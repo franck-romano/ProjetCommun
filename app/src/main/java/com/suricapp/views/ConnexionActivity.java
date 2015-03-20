@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.suricapp.rest.client.HTTPAsyncTask;
 import com.suricapp.rest.client.RestClient;
+import com.suricapp.tools.CheckConnection;
+import com.suricapp.tools.DialogCreation;
 
 
 public class ConnexionActivity extends ActionBarActivity implements View.OnClickListener {
@@ -19,16 +21,19 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
     private RestClient restClient;
     private  HTTPAsyncTask task ;
 
-    private TextView 
+    private TextView mSubscribeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connexion);
-        id= (TextView)findViewById(R.id.identifiant);
-        TextView inscription = (TextView)findViewById(R.id.inscription);
-        TextView oubli = (TextView)findViewById(R.id.oubli);
-        connexion= (Button)findViewById(R.id.connexion);
+
+        id= (TextView)findViewById(R.id.activity_connexion_identifiant);
+
+        mSubscribeTextView = (TextView)findViewById(R.id.activity_connexion_inscription);
+        mSubscribeTextView.setOnClickListener(this);
+        TextView oubli = (TextView)findViewById(R.id.activity_connexion_oubli);
+        connexion= (Button)findViewById(R.id.activity_connexion_connexion);
 
         //task= new HTTPAsyncTask(this);
        /* ArrayList<NameValuePair> listNameValuePair = new ArrayList<>();
@@ -47,8 +52,8 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
             connexion.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    TextView id = (TextView)findViewById(R.id.identifiant);
-                    TextView mdp = (TextView)findViewById(R.id.mdp);
+                    TextView id = (TextView)findViewById(R.id.activity_connexion_identifiant);
+                    TextView mdp = (TextView)findViewById(R.id.activity_connexion_mot_de_passe);
                     Intent intent = new Intent(ConnexionActivity.this,TimelineActivity.class);
                     String ident = id.getText().toString();
                     String mot = mdp.getText().toString();
@@ -63,18 +68,22 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
                     }
                 }
             });
-
-        inscription.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ConnexionActivity.this, InscriptionActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
     public void onClick(View v) {
 
+        switch (v.getId())
+        {
+            case R.id.activity_connexion_inscription :
+                //Check connection available
+                if(CheckConnection.isNetworkAvailable(this)) {
+                    Intent intent = new Intent(ConnexionActivity.this, InscriptionActivity.class);
+                    startActivity(intent);
+                }else
+                {
+                    DialogCreation.createDialog(this,getString(R.string.no_network_available),getString(R.string.no_network_available_desc));
+                }
+        }
     }
 }
