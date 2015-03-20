@@ -56,6 +56,8 @@
     <string name="autorites">Autorités</string>
     <string name="evenement">Evènement</string>
     <string name="promotion">Promotion</string>
+    <string name="titre">Titre</string>
+    <string name="titre_">Titre :</string>
 
 
     <!-- Connexion activity Text -->

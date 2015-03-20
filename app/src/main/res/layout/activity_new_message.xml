@@ -29,9 +29,32 @@
                     android:textStyle="bold"
                     android:textColor="@color/normal_text_color"
                     android:gravity="center"
-                    android:paddingTop="20dp"
                     android:textSize="25sp"/>
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/normal_text_color"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/titre_"
+                        android:textStyle="bold"
+                        android:textColor="@color/normal_text_color"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="30dp"/>
+                    <EditText
+                        android:id="@+id/activity_new_message_titre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/titre"
+                        android:layout_marginRight="30dp"/>
+                </LinearLayout>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -39,7 +62,7 @@
                     android:textStyle="bold"
                     android:textColor="@color/normal_text_color"
                     android:gravity="left"
-                    android:paddingLeft="55dp"
+                    android:paddingLeft="30dp"
                     android:layout_marginTop="20dp"
                     android:textSize="18dp"/>
 
@@ -49,8 +72,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
                     android:ems="10"
-                    android:layout_marginLeft="55dp"
-                    android:layout_marginRight="55dp"
+                    android:hint="@string/votre_message"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
                     android:layout_marginTop="20dp"/>
 
                 <TextView
@@ -79,7 +103,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center"
-                            android:layout_margin="10dp">
+                            android:layout_margin="5dp">
                             <CheckBox
                                 android:id="@+id/activity_new_message_categorie_transport"
                                 android:layout_gravity="center_horizontal"
@@ -99,7 +123,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center"
-                            android:layout_margin="10dp">
+                            android:layout_margin="5dp">
                             <CheckBox
                                 android:id="@+id/activity_new_message_categorie_evenement"
                                 android:layout_gravity="center_horizontal"
@@ -124,7 +148,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center"
-                            android:layout_margin="10dp">
+                            android:layout_margin="5dp">
                             <CheckBox
                                 android:id="@+id/activity_new_message_categorie_promotion"
                                 android:layout_gravity="center_horizontal"
@@ -144,7 +168,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center"
-                            android:layout_margin="10dp">
+                            android:layout_margin="5dp">
                             <CheckBox
                                 android:id="@+id/activity_new_message_categorie_rencontre"
                                 android:layout_gravity="center_horizontal"
@@ -169,7 +193,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center"
-                            android:layout_margin="10dp">
+                            android:layout_margin="5dp">
                             <CheckBox
                                 android:id="@+id/activity_new_message_categorie_covoiturage"
                                 android:layout_gravity="center_horizontal"
@@ -189,7 +213,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center"
-                            android:layout_margin="10dp">
+                            android:layout_margin="5dp">
                             <CheckBox
                                 android:id="@+id/activity_new_message_categorie_autorites"
                                 android:layout_gravity="center_horizontal"
