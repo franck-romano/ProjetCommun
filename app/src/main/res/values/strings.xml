@@ -88,6 +88,9 @@
     <string name="no_network_available">No connection available !</string>
     <string name="no_network_available_desc">You do not have any connection try again later.</string>
 
+    <!--Activity Timeline-->
+    <string name="activity_timeline_title">Timeline</string>
+
 </resources>
 
 
