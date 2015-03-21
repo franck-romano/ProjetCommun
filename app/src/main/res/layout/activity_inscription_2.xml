@@ -37,11 +37,153 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Centre d\'intérêt : "
+        android:text="@string/centre_interet_"
         android:textStyle="bold"
-        android:textColor="#ff000000"
+        android:textColor="@color/normal_text_color"
         android:gravity="left"
         android:layout_marginLeft="20dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_margin="5dp">
+                <CheckBox
+                    android:id="@+id/activity_inscription_2_transport"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+                <TextView
+                    android:text="@string/transport"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/normal_text_clear_color"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_margin="5dp">
+                <CheckBox
+                    android:id="@+id/activity_inscription_2_evenement"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+                <TextView
+                    android:text="@string/evenement"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/normal_text_clear_color"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_margin="5dp">
+                <CheckBox
+                    android:id="@+id/activity_inscription_2_promotion"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+                <TextView
+                    android:text="@string/promotion"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/normal_text_clear_color"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_margin="5dp">
+                <CheckBox
+                    android:id="@+id/activity_inscription_2_rencontre"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+                <TextView
+                    android:text="@string/rencontre"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/normal_text_clear_color"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_margin="5dp">
+                <CheckBox
+                    android:id="@+id/activity_inscription_2_covoiturage"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+                <TextView
+                    android:text="@string/co_voiturage"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/normal_text_clear_color"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_margin="5dp">
+                <CheckBox
+                    android:id="@+id/activity_inscription_2_autorites"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+                <TextView
+                    android:text="@string/autorites"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/normal_text_clear_color"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
     <TableLayout
         android:layout_width="wrap_content"
@@ -52,14 +194,14 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Afficher les messages dans un rayon de : "
+        android:text="@string/show_message_around"
         android:textStyle="bold"
-        android:textColor="#ff000000"
+        android:textColor="@color/normal_text_color"
         android:gravity="left"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"/>
     <SeekBar
-        android:id="@+id/rayon"
+        android:id="@+id/activity_inscription_2rayon"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:max="5"
@@ -73,12 +215,14 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"/>
     <Button
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="#063040"
-        android:id="@+id/terminer"
+        android:background="@color/normal_text_color"
+        android:id="@+id/activity_inscription_2_terminer"
         android:layout_gravity="center_horizontal"
-        android:text="TERMINER"
-        android:textColor="#ffffff"/>
+        android:text="@string/terminer"
+        android:textColor="@color/white"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"/>
 </LinearLayout>

@@ -22,7 +22,7 @@ public class Inscription_2Activity extends ActionBarActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription_2);
 
-        SeekBar rayon = (SeekBar)findViewById(R.id.rayon);
+        SeekBar rayon = (SeekBar)findViewById(R.id.activity_inscription_2rayon);
         final TextView rayon_numeric = (TextView)findViewById(R.id.rayon_texte);
 
         // Initialiser le textView avec la valeur de départ.

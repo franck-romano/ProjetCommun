@@ -17,10 +17,18 @@
 
     <!--Activity_categories-->
 
+    <!-- Text activity inscription 2 -->
+    <string name="centre_interet_">Centre d\'intérêt :</string>
+    <string name="centre_interet">Centre d\'intérêt</string>
+    <string name="show_message_around">Afficher les messages dans un rayon de :</string>
+    <string name="terminer">Terminer</string>
+
     <!-- Text activity inscription -->
     <string name="inscrivez_vous">Subscribe</string>
     <string name="pseudo_">Login :</string>
     <string name="mail_"> Email :</string>
+    <string name="photo_">Photo :</string>
+    <string name="photo">Photo</string>
     <string name="ville_">City :</string>
     <string name="date_naissance_">Birthday :</string>
     <string name="mot_de_passe_">Password :</string>
@@ -44,6 +52,10 @@
     <string name="pseudo_used_desc">Le pseudo que vous avez rentré est déjà utilisé.</string>
     <string name="email_used">Email déjà utilisé !</string>
     <string name="email_used_desc">L\'adresse email que vous avez rentré est déjà utilisé.</string>
+    <string name="photo_method">Prendre une photo ?</string>
+    <string name="photo_method_desc">Voulez vous prendre une photo ou en choisir une dans la galerie ?</string>
+    <string name="galerie">Galerie</string>
+    <string name="take_a_picture">Prendre une photo</string>
 
 
     <!-- Activity write message -->
@@ -64,6 +76,9 @@
     <color name="normal_text_color">#063040</color>
     <color name="normal_text_clear_color">#0F6878</color>
     <color name="white">#ffffff</color>
+
+    <!-- Activity catégories -->
+    <string name="my_categories">Mes Catégories</string>
 
     <!-- Connexion activity Text -->
     <string name="identifiant_">Login :</string>

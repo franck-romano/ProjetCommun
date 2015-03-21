@@ -72,6 +72,27 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:text="@string/photo_"
+                android:textStyle="bold"
+                android:textColor="@color/normal_text_color"
+                android:gravity="center"/>
+            <Button
+                android:id="@+id/activity_inscription_photo"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="@string/photo"
+                android:textColor="#ffffff"
+                android:background="@color/normal_text_color"
+                android:onClick="setDate"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
                 android:text="@string/mail_"
                 android:textStyle="bold"
                 android:textColor="@color/normal_text_color"
@@ -185,7 +206,8 @@
                 android:background="#063040"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/etape_suivante"
-                android:textColor="#ffffff"/>
+                android:textColor="@color/white"
+                android:enabled="false"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

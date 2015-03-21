@@ -1,9 +1,15 @@
 package com.suricapp.views;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,20 +18,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.suricapp.models.User;
 import com.suricapp.rest.client.HTTPAsyncTask;
 import com.suricapp.tools.DialogCreation;
 import com.suricapp.tools.StringValidator;
+import com.suricapp.tools.Variables;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
 public class InscriptionActivity extends ActionBarActivity implements View.OnClickListener{
+
 
     private DatePicker datePicker;
     private Calendar calendar;
@@ -39,10 +50,14 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
     private TextView mConfirmationTextView;
 
     // Button from view
+    private Button mPhotoButton;
     private Button mNextStepButton;
 
     // Date picker
     private int year, month, day;
+
+    //Image items
+    private Uri fileUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +79,7 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
         mLoginTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus)
+                if(!hasFocus && mLoginTextView.getText().toString().trim().length() > 0)
                 {
                     HTTPAsyncTask taskPseudo= new HTTPAsyncTask(getLocalContext());
                     taskPseudo.execute(null,"http://suricapp.esy.es/ws.php/d_user/?user_pseudo="+mLoginTextView.getText().toString(),"GET",null);
@@ -87,7 +102,7 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
         mEmailtexTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus)
+                if(!hasFocus && mLoginTextView.getText().toString().trim().length() > 0)
                 {
                     HTTPAsyncTask taskEmail= new HTTPAsyncTask(getLocalContext());
                     taskEmail.execute(null,"http://suricapp.esy.es/ws.php/d_user/?user_email="+mEmailtexTextView.getText().toString(),"GET",null);
@@ -111,6 +126,8 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
         // Button settings
         mNextStepButton = (Button) findViewById(R.id.activity_inscription_suivant);
         mNextStepButton.setOnClickListener(this);
+        mPhotoButton = (Button) findViewById(R.id.activity_inscription_photo);
+        mPhotoButton.setOnClickListener(this);
     }
 
     @Override
@@ -153,6 +170,78 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
                     startActivity(intent);
                     break;
                 }
+           case R.id.activity_inscription_photo :
+           {
+               AlertDialog.Builder builder = new AlertDialog.Builder(this);
+               builder.setTitle(getString(R.string.photo_method)).setMessage(R.string.photo_method_desc);
+               builder.setPositiveButton(getString(R.string.galerie), new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       startCamera();
+                   }
+               });
+               builder.setNegativeButton(getString(R.string.take_a_picture), new DialogInterface.OnClickListener() {
+
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       startGallery();
+                   }
+               });
+               AlertDialog dialog = builder.create();
+               dialog.show();
+               break;
+           }
+        }
+    }
+
+
+    private void startCamera()
+    {
+        Intent i = new Intent(
+                Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        startActivityForResult(i, Variables.RESULT_LOAD_IMAGE);
+    }
+
+    private void startGallery()
+    {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        fileUri = getOutputMediaFileUri(Variables.MEDIA_TYPE_IMAGE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,fileUri);
+        startActivityForResult(intent,Variables.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == Variables.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
+        {
+            if(resultCode == RESULT_OK)
+            {
+                Toast.makeText(this,"Image reçu de l'apparail",Toast.LENGTH_SHORT).show();
+            }
+            else if (resultCode == RESULT_CANCELED)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+        if (requestCode == Variables.RESULT_LOAD_IMAGE) {
+            if(resultCode == RESULT_OK)
+            {
+                Toast.makeText(this,"Image reçu de la gallery",Toast.LENGTH_SHORT).show();
+            }
+            else if (resultCode == RESULT_CANCELED)
+            {
+
+            }
+            else
+            {
+
+            }
         }
     }
 
@@ -203,5 +292,44 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
     private Context getLocalContext()
     {
         return this;
+    }
+
+    /** Create a file Uri for saving an image or video */
+    private static Uri getOutputMediaFileUri(int type){
+        return Uri.fromFile(getOutputMediaFile(type));
+    }
+
+    /** Create a File for saving an image or video */
+    private static File getOutputMediaFile(int type){
+        // To be safe, you should check that the SDCard is mounted
+        // using Environment.getExternalStorageState() before doing this.
+
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), "MyCameraApp");
+        // This location works best if you want the created images to be shared
+        // between applications and persist after your app has been uninstalled.
+
+        // Create the storage directory if it does not exist
+        if (! mediaStorageDir.exists()){
+            if (! mediaStorageDir.mkdirs()){
+                Log.d("MyCameraApp", "failed to create directory");
+                return null;
+            }
+        }
+
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new java.util.Date());
+        File mediaFile;
+        if (type == Variables.MEDIA_TYPE_IMAGE){
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+                    "IMG_"+ timeStamp + ".jpg");
+        } else if(type == Variables.MEDIA_TYPE_VIDEO) {
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+                    "VID_"+ timeStamp + ".mp4");
+        } else {
+            return null;
+        }
+
+        return mediaFile;
     }
 }
