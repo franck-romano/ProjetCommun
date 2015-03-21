@@ -1,7 +1,5 @@
 package com.suricapp.rest.client;
 
-import android.os.AsyncTask;
-
 /**
  * Created by Franck on 16/03/15.
  */

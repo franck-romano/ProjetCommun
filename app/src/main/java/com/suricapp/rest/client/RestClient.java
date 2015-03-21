@@ -1,6 +1,5 @@
 package com.suricapp.rest.client;
 
-import com.suricapp.rest.client.RestClientInterface;
 import com.suricapp.suricapp.utils.StreamUtils;
 
 import org.apache.http.HttpResponse;
@@ -13,6 +12,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.DefaultHttpClient;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;

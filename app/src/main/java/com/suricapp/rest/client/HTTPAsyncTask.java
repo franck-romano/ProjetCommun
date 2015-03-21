@@ -3,8 +3,6 @@ package com.suricapp.rest.client;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import org.json.JSONException;
-
 /**
  * Created by Franck on 17/03/15.
  */

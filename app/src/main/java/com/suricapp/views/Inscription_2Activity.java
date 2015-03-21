@@ -1,17 +1,13 @@
 package com.suricapp.views;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.suricapp.models.User;
 import com.suricapp.rest.client.HTTPAsyncTask;
-import com.suricapp.rest.client.RestClient;
-import com.suricapp.suricapp.utils.JsonUtils;
-
-import org.json.JSONException;
 
 
 public class Inscription_2Activity extends ActionBarActivity implements View.OnClickListener{

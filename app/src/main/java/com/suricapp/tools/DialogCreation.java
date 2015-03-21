@@ -3,15 +3,14 @@ package com.suricapp.tools;
 /**
  * Created by maxence on 19/03/15.
  */
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.hardware.Camera;
 import android.net.Uri;
-import android.view.View;
-import android.view.ViewGroup;
+
 import com.suricapp.views.R;
 
 /**
