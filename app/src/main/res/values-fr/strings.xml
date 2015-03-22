@@ -84,4 +84,7 @@
     <string name="no_network_available">Pas de connexion !</string>
     <string name="no_network_available_desc">Vous ne disposez d\'aucune connexion réessayez plus tard.</string>
 
+    <!--Activity Timeline-->
+    <string name="activity_timeline_title">Fil de message</string>
+
 </resources>
