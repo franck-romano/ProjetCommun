@@ -43,14 +43,14 @@ public class TimelineActivity extends SuricappActionBar {
         mNbVueTextView = (TextView) findViewById(R.id.activity_timeline_nbvue);
 
 
-        HTTPAsyncTask taskPseudo= new HTTPAsyncTask(getLocalContext());
-        taskPseudo.execute(null,"http://suricapp.esy.es/ws.php/d_message/","GET",null);
-        taskPseudo.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
+        HTTPAsyncTask taskMessage= new HTTPAsyncTask(getLocalContext());
+        taskMessage.execute(null,"http://suricapp.esy.es/ws.php/d_message/","GET",null);
+        taskMessage.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
             @Override
-            public void setMyTaskComplete(String message){
+            public void setMyTaskComplete(String result){
                 JSONObject obj = null;
                 try {
-                    obj = new JSONObject(message);
+                    obj = new JSONObject(result);
                     mContenuTextView.setText(obj.getString("message_content_fr_fr"));
                 } catch (JSONException e) {
                     DialogCreation.createDialog(getLocalContext(), getString(R.string.activity_timeline_title), getString(R.string.activity_timeline_title));
