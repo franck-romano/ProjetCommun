@@ -2,6 +2,7 @@ package com.suricapp.views;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -67,6 +68,33 @@ public class MapActivity extends FragmentActivity implements LocationListener{
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //Obtention de la référence du service
+        locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+
+        //Si le GPS est disponible, on s'y abonne
+        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            abonnementGPS();
+        }
+    }
+
+    /**
+     * Méthode permettant de s'abonner à la localisation par GPS.
+     */
+    public void abonnementGPS() {
+        //On s'abonne
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, this);
+    }
+
+    public void desabonnementGPS() {
+        //Si le GPS est disponible, on s'y abonne
+        locationManager.removeUpdates(this);
+    }
+
+
     /**
      * Initialises the mapview
      */
@@ -78,19 +106,10 @@ public class MapActivity extends FragmentActivity implements LocationListener{
         try {
             if(googleMap == null){
                 googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapView)).getMap();
-
-                //Obtention de la référence du service
-                locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
-                //Si le fournisseur est disponible
-                if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10,this);
-                }
-
                 //Permet d'afficher le bouton MaPosition
                 googleMap.getUiSettings().setMyLocationButtonEnabled(true);
                 //Autoriser la récupération de la position actuelle.
                 googleMap.setMyLocationEnabled(true);
-                googleMap.getMyLocation();
 
                 /**
                  * Si la Map est toujours null après initialisation on affiche une erreur via un Toast
@@ -107,8 +126,8 @@ public class MapActivity extends FragmentActivity implements LocationListener{
     /**
      * Adds a marker to the map
      */
-    private void addMarker(int longitude, int latitude) {
-        if (null != googleMap) {
+    private void addMarker(int latitude, int longitude) {
+        if (googleMap != null) {
             googleMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title(getString(R.string.here)));
         }
     }
@@ -121,10 +140,18 @@ public class MapActivity extends FragmentActivity implements LocationListener{
 
     @Override
     public void onProviderDisabled(final String provider) {
+        //Si le GPS est désactivé on se désabonne
+        if("gps".equals(provider)) {
+            desabonnementGPS();
+        }
     }
 
     @Override
     public void onProviderEnabled(final String provider) {
+        //Si le GPS est activé on s'abonne
+        if("gps".equals(provider)) {
+            abonnementGPS();
+        }
     }
 
     @Override
@@ -178,6 +205,8 @@ public class MapActivity extends FragmentActivity implements LocationListener{
     @Override
     protected void onPause() {
         super.onPause();
+        //On appelle la méthode pour se désabonner
+        desabonnementGPS();
         this.finish();
     }
 

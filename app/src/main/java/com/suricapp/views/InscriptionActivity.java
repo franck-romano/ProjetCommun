@@ -63,6 +63,7 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
 
     // Date picker
     private int year, month, day;
+    private static int _MAJORITY = 18;
 
     //Image items
     private Uri fileUri;
@@ -281,9 +282,9 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
     {
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
-        day = calendar.get(Calendar.DAY_OF_MONTH);
-        showDate(year, month+1, day);
+        month = 01;
+        day = 01;
+        showDate(year-_MAJORITY, month, day);
     }
 
     @SuppressWarnings("deprecation")
@@ -295,7 +296,7 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
     protected Dialog onCreateDialog(int id) {
         // TODO Auto-generated method stub
         if (id == 999) {
-            return new DatePickerDialog(this, myDateListener, year, month, day);
+            return new DatePickerDialog(this, myDateListener, year-_MAJORITY, month, day);
         }
         return null;
     }
@@ -308,7 +309,7 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
             // arg1 = year
             // arg2 = month
             // arg3 = day
-            showDate(arg1, arg2+1, arg3);
+            showDate(arg1, arg2, arg3);
         }
     };
 
