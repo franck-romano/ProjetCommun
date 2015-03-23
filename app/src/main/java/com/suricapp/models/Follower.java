@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by maxence on 17/03/15.
  */
-public class Follower extends SugarRecord<Follower>{
+public class Follower{
 
     /**
      * CREATE TABLE IF NOT EXISTS `d_follower` (

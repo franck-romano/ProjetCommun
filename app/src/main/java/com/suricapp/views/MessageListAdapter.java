@@ -10,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.suricapp.models.Message;
+import com.suricapp.models.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**

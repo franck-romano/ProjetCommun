@@ -16,7 +16,7 @@ import com.suricapp.tools.CheckConnection;
 import com.suricapp.tools.DialogCreation;
 
 import org.json.JSONArray;
-import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class ConnexionActivity extends ActionBarActivity implements View.OnClickListener {
@@ -95,6 +95,9 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
         }
     }
 
+    /**
+     * Check if the category are the same in local than in server
+     */
     private void checkCategories()
     {
 //        http://suricapp.esy.es/ws.php/d_category
@@ -107,10 +110,23 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
                 JSONArray jarray = null;
                 try {
                     jarray = new JSONArray(message);
-                    Log.w("LG","iozubvizbvizbzivubzviuzbvi");
-                    long tmp = Category.count(Category.class,null,null);
-                    Log.w("LG",""+tmp);
-                } catch (JSONException e) {
+                    int tmp =(int) Category.count(Category.class,null,null);
+
+                    if(jarray.length() != tmp )
+                    {
+                        Category.deleteAll(Category.class);
+                        for (int i=0;i<jarray.length();i++)
+                        {
+                            JSONObject jsonObject = jarray.getJSONObject(i);
+                            Category cat = new Category();
+                            cat.setCategory_id(Integer.parseInt(jsonObject.getString("category_id")));
+                            cat.setCategory_description("category_description_fr_fr");
+                            cat.setCategory_label("category_label");
+                            cat.save();
+                            Log.w("Save","CAT UPDATE");
+                        }
+                    }
+                } catch (Exception e) {
                     Log.w("EXCEPTION",e.toString());
                 }
             }

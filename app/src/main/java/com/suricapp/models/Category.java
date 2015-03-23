@@ -1,4 +1,6 @@
 package com.suricapp.models;
+import android.content.Context;
+
 import com.orm.SugarRecord;
 
 import org.apache.http.NameValuePair;
@@ -24,6 +26,7 @@ public class Category extends SugarRecord<Category>{
     private int category_id;
     private String category_label;
     private String category_description;
+
 
     public ArrayList<NameValuePair> objectToNameValuePair()
     {

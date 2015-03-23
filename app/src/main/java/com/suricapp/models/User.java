@@ -47,7 +47,11 @@ public class User extends SugarRecord<User> implements Serializable{
     private String user_email;
     private int user_is_premium;
 
-    public User(int user_id, String user_pseudo, String user_password, String user_name, String user_first_name, Date user_date_creation, Date user_birthday, String user_situation_fr_fr, String user_city, String user_picture, String user_phone, String user_email, int user_is_premium) {
+
+    public User(int user_id, String user_pseudo, String user_password, String user_name,
+                String user_first_name, Date user_date_creation, Date user_birthday,
+                String user_situation_fr_fr, String user_city, String user_picture, String user_phone,
+                String user_email, int user_is_premium) {
         this.user_id = user_id;
         this.user_pseudo = user_pseudo;
         this.user_password = user_password;

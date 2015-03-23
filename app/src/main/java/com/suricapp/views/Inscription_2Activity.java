@@ -1,10 +1,15 @@
 package com.suricapp.views;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.suricapp.models.User;
 import com.suricapp.rest.client.HTTPAsyncTask;
@@ -13,6 +18,8 @@ import com.suricapp.rest.client.HTTPAsyncTask;
 public class Inscription_2Activity extends ActionBarActivity implements View.OnClickListener{
 
     private HTTPAsyncTask task;
+
+    private CheckBox m
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +61,28 @@ public class Inscription_2Activity extends ActionBarActivity implements View.OnC
                 task.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
                     @Override
                     public void setMyTaskComplete(String message){
-                        //JsonUtils.StringToJSON(message);
+                        Toast.makeText(getLocalContext(),getString(R.string.user_saved),Toast.LENGTH_LONG).show();
                     }
                 });
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getLocalContext());
+                SharedPreferences.Editor editor  = preferences.edit();
                 break;
         }
+    }
+
+    /**
+     * Transform checkbox choice in string value
+     * @return
+     */
+    private String getCheckBoxChoice()
+    {
+        StringBuilder sb = new StringBuilder();
+
+
+    }
+
+    private Context getLocalContext()
+    {
+        return this;
     }
 }

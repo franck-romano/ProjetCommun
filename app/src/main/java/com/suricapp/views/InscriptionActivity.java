@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -23,13 +27,17 @@ import android.widget.Toast;
 import com.suricapp.models.User;
 import com.suricapp.rest.client.HTTPAsyncTask;
 import com.suricapp.tools.DialogCreation;
+import com.suricapp.tools.ImageManipulation;
 import com.suricapp.tools.StringValidator;
 import com.suricapp.tools.Variables;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -58,7 +66,8 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
 
     //Image items
     private Uri fileUri;
-    private Boolean photoChose= false;
+    // User to send
+    private User mUser = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,14 +169,22 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
                     DialogCreation.createDialog(this,getString(R.string.bad_password),getString(R.string.bad_password_desc));
                 }
                 else {
-                    User user = new User();
-                    user.setUser_pseudo(mLoginTextView.getText().toString());
-                    user.setUser_email(mEmailtexTextView.getText().toString());
-                    user.setUser_city(mCityTextView.getText().toString());
-                    user.setUser_birthday(new Date(year,month,day));
-                    user.setUser_password(mPasswordTextView.getText().toString());
+                    mUser.setUser_pseudo(mLoginTextView.getText().toString());
+                    mUser.setUser_email(mEmailtexTextView.getText().toString());
+                    mUser.setUser_city(mCityTextView.getText().toString());
+                    mUser.setUser_birthday(new Date(year,month,day));
+                    try {
+                        mUser.setUser_password(StringValidator.SHA1(mPasswordTextView.getText().toString()));
+                        Log.w("Encrypte Done","YESS");
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
+                        Log.w("Encrypte Done","NO");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                        Log.w("Encrypte Done","NO");
+                    }
                     Intent intent = new Intent(InscriptionActivity.this, Inscription_2Activity.class);
-                    intent.putExtra("user",user);
+                    intent.putExtra("user",mUser);
                     startActivity(intent);
                     break;
                 }
@@ -198,10 +215,10 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
 
     private void startCamera()
     {
-        Intent i = new Intent(
-                Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-        startActivityForResult(i, Variables.RESULT_LOAD_IMAGE);
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        fileUri = getOutputMediaFileUri(Variables.MEDIA_TYPE_IMAGE);
+        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,fileUri);
+        startActivityForResult(takePictureIntent, Variables.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
 
     private void startGallery()
@@ -219,18 +236,42 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
         {
             if(resultCode == RESULT_OK)
             {
-                Toast.makeText(this,"Image reçu de l'apparail",Toast.LENGTH_SHORT).show();
-                photoChose.toString();
+                Uri selectedImage = fileUri;
+                getContentResolver().notifyChange(selectedImage, null);
+                ContentResolver cr = getContentResolver();
+                Bitmap bitmap;
+                try {
+                    bitmap = android.provider.MediaStore.Images.Media
+                            .getBitmap(cr, selectedImage);
+                    mUser.setUser_picture(ImageManipulation.encodeImage(ImageManipulation.transformBitmapToArrayByte(bitmap)));
+                    Toast.makeText(this,R.string.picture_saved,Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT)
+                            .show();
+                    Log.e("Camera", e.toString());
+                }
             }
         }
         if (requestCode == Variables.RESULT_LOAD_IMAGE) {
             if(resultCode == RESULT_OK)
             {
-                Toast.makeText(this,"Image reçu de la gallery",Toast.LENGTH_SHORT).show();
+                // Get photo from gallery
+                Uri selectedImage = data.getData();
+                String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                Cursor cursor = getContentResolver().query(selectedImage,filePathColumn, null, null, null);
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String picturePath = cursor.getString(columnIndex);
+                cursor.close();
+                // transform photo as string to save it in BDD
+                Bitmap image = BitmapFactory.decodeFile(picturePath);
+                mUser.setUser_picture(ImageManipulation.encodeImage(ImageManipulation.transformBitmapToArrayByte(image)));
+                Toast.makeText(this,R.string.picture_saved,Toast.LENGTH_LONG).show();
             }
         }
 
     }
+
 
     /**
      * Initialize date picker

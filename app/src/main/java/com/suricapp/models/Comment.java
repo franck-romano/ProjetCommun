@@ -29,7 +29,7 @@ public class Comment extends SugarRecord<Comment>{
     private int comment_id;
     private Date comment_date;
     private String comment_content_fr_fr;
-    private Message comment_message_id_fk;
+    private int comment_message_id_fk;
     private User comment_user_id_fk;
 
     public ArrayList<NameValuePair> objectToNameValuePair()
@@ -38,7 +38,7 @@ public class Comment extends SugarRecord<Comment>{
         followersDetails.add(new BasicNameValuePair("comment_id",""+this.getComment_id()));
         followersDetails.add(new BasicNameValuePair("comment_date",this.getComment_date().toString()));
         followersDetails.add(new BasicNameValuePair("comment_content_fr_fr",this.getComment_content_fr_fr()));
-        followersDetails.add(new BasicNameValuePair("comment_message_id_fk",""+this.getComment_message_id_fk().getMessage_id()));
+        followersDetails.add(new BasicNameValuePair("comment_message_id_fk",""+this.getComment_message_id_fk()));
         followersDetails.add(new BasicNameValuePair("comment_user_id_fk",""+this.getComment_user_id_fk().getUser_id()));
         return followersDetails;
     }
@@ -46,7 +46,7 @@ public class Comment extends SugarRecord<Comment>{
     public Comment() {
     }
 
-    public Comment(int comment_id, Date comment_date, String comment_content_fr_fr, Message comment_message_id_fk, User comment_user_id_fk) {
+    public Comment(int comment_id_web, Date comment_date, String comment_content_fr_fr, int comment_message_id_fk, User comment_user_id_fk) {
         this.comment_id = comment_id;
         this.comment_date = comment_date;
         this.comment_content_fr_fr = comment_content_fr_fr;
@@ -58,7 +58,7 @@ public class Comment extends SugarRecord<Comment>{
         return comment_id;
     }
 
-    public void setComment_id(int comment_id) {
+    public void setComment_id_web(int comment_id) {
         this.comment_id = comment_id;
     }
 
@@ -78,11 +78,11 @@ public class Comment extends SugarRecord<Comment>{
         this.comment_content_fr_fr = comment_content_fr_fr;
     }
 
-    public Message getComment_message_id_fk() {
+    public int getComment_message_id_fk() {
         return comment_message_id_fk;
     }
 
-    public void setComment_message_id_fk(Message comment_message_id_fk) {
+    public void setComment_message_id_fk(int comment_message_id_fk) {
         this.comment_message_id_fk = comment_message_id_fk;
     }
 
