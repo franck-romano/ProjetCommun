@@ -113,6 +113,7 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
         {
             Intent intent = new Intent(ConnexionActivity.this, TimelineActivity.class);
             startActivity(intent);
+            this.finish();
         }
     }
 
