@@ -259,4 +259,11 @@ public class MapActivity extends FragmentActivity implements LocationListener{
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent timeline = new Intent(getApplicationContext(), TimelineActivity.class);
+        startActivity(timeline);
+    }
 }

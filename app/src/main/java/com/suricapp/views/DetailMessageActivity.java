@@ -1,5 +1,6 @@
 package com.suricapp.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -23,6 +24,13 @@ public class DetailMessageActivity extends SuricappActionBar {
     protected void onStop() {
         super.onStop();
         this.finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent timeline = new Intent(getApplicationContext(), TimelineActivity.class);
+        startActivity(timeline);
     }
 
 }
