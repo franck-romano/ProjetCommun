@@ -128,4 +128,11 @@ public class SuricappActionBar extends Activity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent timeline = new Intent(getApplicationContext(), TimelineActivity.class);
+        startActivity(timeline);
+    }
 }
