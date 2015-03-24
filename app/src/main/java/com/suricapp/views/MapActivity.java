@@ -207,6 +207,11 @@ public class MapActivity extends FragmentActivity implements LocationListener{
         super.onPause();
         //On appelle la méthode pour se désabonner
         desabonnementGPS();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
         this.finish();
     }
 

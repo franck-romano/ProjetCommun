@@ -1,7 +1,9 @@
 package com.suricapp.views;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -116,10 +118,12 @@ public class SuricappActionBar extends Activity {
                         Intent informations = new Intent(.this, Information.class);
                         startActivity(informations);
                         break;*/
-                    /*case 6:
-                        Intent deconnexion = new Intent(.this, deconnexion.class);
-                        startActivity(deconnexion);
-                        break;*/
+                    case 7:
+                        Intent connexion = new Intent(SuricappActionBar.this, ConnexionActivity.class);
+                        SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES, Context.MODE_PRIVATE);
+                        preferences.edit().remove("userLog").commit();
+                        startActivity(connexion);
+                        break;
                 }
             }
         });

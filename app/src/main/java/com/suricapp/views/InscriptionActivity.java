@@ -92,15 +92,18 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus && mLoginTextView.getText().toString().trim().length() > 0)
                 {
+                    Log.w("ddd","ee");
                     HTTPAsyncTask taskPseudo= new HTTPAsyncTask(getLocalContext());
-                    taskPseudo.execute(null,"http://suricapp.esy.es/ws.php/d_user/?user_pseudo="+mLoginTextView.getText().toString(),"GET",null);
+                    taskPseudo.execute(null,Variables.GETPSEUDOFORUSER+mLoginTextView.getText().toString(),"GET",null);
                     taskPseudo.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
                         @Override
                         public void setMyTaskComplete(String message){
                             JSONObject obj = null;
                             try {
                                 obj = new JSONObject(message);
+                                Log.w("ddd",obj.toString());
                             } catch (JSONException e) {
+                                Log.w("ddd","ee");
                                 DialogCreation.createDialog(getLocalContext(),getString(R.string.pseudo_used),getString(R.string.pseudo_used_desc));
                                 mLoginTextView.requestFocus();
                             }
@@ -113,10 +116,10 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
         mEmailtexTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus && mLoginTextView.getText().toString().trim().length() > 0)
+                if(!hasFocus && mEmailtexTextView.getText().toString().trim().length() > 0)
                 {
                     HTTPAsyncTask taskEmail= new HTTPAsyncTask(getLocalContext());
-                    taskEmail.execute(null,"http://suricapp.esy.es/ws.php/d_user/?user_email="+mEmailtexTextView.getText().toString(),"GET",null);
+                    taskEmail.execute(null,Variables.GETMAILFORUSER+mEmailtexTextView.getText().toString(),"GET",null);
                     taskEmail.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
                         @Override
                         public void setMyTaskComplete(String message){
@@ -146,6 +149,7 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
         switch (v.getId())
         {
            case R.id.activity_inscription_suivant:
+               // Check all form field requierement
                 StringValidator testString = new StringValidator();
                 if(mPasswordTextView.getText().toString().trim().matches("")
                         || mLoginTextView.getText().toString().trim().matches("")
@@ -176,19 +180,16 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
                     mUser.setUser_birthday(new Date(year,month,day));
                     try {
                         mUser.setUser_password(StringValidator.SHA1(mPasswordTextView.getText().toString()));
-                        Log.w("Encrypte Done","YESS");
                     } catch (NoSuchAlgorithmException e) {
                         e.printStackTrace();
-                        Log.w("Encrypte Done","NO");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
-                        Log.w("Encrypte Done","NO");
                     }
                     Intent intent = new Intent(InscriptionActivity.this, Inscription_2Activity.class);
                     intent.putExtra("user",mUser);
-                    startActivity(intent);
-                    break;
+                    startActivityForResult(intent,Variables.REQUEST_EXIT);
                 }
+               break;
            case R.id.activity_inscription_photo :
            {
                AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -196,14 +197,14 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
                builder.setPositiveButton(getString(R.string.galerie), new DialogInterface.OnClickListener() {
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
-                       startCamera();
+                       startGallery();
                    }
                });
                builder.setNegativeButton(getString(R.string.take_a_picture), new DialogInterface.OnClickListener() {
 
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
-                       startGallery();
+                       startCamera();
                    }
                });
                AlertDialog dialog = builder.create();
@@ -214,6 +215,9 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
     }
 
 
+    /**
+     *
+     */
     private void startCamera()
     {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -222,17 +226,19 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
         startActivityForResult(takePictureIntent, Variables.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
 
+    /**
+     *
+     */
     private void startGallery()
     {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        fileUri = getOutputMediaFileUri(Variables.MEDIA_TYPE_IMAGE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,fileUri);
-        startActivityForResult(intent,Variables.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(i, Variables.GALLERY_IMAGE_ACTIVITY_REQUEST_CODE);
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // When return from camera intent or gallery intent
         if(requestCode == Variables.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE)
         {
             if(resultCode == RESULT_OK)
@@ -244,7 +250,7 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
                 try {
                     bitmap = android.provider.MediaStore.Images.Media
                             .getBitmap(cr, selectedImage);
-                    mUser.setUser_picture(ImageManipulation.encodeImage(ImageManipulation.transformBitmapToArrayByte(bitmap)));
+                    mUser.setUser_picture(ImageManipulation.encodeImage(ImageManipulation.transformBitmapToArrayByte(scaleDownBitmap(bitmap,100,getLocalContext()))));
                     Toast.makeText(this,R.string.picture_saved,Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
                     Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT)
@@ -253,7 +259,7 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
                 }
             }
         }
-        if (requestCode == Variables.RESULT_LOAD_IMAGE) {
+        if (requestCode == Variables.GALLERY_IMAGE_ACTIVITY_REQUEST_CODE) {
             if(resultCode == RESULT_OK)
             {
                 // Get photo from gallery
@@ -266,8 +272,15 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
                 cursor.close();
                 // transform photo as string to save it in BDD
                 Bitmap image = BitmapFactory.decodeFile(picturePath);
-                mUser.setUser_picture(ImageManipulation.encodeImage(ImageManipulation.transformBitmapToArrayByte(image)));
+                mUser.setUser_picture(ImageManipulation.encodeImage(ImageManipulation.transformBitmapToArrayByte(scaleDownBitmap(image,100,getLocalContext()))));
                 Toast.makeText(this,R.string.picture_saved,Toast.LENGTH_LONG).show();
+            }
+        }
+        if(requestCode == Variables.REQUEST_EXIT)
+        {
+            if(resultCode == Variables.REQUEST_EXIT_GOOD)
+            {
+                this.finish();
             }
         }
 
@@ -360,5 +373,24 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
         }
 
         return mediaFile;
+    }
+
+    /**
+     * Get a smaller picture
+     * @param photo
+     * @param newHeight
+     * @param context
+     * @return
+     */
+    public static Bitmap scaleDownBitmap(Bitmap photo, int newHeight, Context context) {
+
+        final float densityMultiplier = context.getResources().getDisplayMetrics().density;
+
+        int h= (int) (newHeight*densityMultiplier);
+        int w= (int) (h * photo.getWidth()/((double) photo.getHeight()));
+
+        photo=Bitmap.createScaledBitmap(photo, w, h, true);
+
+        return photo;
     }
 }

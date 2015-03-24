@@ -59,6 +59,12 @@
     <string name="picture_saved">Picture saved !</string>
     <string name="user_saved">User saved !</string>
 
+    <!-- Activity Connexion -->
+    <string name="mdp_login_missing">Veuillez remplir les champs identifiant et mot de passe !</string>
+    <string name="bad_mdp_login">Identifiant ou mot de passe incorrect</string>
+    <string name="erreur">Erreur !</string>
+    <string name="login_progress_signing_in">Connexion&#8230;</string>
+
 
     <!-- Activity write message -->
     <string name="ecrire_message">Ecrire un nouveau message</string>

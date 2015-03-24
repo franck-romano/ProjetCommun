@@ -10,6 +10,14 @@ public class Variables {
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE= 100;
-    public static final int RESULT_LOAD_IMAGE = 200;
+    public static final int GALLERY_IMAGE_ACTIVITY_REQUEST_CODE= 200;
+
+    public static final String GETMAILFORUSER = "http://suricapp.esy.es/ws.php/d_user/user_email/";
+    public static final String GETPSEUDOFORUSER ="http://suricapp.esy.es/ws.php/d_user/user_pseudo/";
+    public static final String POSTUSER = "http://suricapp.esy.es/ws.php/d_user/";
+    public static final String SURICAPPREFERENCES = "suricappprefs";
+    public static final int REQUEST_EXIT = 123;
+    public static final int REQUEST_EXIT_GOOD= 250;
+
 
 }

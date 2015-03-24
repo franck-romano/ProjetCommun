@@ -20,8 +20,8 @@ public class DetailMessageActivity extends SuricappActionBar {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onStop() {
+        super.onStop();
         this.finish();
     }
 

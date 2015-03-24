@@ -4,14 +4,43 @@
     tools:context="com.suricapp.views.ConnexionActivity"
     android:orientation="vertical"
     android:background="#DEDEDE">
+    <LinearLayout
+        android:id="@+id/activity_connexion_status"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone" >
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/login_status_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/login_progress_signing_in"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/activity_connexion_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
     <ImageView
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
         android:gravity="center_horizontal"
         android:src="@drawable/logo"
         android:paddingTop="30dp"/>
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:orientation="horizontal">
@@ -24,7 +53,7 @@
             android:textColor="@color/normal_text_color"/>
         <EditText
             android:id="@+id/activity_connexion_identifiant"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/identifiant"
             android:inputType="text"/>
@@ -74,4 +103,5 @@
         android:clickable="true"
         android:text="@string/forgotPwd"
         android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
 </LinearLayout>

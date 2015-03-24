@@ -1,81 +1,119 @@
 package com.suricapp.views;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.suricapp.models.Category;
 import com.suricapp.rest.client.HTTPAsyncTask;
 import com.suricapp.rest.client.RestClient;
 import com.suricapp.tools.CheckConnection;
 import com.suricapp.tools.DialogCreation;
+import com.suricapp.tools.StringValidator;
+import com.suricapp.tools.Variables;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 
 public class ConnexionActivity extends ActionBarActivity implements View.OnClickListener {
 
-    private  TextView id ;
-    private Button connexion;
+    // Connexion Info
+    private  TextView idTextView ;
+    private Button mConnexionButton;
     private RestClient restClient;
     private  HTTPAsyncTask task ;
+    private TextView mdpTextView;
 
     private TextView mSubscribeTextView;
+    private View mLoginFormView;
+    private View mLoginStatusView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connexion);
 
-        id= (TextView)findViewById(R.id.activity_connexion_identifiant);
-
         mSubscribeTextView = (TextView)findViewById(R.id.activity_connexion_inscription);
         mSubscribeTextView.setOnClickListener(this);
-        TextView oubli = (TextView)findViewById(R.id.activity_connexion_oubli);
-        connexion= (Button)findViewById(R.id.activity_connexion_connexion);
-
+        idTextView = (TextView)findViewById(R.id.activity_connexion_identifiant);
+        mdpTextView = (TextView)findViewById(R.id.activity_connexion_mot_de_passe);
+        mConnexionButton= (Button)findViewById(R.id.activity_connexion_connexion);
+        mConnexionButton.setOnClickListener(this);
+        mLoginFormView = findViewById(R.id.activity_connexion_form);
+        mLoginStatusView = findViewById(R.id.activity_connexion_status);
 
         // check categories if newer add it.
         checkCategories();
-        //task= new HTTPAsyncTask(this);
-       /* ArrayList<NameValuePair> listNameValuePair = new ArrayList<>();
-        listNameValuePair.add(new BasicNameValuePair("nom","Mimy"));
-        listNameValuePair.add(new BasicNameValuePair("prenom","Zeubi"));*/
-        //task.execute(null,"http://suricapp.esy.es/ws.php/d_user/user_mail/mailsdugars","GET",null);
-        /**
-        task.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
-            @Override
-            public void setMyTaskComplete(String message) {
-                id.setText(message);
-            }
-        });
-         */
+        checkSharedPreferences();
+    }
 
-            connexion.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    TextView id = (TextView)findViewById(R.id.activity_connexion_identifiant);
-                    TextView mdp = (TextView)findViewById(R.id.activity_connexion_mot_de_passe);
-                    Intent intent = new Intent(ConnexionActivity.this,TimelineActivity.class);
-                    String ident = id.getText().toString();
-                    String mot = mdp.getText().toString();
+    /**
+     * Shows the progress UI and hides the login form.
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    private void showProgress(final boolean show) {
+        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
+        // for very easy animations. If available, use these APIs to fade-in
+        // the progress spinner.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+            int shortAnimTime = getResources().getInteger(
+                    android.R.integer.config_shortAnimTime);
 
-                    if(ident.trim().length()==0)
-                        Toast.makeText(getApplicationContext(),"Veuillez remplir les champs identifiant et mot de passe svp", Toast.LENGTH_SHORT).show();
-                    else {
-                        if ((ident.equals("toto")&&(mot.equals("toto"))))
-                                startActivity(intent);
-                        else
-                            Toast.makeText(getApplicationContext(), "Identifiant ou MDP Incorrect", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+            mLoginStatusView.setVisibility(View.VISIBLE);
+            mLoginStatusView.animate().setDuration(shortAnimTime)
+                    .alpha(show ? 1 : 0)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            mLoginStatusView.setVisibility(show ? View.VISIBLE
+                                    : View.GONE);
+                        }
+                    });
+
+            mLoginFormView.setVisibility(View.VISIBLE);
+            mLoginFormView.animate().setDuration(shortAnimTime)
+                    .alpha(show ? 0 : 1)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            mLoginFormView.setVisibility(show ? View.GONE
+                                    : View.VISIBLE);
+                        }
+                    });
+        } else {
+            // The ViewPropertyAnimator APIs are not available, so simply show
+            // and hide the relevant UI components.
+            mLoginStatusView.setVisibility(show ? View.VISIBLE : View.GONE);
+            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+        }
+    }
+
+    /**
+     * Check if someone is already connected
+     */
+    private void checkSharedPreferences() {
+        SharedPreferences sharedPreferences = getSharedPreferences(Variables.SURICAPPREFERENCES, Context.MODE_PRIVATE);
+        if(sharedPreferences.contains("userLog"))
+        {
+            Intent intent = new Intent(ConnexionActivity.this, TimelineActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -92,9 +130,74 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
                 {
                     DialogCreation.createDialog(this,getString(R.string.no_network_available),getString(R.string.no_network_available_desc));
                 }
+                break;
+            case R.id.activity_connexion_connexion:
+                if(CheckConnection.isNetworkAvailable(this)) {
+                    if (idTextView.getText().toString().length() == 0 || mdpTextView.getText().toString().length() == 0) {
+                        DialogCreation.createDialog(this, getString(R.string.erreur), getString(R.string.mdp_login_missing));
+                    } else {
+                        showProgress(true);
+                        identifyUser();
+                    }
+
+                }
+                else
+                    DialogCreation.createDialog(this,getString(R.string.no_network_available),getString(R.string.no_network_available_desc));
+                break;
         }
     }
 
+    /**
+     * Check user identification
+     */
+    private void identifyUser() {
+        String login = idTextView.getText().toString();
+        HTTPAsyncTask taskPseudo= new HTTPAsyncTask(getLocalContext());
+        taskPseudo.execute(null,Variables.GETPSEUDOFORUSER+login,"GET",null);
+        taskPseudo.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
+            @Override
+            public void setMyTaskComplete(String message){
+                JSONArray jarray = null;
+                try {
+                    jarray = new JSONArray(message);
+                    if(jarray.length() == 0 )
+                    {
+                        throw  new JSONException("haha");
+                    }
+                    else
+                    {
+                        JSONObject tmp = jarray.getJSONObject(0);
+                        if(tmp.getString("user_password").equals(StringValidator.SHA1(mdpTextView.getText().toString())))
+                        {
+                            SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES,Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor  = preferences.edit();
+                            editor.putString("userLog", idTextView.getText().toString());
+                            editor.apply();
+                            Intent intent = new Intent(ConnexionActivity.this, TimelineActivity.class);
+                            startActivity(intent);
+                            ((Activity)getLocalContext()).finish();
+                        }
+                        else {
+                            showProgress(false);
+                            DialogCreation.createDialog(getLocalContext(), getString(R.string.erreur), getString(R.string.bad_mdp_login));
+                        }
+                    }
+                } catch (JSONException e) {
+                    Log.w("ddd","ee");
+                    DialogCreation.createDialog(getLocalContext(),getString(R.string.erreur),getString(R.string.bad_mdp_login));
+                    showProgress(false);
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private Context getLocalContext() {
+        return this;
+    }
     /**
      * Check if the category are the same in local than in server
      */
@@ -123,7 +226,6 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
                             cat.setCategory_description("category_description_fr_fr");
                             cat.setCategory_label("category_label");
                             cat.save();
-                            Log.w("Save","CAT UPDATE");
                         }
                     }
                 } catch (Exception e) {
