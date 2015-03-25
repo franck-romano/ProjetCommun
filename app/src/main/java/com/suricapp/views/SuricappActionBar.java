@@ -102,7 +102,7 @@ public class SuricappActionBar extends Activity {
                         Intent map = new Intent(getApplicationContext(), MapActivity.class);
                         startActivity(map);
                         break;
-                    case 3:
+                   /* case 3:
                         Intent profil = new Intent(getApplicationContext(), ProfilActivity.class);
                         startActivity(profil);
                         break;
@@ -110,7 +110,7 @@ public class SuricappActionBar extends Activity {
                         Intent followers = new Intent(.this, followers.class);
                         startActivity(followers);
                         break;*/
-                    case 5:
+                    case 3:
                         Intent categorie = new Intent(getApplicationContext(), CategoriesActivity.class);
                         startActivity(categorie);
                         break;
@@ -118,7 +118,7 @@ public class SuricappActionBar extends Activity {
                         Intent informations = new Intent(.this, Information.class);
                         startActivity(informations);
                         break;*/
-                    case 7:
+                    case 4:
                         Intent connexion = new Intent(SuricappActionBar.this, ConnexionActivity.class);
                         SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES, Context.MODE_PRIVATE);
                         preferences.edit().remove("userLog").commit();

@@ -1,5 +1,6 @@
 package com.suricapp.models;
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -48,6 +49,17 @@ public class Message extends SugarRecord<Message>
     private double message_longitude;
     private int message_id_category_fk;
     private int message_id_user_fk;
+
+    @Ignore
+    private User mUser;
+
+    public User getmUser() {
+        return mUser;
+    }
+
+    public void setmUser(User mUser) {
+        this.mUser = mUser;
+    }
 
     public ArrayList<NameValuePair> objectToNameValuePair()
     {

@@ -65,6 +65,7 @@
     <string name="picture_saved">Image sauvegardée !</string>
     <string name="user_saved">Utilisateur sauvegardé !</string>
     <string name="metre">métres</string>
+    <string name="kilometre">kilométres</string>
 
 
     <!-- Activity write message -->

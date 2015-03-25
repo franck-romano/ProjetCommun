@@ -237,7 +237,7 @@ public class MapActivity extends FragmentActivity implements LocationListener{
                         Intent map = new Intent(getApplicationContext(), MapActivity.class);
                         startActivity(map);
                         break;
-                    case 3:
+                   /* case 3:
                         Intent profil = new Intent(getApplicationContext(), ProfilActivity.class);
                         startActivity(profil);
                         break;
@@ -245,7 +245,7 @@ public class MapActivity extends FragmentActivity implements LocationListener{
                         Intent followers = new Intent(.this, followers.class);
                         startActivity(followers);
                         break;*/
-                    case 5:
+                    case 3:
                         Intent categorie = new Intent(getApplicationContext(), CategoriesActivity.class);
                         startActivity(categorie);
                         break;
@@ -253,15 +253,10 @@ public class MapActivity extends FragmentActivity implements LocationListener{
                         Intent informations = new Intent(.this, Information.class);
                         startActivity(informations);
                         break;*/
-                    /*case 6:
-                        Intent deconnexion = new Intent(.this, deconnexion.class);
-                        startActivity(deconnexion);
-                        break;*/
-                    case 7:
+                    case 4:
                         Intent connexion = new Intent(MapActivity.this, ConnexionActivity.class);
                         SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES, Context.MODE_PRIVATE);
                         preferences.edit().remove("userLog").commit();
-                        preferences.edit().remove("userLogId").commit();
                         startActivity(connexion);
                         break;
                 }

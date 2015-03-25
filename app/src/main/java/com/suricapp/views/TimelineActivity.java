@@ -80,6 +80,7 @@ public class TimelineActivity extends SuricappActionBar {
                             JSONObject jsonObject = jarray.getJSONObject(i);
                             Message m = new Message();
                             m.setMessage_id_user_fk(Integer.parseInt(jsonObject.getString("message_id_user_fk")));
+                            Log.w("USER",jsonObject.getString("message_id_user_fk"));
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                             Date parsedDate = dateFormat.parse(jsonObject.getString("message_date"));
                             m.setMessage_date(new java.sql.Timestamp(parsedDate.getTime()));

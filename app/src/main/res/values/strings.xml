@@ -88,6 +88,7 @@
     <string name="message_saved">Post saved !</string>
     <string name="gps_desactive">"Your GPS seems to be disabled, do you want to enable it?"</string>
     <string name="metre">meters</string>
+    <string name="kilometre">kilometers</string>
 
     <!-- categories activity-->
     <string name="categories_saved">Catégories enregistées !</string>
