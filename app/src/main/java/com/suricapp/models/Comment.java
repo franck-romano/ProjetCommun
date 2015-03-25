@@ -30,7 +30,7 @@ public class Comment extends SugarRecord<Comment>{
     private Date comment_date;
     private String comment_content_fr_fr;
     private int comment_message_id_fk;
-    private User comment_user_id_fk;
+    private int comment_user_id_fk;
 
     public ArrayList<NameValuePair> objectToNameValuePair()
     {
@@ -39,14 +39,14 @@ public class Comment extends SugarRecord<Comment>{
         followersDetails.add(new BasicNameValuePair("comment_date",this.getComment_date().toString()));
         followersDetails.add(new BasicNameValuePair("comment_content_fr_fr",this.getComment_content_fr_fr()));
         followersDetails.add(new BasicNameValuePair("comment_message_id_fk",""+this.getComment_message_id_fk()));
-        followersDetails.add(new BasicNameValuePair("comment_user_id_fk",""+this.getComment_user_id_fk().getUser_id()));
+        followersDetails.add(new BasicNameValuePair("comment_user_id_fk",""+this.getComment_user_id_fk()));
         return followersDetails;
     }
 
     public Comment() {
     }
 
-    public Comment(int comment_id_web, Date comment_date, String comment_content_fr_fr, int comment_message_id_fk, User comment_user_id_fk) {
+    public Comment(int comment_id_web, Date comment_date, String comment_content_fr_fr, int comment_message_id_fk, int comment_user_id_fk) {
         this.comment_id = comment_id;
         this.comment_date = comment_date;
         this.comment_content_fr_fr = comment_content_fr_fr;
@@ -86,11 +86,11 @@ public class Comment extends SugarRecord<Comment>{
         this.comment_message_id_fk = comment_message_id_fk;
     }
 
-    public User getComment_user_id_fk() {
+    public int getComment_user_id_fk() {
         return comment_user_id_fk;
     }
 
-    public void setComment_user_id_fk(User comment_user_id_fk) {
+    public void setComment_user_id_fk(int comment_user_id_fk) {
         this.comment_user_id_fk = comment_user_id_fk;
     }
 }

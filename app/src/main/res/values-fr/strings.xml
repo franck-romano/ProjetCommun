@@ -79,6 +79,13 @@
     <string name="promotion">Promotion</string>
     <string name="titre">Titre</string>
     <string name="titre_">Titre :</string>
+    <string name="send">Envoyer</string>
+    <string name="no_category_choose">Vous devez chosir au moins une catégorie !</string>
+    <string name="titre_trop_long">Titre trop long ! </string>
+    <string name="titre_trop_long_desc">Le Titre ne doit pas faire plus de 60 caractères.</string>
+    <string name="message_trop_long">Message trop long ! </string>
+    <string name="message_trop_long_desc">Le message ne doit pas faire plus de 150 caractères.</string>
+    <string name="message_saved">Message enregistré.</string>
 
     <!-- Activity catégories -->
     <string name="my_categories">Mes Catégories</string>

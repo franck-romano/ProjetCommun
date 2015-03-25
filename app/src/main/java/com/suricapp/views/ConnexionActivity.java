@@ -173,6 +173,7 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
                             SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES,Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor  = preferences.edit();
                             editor.putString("userLog", idTextView.getText().toString());
+                            editor.putString("userLogId",tmp.getString("user_id"));
                             editor.apply();
                             Intent intent = new Intent(ConnexionActivity.this, TimelineActivity.class);
                             startActivity(intent);

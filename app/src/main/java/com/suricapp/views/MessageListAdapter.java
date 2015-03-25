@@ -69,7 +69,7 @@ public class MessageListAdapter extends ArrayAdapter<Message> {
 
         Message message = messageData.get(position);
         //mMessageInformation.photo.setImage(message.getMessage_id_user_fk().getUser_picture());
-        mMessageInformation.pseudo.setText(message.getMessage_id_user_fk().getUser_pseudo());
+        //mMessageInformation.pseudo.setText(message.getMessage_id_user_fk().getUser_pseudo());
         mMessageInformation.heure.setText(message.getMessage_date().toString());
         //mMessageInformation.distance.setText(message.getMessage_id_point_fk().getPoint_longitude());
         mMessageInformation.contenu.setText(message.getMessage_content_fr_fr());

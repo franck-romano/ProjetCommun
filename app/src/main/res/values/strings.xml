@@ -79,6 +79,13 @@
     <string name="promotion">Promotion</string>
     <string name="titre">Titre</string>
     <string name="titre_">Titre :</string>
+    <string name="send">Send</string>
+    <string name="no_category_choose">Vous devez chosir au moins une catégorie !</string>
+    <string name="titre_trop_long">Titre trop long ! </string>
+    <string name="titre_trop_long_desc">Le Titre ne doit pas faire plus de 60 caractères.</string>
+    <string name="message_trop_long">Message trop long ! </string>
+    <string name="message_trop_long_desc">Le message ne doit pas faire plus de 150 caractères.</string>
+    <string name="message_saved">Post saved !</string>
 
     <!-- Text Colors -->
     <color name="normal_text_color">#063040</color>

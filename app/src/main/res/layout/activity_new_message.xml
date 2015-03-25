@@ -14,8 +14,15 @@
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <LinearLayout
-                android:layout_width="fill_parent"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <ImageView
@@ -35,6 +42,11 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/normal_text_color"/>
+            </LinearLayout>
+                    <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -52,6 +64,8 @@
                         android:id="@+id/activity_new_message_titre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:maxLength="60"
                         android:hint="@string/titre"
                         android:layout_marginRight="30dp"/>
                 </LinearLayout>
@@ -65,7 +79,6 @@
                     android:paddingLeft="30dp"
                     android:layout_marginTop="20dp"
                     android:textSize="18dp"/>
-
                 <EditText
                     android:id="@+id/activity_new_message_message"
                     android:layout_width="match_parent"
@@ -75,8 +88,8 @@
                     android:hint="@string/votre_message"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
-                    android:layout_marginTop="20dp"/>
-
+                    android:layout_marginTop="20dp"
+                    android:maxLength="255"/>
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -87,7 +100,6 @@
                     android:textSize="18dp"
                     android:paddingLeft="55dp"
                     android:layout_marginTop="20dp"/>
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -231,18 +243,22 @@
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+                </LinearLayout>
+                </LinearLayout>
                 <Button
-                    android:id="@+id/envoyer"
+                    android:id="@+id/activity_new_message_envoyer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Envoyer"
+                    android:text="@string/send"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:textColor="@color/white"
                     android:background="@color/normal_text_color"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp"
+                    android:layout_centerInParent="true"
                     android:layout_marginTop="40dp"/>
-            </LinearLayout>
+            </RelativeLayout>
         </FrameLayout>
         <ListView
             android:id="@+id/navList"

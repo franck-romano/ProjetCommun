@@ -1,6 +1,8 @@
 package com.suricapp.views;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.location.Criteria;
 import android.location.Location;
@@ -255,6 +257,13 @@ public class MapActivity extends FragmentActivity implements LocationListener{
                         Intent deconnexion = new Intent(.this, deconnexion.class);
                         startActivity(deconnexion);
                         break;*/
+                    case 7:
+                        Intent connexion = new Intent(MapActivity.this, ConnexionActivity.class);
+                        SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES, Context.MODE_PRIVATE);
+                        preferences.edit().remove("userLog").commit();
+                        preferences.edit().remove("userLogId").commit();
+                        startActivity(connexion);
+                        break;
                 }
             }
         });

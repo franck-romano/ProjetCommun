@@ -5,6 +5,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -42,11 +43,11 @@ public class Message extends SugarRecord<Message>
     private int message_nb_view;
     private int message_nb_report;
     private String message_status_fr_fr;
-    private Date message_date;
-    private long message_latitude;
-    private long message_longitude;
-    private Category message_id_category_fk;
-    private User message_id_user_fk;
+    private Timestamp message_date;
+    private double message_latitude;
+    private double message_longitude;
+    private int message_id_category_fk;
+    private int message_id_user_fk;
 
     public ArrayList<NameValuePair> objectToNameValuePair()
     {
@@ -62,8 +63,8 @@ public class Message extends SugarRecord<Message>
         followersDetails.add(new BasicNameValuePair("message_latitude",""+this.getMessage_latitude()));
         followersDetails.add(new BasicNameValuePair("message_longitude",""+this.getMessage_longitude()));
         followersDetails.add(new BasicNameValuePair("message_date",""+this.getMessage_date()));
-        followersDetails.add(new BasicNameValuePair("message_id_category_fk",""+this.getMessage_id_category_fk().getCategory_id()));
-        followersDetails.add(new BasicNameValuePair("message_id_user_fk",""+this.getMessage_id_user_fk().getUser_id()));
+        followersDetails.add(new BasicNameValuePair("message_id_category_fk",""+this.getMessage_id_category_fk()));
+        followersDetails.add(new BasicNameValuePair("message_id_user_fk",""+this.getMessage_id_user_fk()));
         return followersDetails;
     }
 
@@ -82,8 +83,8 @@ public class Message extends SugarRecord<Message>
 
     public Message(String message_title_fr_fr, String message_content_fr_fr, int message_nb_like,
                    int message_nb_unlike, int message_nb_view, int message_nb_report,
-                   String message_status_fr_fr, Date message_date, Category message_id_web_category_fk,
-                   User message_id_web_user_fk) {
+                   String message_status_fr_fr, Timestamp message_date, int message_id_web_category_fk,
+                   int message_id_web_user_fk) {
         this.message_title_fr_fr = message_title_fr_fr;
         this.message_content_fr_fr = message_content_fr_fr;
         this.message_nb_like = message_nb_like;
@@ -98,8 +99,8 @@ public class Message extends SugarRecord<Message>
 
     public Message(int message_id_web, String message_title_fr_fr, String message_content_fr_fr,
                    int message_nb_like, int message_nb_unlike, int message_nb_view,
-                   int message_nb_report, String message_status_fr_fr, Date message_date,
-                   Category message_id_web_category_fk, User message_id_web_user_fk) {
+                   int message_nb_report, String message_status_fr_fr, Timestamp message_date,
+                   int message_id_web_category_fk, int message_id_web_user_fk) {
         this.message_id = message_id_web;
         this.message_title_fr_fr = message_title_fr_fr;
         this.message_content_fr_fr = message_content_fr_fr;
@@ -169,23 +170,23 @@ public class Message extends SugarRecord<Message>
         this.message_status_fr_fr = message_status_fr_fr;
     }
 
-    public Date getMessage_date() {
+    public Timestamp getMessage_date() {
         return message_date;
     }
 
-    public void setMessage_date(Date message_date) {
+    public void setMessage_date(Timestamp message_date) {
         this.message_date = message_date;
     }
 
-    public long getMessage_latitude() {
+    public double getMessage_latitude() {
         return message_latitude;
     }
 
     public Message(int message_id_web, String message_title_fr_fr, String message_content_fr_fr,
                    int message_nb_like, int message_nb_unlike, int message_nb_view,
-                   int message_nb_report, String message_status_fr_fr, Date message_date,
-                   long message_latitude, long message_longitude, Category message_id_web_category_fk,
-                   User message_id_web_user_fk) {
+                   int message_nb_report, String message_status_fr_fr, Timestamp message_date,
+                   double message_latitude, double message_longitude, int message_id_web_category_fk,
+                   int message_id_web_user_fk) {
         this.message_id = message_id_web;
         this.message_title_fr_fr = message_title_fr_fr;
         this.message_content_fr_fr = message_content_fr_fr;
@@ -201,32 +202,32 @@ public class Message extends SugarRecord<Message>
         this.message_id_user_fk = message_id_web_user_fk;
     }
 
-    public long getMessage_longitude() {
+    public double getMessage_longitude() {
 
         return message_longitude;
     }
 
-    public void setMessage_longitude(long message_longitude) {
+    public void setMessage_longitude(double message_longitude) {
         this.message_longitude = message_longitude;
     }
 
-    public void setMessage_latitude(long message_latitude) {
+    public void setMessage_latitude(double message_latitude) {
         this.message_latitude = message_latitude;
     }
 
-    public Category getMessage_id_category_fk() {
+    public int getMessage_id_category_fk() {
         return message_id_category_fk;
     }
 
-    public void setMessage_id_category_fk(Category message_id_web_category_fk) {
+    public void setMessage_id_category_fk(int message_id_web_category_fk) {
         this.message_id_category_fk = message_id_web_category_fk;
     }
 
-    public User getMessage_id_user_fk() {
+    public int getMessage_id_user_fk() {
         return message_id_user_fk;
     }
 
-    public void setMessage_id_user_fk(User message_id_web_user_fk) {
+    public void setMessage_id_user_fk(int message_id_web_user_fk) {
         this.message_id_user_fk = message_id_web_user_fk;
     }
 }
