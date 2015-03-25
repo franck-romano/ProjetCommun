@@ -86,6 +86,7 @@
     <string name="message_trop_long">Message trop long ! </string>
     <string name="message_trop_long_desc">Le message ne doit pas faire plus de 150 caractères.</string>
     <string name="message_saved">Post saved !</string>
+    <string name="gps_desactive">"Your GPS seems to be disabled, do you want to enable it?"</string>
 
     <!-- categories activity-->
     <string name="categories_saved">Catégories enregistées !</string>

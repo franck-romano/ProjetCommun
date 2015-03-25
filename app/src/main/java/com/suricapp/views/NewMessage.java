@@ -28,6 +28,7 @@ import com.suricapp.tools.Variables;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 
 public class NewMessage extends SuricappActionBar implements CompoundButton.OnCheckedChangeListener , View.OnClickListener{
@@ -193,27 +194,12 @@ public class NewMessage extends SuricappActionBar implements CompoundButton.OnCh
                         DialogCreation.createDialog(getLocalContext(),
                                 getString(R.string.erreur), getString(R.string.no_category_choose));
                     } else {
-                        // Current Location
-                        LocationManager locManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-                        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0, new LocationListener() {
-                            @Override
-                            public void onLocationChanged(Location location) {
-                                lat = location.getLatitude();
-                                longi = location.getLongitude();
-                            }
-                            @Override
-                            public void onStatusChanged(String provider, int status, Bundle extras) {}
-                            @Override
-                            public void onProviderEnabled(String provider) {}
-                            @Override
-                            public void onProviderDisabled(String provider) {}
-                        });
-                        Location location = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        if(location == null)
-                        {
-                            location = locManager.getLastKnownLocation
-                                    (LocationManager.PASSIVE_PROVIDER);
+                        Location location = getLastKnownLocation();
+                        if(location == null ) {
+                            CheckConnection.buildAlertMessageNoGps(this);
+                            break;
                         }
+
 
                         // Date of post message
                         Timestamp stamp = new Timestamp(System.currentTimeMillis());
@@ -248,6 +234,30 @@ public class NewMessage extends SuricappActionBar implements CompoundButton.OnCh
                 }
                 break;
         }
+    }
+
+    /**
+     * Get the best location
+     * @return
+     */
+    private Location getLastKnownLocation() {
+        LocationManager mLocationManager = (LocationManager)getApplicationContext().getSystemService(LOCATION_SERVICE);
+        if ( !mLocationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            return null;
+        }
+        List<String> providers = mLocationManager.getProviders(true);
+        Location bestLocation = null;
+        for (String provider : providers) {
+            Location l = mLocationManager.getLastKnownLocation(provider);
+            if (l == null) {
+                continue;
+            }
+            if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                // Found best last known location: %s", l);
+                bestLocation = l;
+            }
+        }
+        return bestLocation;
     }
 
     private Context getLocalContext()
