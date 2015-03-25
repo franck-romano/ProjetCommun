@@ -163,7 +163,7 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
                     jarray = new JSONArray(message);
                     if(jarray.length() == 0 )
                     {
-                        throw  new JSONException("haha");
+                        throw  new JSONException("Array to short");
                     }
                     else
                     {

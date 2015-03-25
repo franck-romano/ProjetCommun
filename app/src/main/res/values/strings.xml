@@ -87,6 +87,7 @@
     <string name="message_trop_long_desc">Le message ne doit pas faire plus de 150 caractères.</string>
     <string name="message_saved">Post saved !</string>
     <string name="gps_desactive">"Your GPS seems to be disabled, do you want to enable it?"</string>
+    <string name="metre">meters</string>
 
     <!-- categories activity-->
     <string name="categories_saved">Catégories enregistées !</string>
@@ -98,6 +99,7 @@
     <color name="normal_text_color">#063040</color>
     <color name="normal_text_clear_color">#0F6878</color>
     <color name="white">#ffffff</color>
+    <color name="background">#DEDEDE</color>
 
     <!-- Activity catégories -->
     <string name="my_categories">Mes Catégories</string>

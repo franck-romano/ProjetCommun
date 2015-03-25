@@ -1,36 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="horizontal">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@layout/border_bottom_grey_background_grey_opac">
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
         <ImageView
-            android:id="@+id/activity_timeline_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/activity_timeline_row_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:src="@drawable/icone_android"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/activity_timeline_pseudo"
+            android:id="@+id/activity_timeline_row_pseudo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pseudo"
+            android:text="@string/pseudo"
+            android:layout_marginLeft="5dp"
             android:textStyle="bold"
-            android:layout_gravity="center"/>
+            android:textSize="20dp"
+            android:textColor="@color/normal_text_color"
+            android:layout_gravity="left"/>
+        <TextView
+            android:id="@+id/activity_timeline_row_titre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pseudo"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@color/normal_text_clear_color"
+            android:layout_gravity="left"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="right">
             <TextView
-                android:id="@+id/activity_timeline_heure"
+                android:id="@+id/activity_timeline_row_heure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="heure"
@@ -41,25 +55,26 @@
                 android:text=" • "
                 android:layout_gravity="center"/>
             <TextView
-                android:id="@+id/activity_timeline_distance"
+                android:id="@+id/activity_timeline_row_distance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="distance"
                 android:layout_gravity="center"/>
         </LinearLayout>
         <TextView
-            android:id="@+id/activity_timeline_contenu"
+            android:id="@+id/activity_timeline_row_contenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Contenu du message blablablablablabla"
-            android:textColor="#ff000000"/>
+            android:text="fezffezf"
+            android:textSize="16dp"
+            android:textColor="@color/normal_text_clear_color"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="right">
             <TextView
-                android:id="@+id/activity_timeline_nbjaime"
+                android:id="@+id/activity_timeline_row_nbjaime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="X J'aime"
@@ -70,7 +85,7 @@
                 android:text=" • "
                 android:layout_gravity="center"/>
             <TextView
-                android:id="@+id/activity_timeline_nbjaimepas"
+                android:id="@+id/activity_timeline_row_nbjaimepas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="X J'aime pas"
@@ -78,13 +93,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" • "
                 android:layout_gravity="center"/>
             <TextView
-                android:id="@+id/activity_timeline_nbvue"
+                android:id="@+id/activity_timeline_row_nbvue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="X vue"
                 android:layout_gravity="center"/>
         </LinearLayout>
     </LinearLayout>

@@ -24,6 +24,7 @@ import com.suricapp.models.User;
 import com.suricapp.rest.client.HTTPAsyncTask;
 import com.suricapp.tools.CheckConnection;
 import com.suricapp.tools.DialogCreation;
+import com.suricapp.tools.LocationUsage;
 import com.suricapp.tools.Variables;
 
 import java.sql.Date;
@@ -194,9 +195,9 @@ public class NewMessage extends SuricappActionBar implements CompoundButton.OnCh
                         DialogCreation.createDialog(getLocalContext(),
                                 getString(R.string.erreur), getString(R.string.no_category_choose));
                     } else {
-                        Location location = getLastKnownLocation();
+                        Location location = LocationUsage.getLastKnownLocation(this);
                         if(location == null ) {
-                            CheckConnection.buildAlertMessageNoGps(this);
+                            LocationUsage.buildAlertMessageNoGps(this);
                             break;
                         }
                         // Date of post message
@@ -232,30 +233,6 @@ public class NewMessage extends SuricappActionBar implements CompoundButton.OnCh
                 }
                 break;
         }
-    }
-
-    /**
-     * Get the best location
-     * @return
-     */
-    private Location getLastKnownLocation() {
-        LocationManager mLocationManager = (LocationManager)getApplicationContext().getSystemService(LOCATION_SERVICE);
-        if ( !mLocationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
-            return null;
-        }
-        List<String> providers = mLocationManager.getProviders(true);
-        Location bestLocation = null;
-        for (String provider : providers) {
-            Location l = mLocationManager.getLastKnownLocation(provider);
-            if (l == null) {
-                continue;
-            }
-            if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
-                // Found best last known location: %s", l);
-                bestLocation = l;
-            }
-        }
-        return bestLocation;
     }
 
     private Context getLocalContext()
