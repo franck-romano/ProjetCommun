@@ -209,6 +209,11 @@ public class NewMessage extends SuricappActionBar implements CompoundButton.OnCh
                             public void onProviderDisabled(String provider) {}
                         });
                         Location location = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        if(location == null)
+                        {
+                            location = locManager.getLastKnownLocation
+                                    (LocationManager.PASSIVE_PROVIDER);
+                        }
 
                         // Date of post message
                         Timestamp stamp = new Timestamp(System.currentTimeMillis());
