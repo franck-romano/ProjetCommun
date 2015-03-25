@@ -25,6 +25,10 @@ public class CheckConnection {
         return information != null && information.isConnectedOrConnecting();
     }
 
+    /**
+     * Ask to user to activate gps or not.
+     * @param ctx
+     */
     public static void buildAlertMessageNoGps(final Context ctx) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
         builder.setMessage(ctx.getString(R.string.gps_desactive))
@@ -34,7 +38,7 @@ public class CheckConnection {
                         ctx.startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                     }
                 })
-                .setNegativeButton(ctx.getString(R.string.yes), new DialogInterface.OnClickListener() {
+                .setNegativeButton(ctx.getString(R.string.no), new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                         dialog.cancel();
                     }
