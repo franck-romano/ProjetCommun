@@ -87,6 +87,12 @@
     <string name="message_trop_long_desc">Le message ne doit pas faire plus de 150 caractères.</string>
     <string name="message_saved">Message enregistré.</string>
 
+    <!-- categories activity-->
+    <string name="categories_saved">Catégories enregistées !</string>
+    <string name="no_category_selected">Aucune catégorie selectionnée !</string>
+    <string name="no_category_selected_desc">Aucune catégorie selectionnée, seule la catégorie
+        par default sera affichée voulez vous continuer ?</string>
+
     <!-- Activity catégories -->
     <string name="my_categories">Mes Catégories</string>
 
