@@ -199,8 +199,6 @@ public class NewMessage extends SuricappActionBar implements CompoundButton.OnCh
                             CheckConnection.buildAlertMessageNoGps(this);
                             break;
                         }
-
-
                         // Date of post message
                         Timestamp stamp = new Timestamp(System.currentTimeMillis());
 

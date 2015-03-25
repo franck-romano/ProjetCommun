@@ -34,7 +34,7 @@ public class CheckConnection {
                         ctx.startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                     }
                 })
-                .setNegativeButton(ctx.getString(R.string.yes), new DialogInterface.OnClickListener() {
+                .setNegativeButton(ctx.getString(R.string.no), new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
                         dialog.cancel();
                     }
