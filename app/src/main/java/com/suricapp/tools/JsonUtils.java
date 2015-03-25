@@ -1,4 +1,4 @@
-package com.suricapp.suricapp.utils;
+package com.suricapp.tools;
 
 import org.json.JSONArray;
 import org.json.JSONException;

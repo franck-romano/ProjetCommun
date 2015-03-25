@@ -1,4 +1,4 @@
-package com.suricapp.suricapp.utils;
+package com.suricapp.tools;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

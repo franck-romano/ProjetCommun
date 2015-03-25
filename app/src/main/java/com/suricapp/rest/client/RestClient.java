@@ -1,6 +1,6 @@
 package com.suricapp.rest.client;
 
-import com.suricapp.suricapp.utils.StreamUtils;
+import com.suricapp.tools.StreamUtils;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
