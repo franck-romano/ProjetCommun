@@ -67,7 +67,8 @@
     <string name="metre">m</string>
     <string name="kilometre">km</string>
     <string name="loading">Chargement ...</string>
-
+    <string name="jaime">J\'aime</string>
+    <string name="jaimepas">J\’aime pas</string>
 
     <!-- Activity write message -->
     <string name="ecrire_message">Ecrire un nouveau message</string>

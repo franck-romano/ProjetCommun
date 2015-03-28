@@ -90,6 +90,8 @@
     <string name="metre">m</string>
     <string name="kilometre">km</string>
     <string name="loading">Loading ...</string>
+    <string name="jaime">Like</string>
+    <string name="jaimepas">Unlike</string>
 
     <!-- categories activity-->
     <string name="categories_saved">Catégories enregistées !</string>

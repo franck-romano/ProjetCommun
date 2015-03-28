@@ -79,8 +79,8 @@ public class MessageListAdapter extends ArrayAdapter<Message> {
         mMessageInformation.titre.setText(message.getMessage_title_fr_fr());
         mMessageInformation.heure.setText(message.getMessage_date().toString());
         mMessageInformation.contenu.setText(message.getMessage_content_fr_fr());
-        mMessageInformation.nbjaime.setText(""+message.getMessage_nb_like());
-        mMessageInformation.nbjaimepas.setText(""+message.getMessage_nb_unlike());
+        mMessageInformation.nbjaime.setText(message.getMessage_nb_like()+" "+context.getString(R.string.jaime));
+        mMessageInformation.nbjaimepas.setText(+message.getMessage_nb_unlike()+" "+context.getString(R.string.jaimepas));
 
 
         int dist = LocationUsage.disctanceBetween(message.getMessage_latitude()
