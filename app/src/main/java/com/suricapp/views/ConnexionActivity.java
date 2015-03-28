@@ -22,6 +22,7 @@ import com.suricapp.tools.CheckConnection;
 import com.suricapp.tools.DialogCreation;
 import com.suricapp.tools.StringValidator;
 import com.suricapp.tools.Variables;
+import com.suricapp.tools.ViewModification;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,47 +65,6 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
     }
 
     /**
-     * Shows the progress UI and hides the login form.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(
-                    android.R.integer.config_shortAnimTime);
-
-            mLoginStatusView.setVisibility(View.VISIBLE);
-            mLoginStatusView.animate().setDuration(shortAnimTime)
-                    .alpha(show ? 1 : 0)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            mLoginStatusView.setVisibility(show ? View.VISIBLE
-                                    : View.GONE);
-                        }
-                    });
-
-            mLoginFormView.setVisibility(View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime)
-                    .alpha(show ? 0 : 1)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            mLoginFormView.setVisibility(show ? View.GONE
-                                    : View.VISIBLE);
-                        }
-                    });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mLoginStatusView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
-    }
-
-    /**
      * Check if someone is already connected
      */
     private void checkSharedPreferences() {
@@ -137,7 +97,7 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
                     if (idTextView.getText().toString().length() == 0 || mdpTextView.getText().toString().length() == 0) {
                         DialogCreation.createDialog(this, getString(R.string.erreur), getString(R.string.mdp_login_missing));
                     } else {
-                        showProgress(true);
+                        ViewModification.showProgress(true,mLoginStatusView,mLoginFormView,this);
                         identifyUser();
                     }
 
@@ -180,14 +140,14 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
                             ((Activity)getLocalContext()).finish();
                         }
                         else {
-                            showProgress(false);
+                            ViewModification.showProgress(false,mLoginStatusView,mLoginFormView,getLocalContext());
                             DialogCreation.createDialog(getLocalContext(), getString(R.string.erreur), getString(R.string.bad_mdp_login));
                         }
                     }
                 } catch (JSONException e) {
                     Log.w("ddd","ee");
                     DialogCreation.createDialog(getLocalContext(),getString(R.string.erreur),getString(R.string.bad_mdp_login));
-                    showProgress(false);
+                    ViewModification.showProgress(false,mLoginStatusView,mLoginFormView,getLocalContext());
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 } catch (UnsupportedEncodingException e) {

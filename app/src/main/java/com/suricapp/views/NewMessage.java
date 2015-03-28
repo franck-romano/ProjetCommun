@@ -131,8 +131,7 @@ public class NewMessage extends SuricappActionBar implements CompoundButton.OnCh
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent timeline = new Intent(getApplicationContext(), TimelineActivity.class);
-        startActivity(timeline);
+        this.finish();
     }
 
     @Override

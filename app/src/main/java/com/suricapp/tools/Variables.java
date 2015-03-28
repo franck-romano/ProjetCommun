@@ -15,6 +15,7 @@ public class Variables {
 
     public static final String GETMAILFORUSER = "http://suricapp.esy.es/ws.php/d_user/user_email/";
     public static final String GETUSERWITHID = "http://suricapp.esy.es/ws.php/d_user/user_id/";
+    public static final String GETMULTIPLEUSERWITHID ="http://suricapp.esy.es/wsa.php/d_user/?user_id[in]=";
     public static final String GETPSEUDOFORUSER ="http://suricapp.esy.es/ws.php/d_user/user_pseudo/";
     public static final String POSTUSER = "http://suricapp.esy.es/ws.php/d_user/";
     public static final String POSTMESSAGE = "http://suricapp.esy.es/ws.php/d_message/";

@@ -64,8 +64,9 @@
     <string name="take_a_picture">Prendre une photo</string>
     <string name="picture_saved">Image sauvegardée !</string>
     <string name="user_saved">Utilisateur sauvegardé !</string>
-    <string name="metre">métres</string>
-    <string name="kilometre">kilométres</string>
+    <string name="metre">m</string>
+    <string name="kilometre">km</string>
+    <string name="loading">Chargement ...</string>
 
 
     <!-- Activity write message -->

@@ -33,7 +33,7 @@ public class User extends SugarRecord<User> implements Serializable{
      ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
      */
 
-    private int user_id;
+    private int user_id_web;
     private String user_pseudo;
     private String user_password;
     private String user_name;
@@ -48,11 +48,11 @@ public class User extends SugarRecord<User> implements Serializable{
     private int user_is_premium;
 
 
-    public User(int user_id, String user_pseudo, String user_password, String user_name,
+    public User(int user_id_web, String user_pseudo, String user_password, String user_name,
                 String user_first_name, Date user_date_creation, Date user_birthday,
                 String user_situation_fr_fr, String user_city, String user_picture, String user_phone,
                 String user_email, int user_is_premium) {
-        this.user_id = user_id;
+        this.user_id_web = user_id_web;
         this.user_pseudo = user_pseudo;
         this.user_password = user_password;
         this.user_name = user_name;
@@ -68,11 +68,11 @@ public class User extends SugarRecord<User> implements Serializable{
     }
 
     public int getUser_id() {
-        return user_id;
+        return user_id_web;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser_id(int user_id_web) {
+        this.user_id_web = user_id_web;
     }
 
     public ArrayList<NameValuePair> objectToNameValuePair()

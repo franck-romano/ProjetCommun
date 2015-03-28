@@ -48,7 +48,6 @@ public class MessageListAdapter extends ArrayAdapter<Message> {
         super(context,layoutResourceId);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
-        Log.w("TEST","message1");
     }
 
     @Override
@@ -93,7 +92,9 @@ public class MessageListAdapter extends ArrayAdapter<Message> {
         else
             mMessageInformation.distance.setText(""+dist + " " + context.getString(R.string.metre));
 
-        getUserInfo(position);
+        mMessageInformation.pseudo.setText(messageData.get(position).getmUser().getUser_pseudo());
+        loadImage(messageData.get(position).getmUser().getUser_picture(),position);
+
         return row;
     }
 
@@ -104,63 +105,15 @@ public class MessageListAdapter extends ArrayAdapter<Message> {
         notifyDataSetChanged();
     }
 
-    //User to send to message
-    private User mUser;
-    private Message mMessage;
-    private void getUserInfo(final int position) {
-        if(messageData.get(position).getmUser() == null) {
-            mUser = new User();
-            mMessage = messageData.get(position);
-            HTTPAsyncTask taskPseudo = new HTTPAsyncTask(context);
-            taskPseudo.execute(null, Variables.GETUSERWITHID + messageData.get(position).getMessage_id_user_fk(), "GET", null);
-            taskPseudo.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
-                @Override
-                public void setMyTaskComplete(String result) {
-                    JSONArray jarray = null;
-                    try {
-
-                        jarray = new JSONArray(result);
-                        JSONObject tmp = jarray.getJSONObject(0);
-                        mMessageInformation.pseudo.setText(tmp.getString("user_pseudo"));
-                        mUser.setUser_pseudo(tmp.getString("user_pseudo"));
-                        Log.w("USERASK",""+messageData.get(position).getMessage_id_user_fk());
-                        loadImage(tmp.getString("user_picture"),position);
-                        mMessage.setmUser(mUser);
-                        row.invalidate();
-                    } catch (Exception e) {
-                        Log.w("EXCEPTION",e.toString());
-                    }
-                }
-            });
-        }
-        else
-        {
-            mMessageInformation.pseudo.setText(messageData.get(position).getmUser().getUser_pseudo());
-            loadImage(messageData.get(position).getmUser().getUser_picture(),position);
-        }
-    }
 
     private void loadImage(String photo,int position)
     {
-        if(messageData.get(position).getmUser() == null) {
-             if (photo != null) {
-                    byte imageByte[] = ImageManipulation.decodeImage(photo);
-                    mMessageInformation.photo.setImageBitmap(BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length));
-                    mUser.setUser_picture(photo);
-                } else {
-                    mMessageInformation.photo.setImageResource(context.getResources().getIdentifier
-                            ("@drawable/logo", null, context.getPackageName()));
-                }
-        }
-        else
-        {
-            if (photo != null) {
-                byte imageByte[] = ImageManipulation.decodeImage(photo);
-                mMessageInformation.photo.setImageBitmap(BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length));
-            } else {
-                mMessageInformation.photo.setImageResource(context.getResources().getIdentifier
-                        ("@drawable/logo", null, context.getPackageName()));
-            }
+        if (!photo.trim().matches("")) {
+            byte imageByte[] = ImageManipulation.decodeImage(photo);
+            mMessageInformation.photo.setImageBitmap(BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length));
+        } else {
+            mMessageInformation.photo.setImageResource(context.getResources().getIdentifier
+                    ("@drawable/logo", null, context.getPackageName()));
         }
     }
 

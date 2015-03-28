@@ -3,29 +3,34 @@ package com.suricapp.views;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.suricapp.models.Category;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 import com.suricapp.models.Message;
+import com.suricapp.models.User;
+import com.suricapp.models.UserMessageTimeline;
 import com.suricapp.rest.client.HTTPAsyncTask;
-import com.suricapp.tools.DialogCreation;
+
 import com.suricapp.tools.LocationUsage;
 import com.suricapp.tools.Variables;
+import com.suricapp.tools.ViewModification;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class TimelineActivity extends SuricappActionBar {
@@ -36,6 +41,12 @@ public class TimelineActivity extends SuricappActionBar {
     private MessageListAdapter messageAdapter;
     private ListView messageList;
 
+
+    /**
+     * View to hide or show spinner
+     */
+    private View mView;
+    private View mSpinnerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -48,6 +59,11 @@ public class TimelineActivity extends SuricappActionBar {
 
         messageAdapter = new MessageListAdapter(this,R.layout.activity_timeline_row);
         messageList.setAdapter(messageAdapter);
+
+        //View for show or not the spinner
+        mView = findViewById(R.id.activity_timeline_view);
+        mSpinnerView = findViewById(R.id.activity_timeline_status);
+        ViewModification.showProgress(true,mSpinnerView,mView,this);
 
         Location myLocation = LocationUsage.getLastKnownLocation(this);
         // Check if location is available
@@ -70,17 +86,24 @@ public class TimelineActivity extends SuricappActionBar {
             HTTPAsyncTask taskMessage= new HTTPAsyncTask(getLocalContext());
             taskMessage.execute(null,"http://suricapp.esy.es/wsa.php/d_message/" +
                     "?message_id_category_fk[in]="+sb.toString()+"&order=message_date&orderType=DESC","GET",null);
-            taskMessage.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
+        taskMessage.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
                 @Override
                 public void setMyTaskComplete(String result){
                     try {
                         JSONArray jarray = new JSONArray(result);
+                        StringBuilder sb = new StringBuilder(Integer.parseInt(jarray.getJSONObject(0).getString("message_id_user_fk")));
                         for (int i=0;i<jarray.length();i++)
                         {
+                            UserMessageTimeline umtl = new UserMessageTimeline();
                             JSONObject jsonObject = jarray.getJSONObject(i);
                             Message m = new Message();
                             m.setMessage_id_user_fk(Integer.parseInt(jsonObject.getString("message_id_user_fk")));
-                            Log.w("USER",jsonObject.getString("message_id_user_fk"));
+
+                            umtl.setmUserId(Integer.parseInt(jsonObject.getString("message_id_user_fk")));
+                            umtl.setmMessagePosition(i);
+                            userAdd.add(umtl);
+                            sb.append(","+Integer.parseInt(jsonObject.getString("message_id_user_fk")));
+
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                             Date parsedDate = dateFormat.parse(jsonObject.getString("message_date"));
                             m.setMessage_date(new java.sql.Timestamp(parsedDate.getTime()));
@@ -92,18 +115,57 @@ public class TimelineActivity extends SuricappActionBar {
                             m.setMessage_nb_unlike(Integer.parseInt(jsonObject.getString("message_nb_unlike")));
                             allMessages.add(m);
                         }
-                        messageAdapter.swapItems(allMessages);
+                        getUserInfo(sb.toString());
                     } catch (JSONException e) {
-                        Log.w("BAD","BAD1");
+                        Log.w("BAD1",e.toString());
                     } catch (ParseException e) {
-                        Log.w("BAD","BAD2");
-                        e.printStackTrace();
+                        Log.w("BAD2",e.toString());
+                    }catch (Exception e)
+                    {
+                        Log.w("BAD3",e.toString());
                     }
                 }
             });
     }
 
 
+
+    ArrayList<UserMessageTimeline> userAdd = new ArrayList<>();
+    private void getUserInfo(String req) {
+        HTTPAsyncTask taskPseudo = new HTTPAsyncTask(getLocalContext());
+        taskPseudo.execute(null, Variables.GETMULTIPLEUSERWITHID +req, "GET", null);
+        taskPseudo.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
+            @Override
+            public void setMyTaskComplete(String result) {
+                JSONArray jarray = null;
+                try {
+
+                    jarray = new JSONArray(result);
+                    for (int i=0;i<jarray.length();i++)
+                    {
+                        setUserToMessage(jarray.getJSONObject(i));
+                    }
+                    messageAdapter.swapItems(allMessages);
+                    ViewModification.showProgress(false,mSpinnerView,mView,getLocalContext());
+                } catch (Exception e) {
+                    Log.w("EXCEPTION", e.toString());
+                }
+            }
+        });
+    }
+
+    private void setUserToMessage(JSONObject jsonObject) throws JSONException {
+        User user = new User();
+        user.setUser_pseudo(jsonObject.getString("user_pseudo"));
+        user.setUser_id(Integer.parseInt(jsonObject.getString("user_id")));
+        user.setUser_picture(jsonObject.getString("user_picture"));
+        for(int i=0; i < userAdd.size();i++)
+        {
+            if(userAdd.get(i).getmUserId() == user.getUser_id()) {
+                allMessages.get(userAdd.get(i).getmMessagePosition()).setmUser(user);
+            }
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -115,12 +177,6 @@ public class TimelineActivity extends SuricappActionBar {
     private Context getLocalContext()
     {
         return this;
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        this.finish();
     }
 }
 
