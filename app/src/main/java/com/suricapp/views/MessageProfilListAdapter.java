@@ -2,6 +2,7 @@ package com.suricapp.views;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -64,7 +65,7 @@ public class MessageProfilListAdapter extends ArrayAdapter<Message> {
             mMessageInformation = (MessageInformationProfil)row.getTag();
         }
 
-        Message message = messageData.get(position);
+        final Message message = messageData.get(position);
 
         try {
             mMessageInformation.titre.setText(URLDecoder.decode(message.getMessage_title_fr_fr(),"UTF-8"));
@@ -86,14 +87,37 @@ public class MessageProfilListAdapter extends ArrayAdapter<Message> {
         }
         else
             mMessageInformation.distance.setText("À :"+dist + " " + context.getString(R.string.metre));
+
+        mMessageInformation.titre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchDetailMessageView(message);
+            }
+        });
+
+        mMessageInformation.contenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchDetailMessageView(message);
+            }
+        });
+
         return row;
     }
 
     public void swapItems(List<Message> items) {
         messageData.clear();
         messageData.addAll(items);
+        clear();
         addAll(items);
         notifyDataSetChanged();
+    }
+
+    private void launchDetailMessageView(Message mess)
+    {
+        Intent detailIntent = new Intent(context, DetailMessageActivity.class);
+        detailIntent.putExtra("message",mess);
+        context.startActivity(detailIntent);
     }
 
     static class MessageInformationProfil

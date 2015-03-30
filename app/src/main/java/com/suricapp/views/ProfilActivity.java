@@ -73,7 +73,20 @@ public class ProfilActivity extends SuricappActionBar {
 
         // View conf
         mPseudoTextView = (TextView) findViewById(R.id.activity_profil_pseudo);
+        mPseudoTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchProfilView();
+            }
+        });
         mPhotoImageView = (ImageView) findViewById(R.id.activity_profil_photo);
+        mPhotoImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchProfilView();
+            }
+        });
+
 
 
         // Check the user that view have to show
@@ -91,6 +104,13 @@ public class ProfilActivity extends SuricappActionBar {
         loadMessage();
         loadNbFollowers();
 
+    }
+
+    private void launchProfilView()
+    {
+        Intent intent = new Intent(this,ProfilActivity.class);
+        intent.putExtra("user",mUser);
+        startActivity(intent);
     }
 
     private void loadUserLocal() {
@@ -122,7 +142,9 @@ public class ProfilActivity extends SuricappActionBar {
                     {
                         byte imageByte[] = ImageManipulation.decodeImage(jsonObject.getString("user_picture"));
                         mPhotoImageView.setImageBitmap(BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length));
+                        mUser.setUser_picture(jsonObject.getString("user_picture"));
                     }
+                    mUser.setUser_pseudo(jsonObject.getString("user_pseudo"));
                     mPseudoTextView.setText(jsonObject.getString("user_pseudo"));
                 } catch (Exception e) {
                     Log.w("EXCEPTION1", e.toString());
@@ -155,11 +177,13 @@ public class ProfilActivity extends SuricappActionBar {
                         JSONObject jsonObject = jarray.getJSONObject(i);
                         Message mess = new Message();
                         mess.setMessage_nb_like(Integer.parseInt(jsonObject.getString("message_nb_like")));
+                        mess.setMessage_id(Integer.parseInt(jsonObject.getString("message_id")));
                         mess.setMessage_nb_unlike(Integer.parseInt(jsonObject.getString("message_nb_unlike")));
                         mess.setMessage_latitude(Double.parseDouble(jsonObject.getString("message_latitude")));
                         mess.setMessage_longitude(Double.parseDouble(jsonObject.getString("message_longitude")));
                         mess.setMessage_content_fr_fr(jsonObject.getString("message_content_fr_fr"));
                         mess.setMessage_title_fr_fr(jsonObject.getString("message_title_fr_fr"));
+                        mess.setmUser(mUser);
 
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                         Date parsedDate = dateFormat.parse(jsonObject.getString("message_date"));
@@ -174,6 +198,8 @@ public class ProfilActivity extends SuricappActionBar {
             }
         });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
