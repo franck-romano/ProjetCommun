@@ -226,6 +226,26 @@ public class DetailMessageActivity extends SuricappActionBar implements View.OnC
 
         mJaimeTextView.setText(mMessage.getMessage_nb_like()+getString(R.string.jaime));
         mJaimePasTextView.setText(mMessage.getMessage_nb_unlike()+getString(R.string.jaimepas));
+
+        mPhotoImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchProfilView();
+            }
+        });
+        mLoginTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchProfilView();
+            }
+        });
+    }
+
+    private void launchProfilView()
+    {
+        Intent intent = new Intent(this,ProfilActivity.class);
+        intent.putExtra("user",mMessage.getmUser());
+        startActivity(intent);
     }
 
 
