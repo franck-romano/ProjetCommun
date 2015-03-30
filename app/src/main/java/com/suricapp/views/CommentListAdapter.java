@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.suricapp.models.Comment;
 import com.suricapp.models.Message;
+import com.suricapp.tools.DateManipulation;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -66,7 +67,7 @@ public class CommentListAdapter extends ArrayAdapter<Comment> {
             Log.w("EXCEPTION",e.toString());
         }
 
-        mCommentInformation.heure.setText(comment.getComment_date().toString());
+        mCommentInformation.heure.setText(DateManipulation.timespanToString(comment.getComment_date()));
 
         mCommentInformation.pseudo.setText(commentData.get(position).getmUser().getUser_pseudo());
 

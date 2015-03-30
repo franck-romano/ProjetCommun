@@ -122,5 +122,6 @@
     <!-- Activity profil -->
     <string name="follow_me">Me suivre</string>
     <string name="votre_commentaire">Votre commentaire</string>
+    <string name="commentaire_">Commentaire(s) :</string>
 
 </resources>

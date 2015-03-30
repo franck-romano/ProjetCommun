@@ -36,6 +36,7 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -122,8 +123,7 @@ public class DetailMessageActivity extends SuricappActionBar implements View.OnC
     private void loadCommentAndUsers() {
         ViewModification.showProgress(true, mSpinnerView, mView, getLocalContext());
         HTTPAsyncTask taskMessage= new HTTPAsyncTask(getLocalContext());
-        taskMessage.execute(null, Variables.GETCOMMENTFROMMESSAGEID+mMessage.getMessage_id()+Variables.ORDERBYCOMMENTDATEDESC,"GET",null);
-        Log.w("URL", Variables.GETCOMMENTFROMMESSAGEID + mMessage.getMessage_id() + Variables.ORDERBYCOMMENTDATEDESC);
+        taskMessage.execute(null, Variables.GETCOMMENTFROMMESSAGEID+mMessage.getMessage_id()+Variables.ORDERBYCOMMENTDATEASC,"GET",null);
         taskMessage.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
             @Override
             public void setMyTaskComplete(String result) {
@@ -217,8 +217,13 @@ public class DetailMessageActivity extends SuricappActionBar implements View.OnC
         }
         else
             mDistanceTextView.setText("À : " + dist + " " + getString(R.string.metre));
-        mTitreTextView.setText(mMessage.getMessage_title_fr_fr());
-        mContentTextView.setText(mMessage.getMessage_content_fr_fr());
+        try {
+            mTitreTextView.setText(URLDecoder.decode(mMessage.getMessage_title_fr_fr(), "UTF-8"));
+            mContentTextView.setText(URLDecoder.decode(mMessage.getMessage_content_fr_fr(), "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            Log.w("EXCEPTION",e.toString());
+        }
+
         mJaimeTextView.setText(mMessage.getMessage_nb_like()+getString(R.string.jaime));
         mJaimePasTextView.setText(mMessage.getMessage_nb_unlike()+getString(R.string.jaimepas));
     }

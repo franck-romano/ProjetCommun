@@ -25,7 +25,7 @@ public class Variables {
     public static final String GETMESSAGEFROMUSER ="http://suricapp.esy.es/ws.php/d_message/message_id_user_fk/";
     public static final String ORDERBYDATEDESC ="?by=message_date&order=desc";
     public static final String GETCOMMENTFROMMESSAGEID="http://suricapp.esy.es/ws.php/d_comment/comment_message_id_fk/";
-    public static final String ORDERBYCOMMENTDATEDESC="?by=comment_date&order=desc";
+    public static final String ORDERBYCOMMENTDATEASC="?by=comment_date&order=asc";
     public static final int REQUEST_EXIT = 123;
     public static final int REQUEST_EXIT_GOOD= 250;
     public static final int REQUESTLOADMESSAGE=2000;

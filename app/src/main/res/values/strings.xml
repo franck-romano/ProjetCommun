@@ -97,6 +97,7 @@
     <string name="preference">Préférences</string>
     <string name="preference_desc">Veuillez vérifier vos informations.</string>
     <string name="preferences_saved">Préférences enregistées !</string>
+    <string name="commentaire_">Commentaire(s) :</string>
 
     <!-- categories activity-->
     <string name="categories_saved">Catégories enregistées !</string>
