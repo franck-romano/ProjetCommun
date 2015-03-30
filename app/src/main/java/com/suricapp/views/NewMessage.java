@@ -1,5 +1,6 @@
 package com.suricapp.views;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,6 +8,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -27,12 +29,14 @@ import com.suricapp.tools.DialogCreation;
 import com.suricapp.tools.LocationUsage;
 import com.suricapp.tools.Variables;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
 
-public class NewMessage extends SuricappActionBar implements CompoundButton.OnCheckedChangeListener , View.OnClickListener{
+public class NewMessage extends ActionBarActivity implements CompoundButton.OnCheckedChangeListener , View.OnClickListener{
 
     // Check box
     private CheckBox mTransportCheckBox;
@@ -123,12 +127,6 @@ public class NewMessage extends SuricappActionBar implements CompoundButton.OnCh
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        this.finish();
-    }
-
-    @Override
     public void onBackPressed() {
         super.onBackPressed();
         this.finish();
@@ -204,8 +202,12 @@ public class NewMessage extends SuricappActionBar implements CompoundButton.OnCh
 
                         // Message création
                         Message mess = new Message();
-                        mess.setMessage_title_fr_fr(mTitreTextView.getText().toString());
-                        mess.setMessage_content_fr_fr(mMessageTextView.getText().toString());
+                        try {
+                            mess.setMessage_title_fr_fr(URLEncoder.encode(mTitreTextView.getText().toString(), "UTF-8"));
+                            mess.setMessage_content_fr_fr(URLEncoder.encode(mMessageTextView.getText().toString(),"UTF-8"));
+                        } catch (UnsupportedEncodingException e) {
+                            Log.w("EXEPTION",e.toString());
+                        }
                         mess.setMessage_date(stamp);
                         SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES,Context.MODE_PRIVATE);
                         mess.setMessage_id_user_fk(Integer.parseInt(preferences.getString("userLogId",null)));
@@ -219,8 +221,8 @@ public class NewMessage extends SuricappActionBar implements CompoundButton.OnCh
                             @Override
                             public void setMyTaskComplete(String message){
                                 Toast.makeText(getLocalContext(), getString(R.string.message_saved), Toast.LENGTH_LONG).show();
-                                Intent timeline = new Intent(getApplicationContext(), TimelineActivity.class);
-                                startActivity(timeline);
+                                setResult(Variables.REQUESTLOADMESSAGE);
+                                ((Activity) getLocalContext()).finish();
                             }
                         });
                     }

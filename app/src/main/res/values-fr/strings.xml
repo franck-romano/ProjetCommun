@@ -69,6 +69,8 @@
     <string name="loading">Chargement ...</string>
     <string name="jaime">J\'aime</string>
     <string name="jaimepas">J\’aime pas</string>
+    <string name="preference">Préférences</string>
+    <string name="preference_desc">Veuillez vérifier vos informations.</string>
 
     <!-- Activity write message -->
     <string name="ecrire_message">Ecrire un nouveau message</string>
@@ -94,6 +96,7 @@
 
 
     <!-- categories activity-->
+    <string name="preferences_saved">Préférences enregistées !</string>
     <string name="categories_saved">Catégories enregistées !</string>
     <string name="no_category_selected">Aucune catégorie selectionnée !</string>
     <string name="no_category_selected_desc">Aucune catégorie selectionnée, seule la catégorie
@@ -101,6 +104,8 @@
 
     <!-- Activity catégories -->
     <string name="my_categories">Mes Catégories</string>
+    <string name="commentaire_empty">Attention votre commentaire est vide.</string>
+    <string name="comment_saved">Commentaire sauvegardé !</string>
 
 
     <!-- Connexion activity Text -->
@@ -113,5 +118,9 @@
 
     <!--Activity Timeline-->
     <string name="activity_timeline_title">Fil de message</string>
+
+    <!-- Activity profil -->
+    <string name="follow_me">Me suivre</string>
+    <string name="votre_commentaire">Votre commentaire</string>
 
 </resources>

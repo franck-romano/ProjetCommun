@@ -6,16 +6,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.suricapp.tools.DialogCreation;
 import com.suricapp.tools.Variables;
 
 
-public class CategoriesActivity extends SuricappActionBar implements View.OnClickListener{
+public class CategoriesActivity extends ActionBarActivity implements View.OnClickListener{
 
     // Check box
     private CheckBox mTransportCheckBox;
@@ -27,6 +31,11 @@ public class CategoriesActivity extends SuricappActionBar implements View.OnClic
 
     // Button
     private Button mEnvoyerButton;
+
+    // Progress bar
+    private int mProgress = 0;
+    private SeekBar rayon;
+    private TextView rayon_numeric;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +54,48 @@ public class CategoriesActivity extends SuricappActionBar implements View.OnClic
 
         // check correct box
         checkCorrectBox();
+
+        rayon_numeric = (TextView)findViewById(R.id.rayon_texte);
+        rayon = (SeekBar)findViewById(R.id.activity_inscription_2rayon);
+        setUpSeekBar();
+
+        if(getIntent().hasExtra("fromConnexion"))
+        {
+            DialogCreation.createDialog(this,getString(R.string.preference),getString(R.string.preference_desc));
+        }
+    }
+
+    private void setUpSeekBar()
+    {
+        SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES,Context.MODE_PRIVATE);
+        if(preferences.contains("rayon"))
+        {
+            mProgress = preferences.getInt("rayon",2);
+            // Initialiser le textView avec la valeur de départ.
+            rayon.setProgress(mProgress);
+            rayon_numeric.setText(rayon.getProgress() + " kms");
+        }
+        else {
+            // Initialiser le textView avec la valeur de départ.
+            rayon_numeric.setText(rayon.getProgress() + " kms");
+            mProgress = rayon.getProgress();
+        }
+        rayon.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progressValue, boolean fromUser) {
+                mProgress = progressValue;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                rayon_numeric.setText(mProgress + " kms");
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                rayon_numeric.setText(mProgress + " kms");
+            }
+        });
     }
 
     /**
@@ -103,12 +154,6 @@ public class CategoriesActivity extends SuricappActionBar implements View.OnClic
         return sb.toString();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        this.finish();
-    }
-
     private Context getLocalContext(){return this;}
 
     @Override
@@ -123,7 +168,7 @@ public class CategoriesActivity extends SuricappActionBar implements View.OnClic
                     builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            saveCategories();
+                            saveCategoriesAndRayon();
                         }
                     });
                     builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
@@ -137,21 +182,27 @@ public class CategoriesActivity extends SuricappActionBar implements View.OnClic
                 }
                 else
                 {
-                    saveCategories();
+                    saveCategoriesAndRayon();
                 }
                 break;
         }
     }
 
-    private void saveCategories()
+    private void saveCategoriesAndRayon()
     {
         SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor  = preferences.edit();
         editor.putString("categories",getCheckBoxChoice());
+        editor.putInt("rayon", mProgress);
         editor.apply();
-        Toast.makeText(this, getString(R.string.categories_saved), Toast.LENGTH_LONG).show();
-        Intent timeline = new Intent(getApplicationContext(), TimelineActivity.class);
-        startActivity(timeline);
+        Toast.makeText(this, getString(R.string.preferences_saved), Toast.LENGTH_LONG).show();
+        if(getIntent().hasExtra("fromConnexion"))
+        {
+            Intent intent = new Intent(getApplicationContext(),TimelineActivity.class);
+            startActivity(intent);
+        }
+        setResult(Variables.REQUESTLOADMESSAGE);
+        this.finish();
     }
 
     private boolean doesOneCategorieChecked()
@@ -167,7 +218,6 @@ public class CategoriesActivity extends SuricappActionBar implements View.OnClic
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent timeline = new Intent(getApplicationContext(), TimelineActivity.class);
-        startActivity(timeline);
+        this.finish();
     }
 }

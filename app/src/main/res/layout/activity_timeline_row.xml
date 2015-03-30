@@ -21,7 +21,7 @@
                 android:id="@+id/activity_timeline_row_photo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/icone_android"/>
+                android:src="@drawable/image_default"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -41,26 +41,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_marginLeft="5dp"
                 android:gravity="left">
                 <TextView
                     android:id="@+id/activity_timeline_row_heure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="heure"
-                    android:layout_gravity="center"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" • "
-                    android:layout_gravity="center"/>
+                    android:text="heure"/>
                 <TextView
                     android:id="@+id/activity_timeline_row_distance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="distance"
-                    android:layout_gravity="center"/>
+                    android:text="distance"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

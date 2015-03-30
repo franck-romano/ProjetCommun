@@ -63,6 +63,7 @@
     <string name="mdp_login_missing">Veuillez remplir les champs identifiant et mot de passe !</string>
     <string name="bad_mdp_login">Identifiant ou mot de passe incorrect</string>
     <string name="erreur">Erreur !</string>
+    <string name="commentaire_empty">Attention votre commentaire est vide.</string>
     <string name="login_progress_signing_in">Connexion&#8230;</string>
 
 
@@ -86,12 +87,16 @@
     <string name="message_trop_long">Message trop long ! </string>
     <string name="message_trop_long_desc">Le message ne doit pas faire plus de 150 caractères.</string>
     <string name="message_saved">Post saved !</string>
+    <string name="comment_saved">Comment saved !</string>
     <string name="gps_desactive">"Your GPS seems to be disabled, do you want to enable it?"</string>
     <string name="metre">m</string>
     <string name="kilometre">km</string>
     <string name="loading">Loading ...</string>
     <string name="jaime">Like</string>
     <string name="jaimepas">Unlike</string>
+    <string name="preference">Préférences</string>
+    <string name="preference_desc">Veuillez vérifier vos informations.</string>
+    <string name="preferences_saved">Préférences enregistées !</string>
 
     <!-- categories activity-->
     <string name="categories_saved">Catégories enregistées !</string>
@@ -104,6 +109,10 @@
     <color name="normal_text_clear_color">#0F6878</color>
     <color name="white">#ffffff</color>
     <color name="background">#DEDEDE</color>
+
+    <!-- Activity profil -->
+    <string name="follow_me">Follow me</string>
+    <string name="votre_commentaire">Votre commentaire</string>
 
     <!-- Activity catégories -->
     <string name="my_categories">Mes Catégories</string>

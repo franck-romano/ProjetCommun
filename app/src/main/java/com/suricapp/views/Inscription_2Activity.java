@@ -33,6 +33,7 @@ public class Inscription_2Activity extends ActionBarActivity implements View.OnC
     private Button mTerminerButton;
     // Progress bar
     private int mProgress = 0;
+    private SeekBar rayon;
 
     // User from previous intent
     private User mUserToSent;
@@ -52,7 +53,7 @@ public class Inscription_2Activity extends ActionBarActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription_2);
 
-        SeekBar rayon = (SeekBar)findViewById(R.id.activity_inscription_2rayon);
+        rayon = (SeekBar)findViewById(R.id.activity_inscription_2rayon);
         final TextView rayon_numeric = (TextView)findViewById(R.id.rayon_texte);
 
         mUserToSent = (User) getIntent().getSerializableExtra("user");
@@ -106,7 +107,6 @@ public class Inscription_2Activity extends ActionBarActivity implements View.OnC
                 SharedPreferences.Editor editor  = preferences.edit();
                 editor.putString("categories",getCheckBoxChoice());
                 editor.putInt("rayon", mProgress);
-                editor.putString("userLog", mUserToSent.getUser_pseudo());
                 editor.apply();
                 setResult(Variables.REQUEST_EXIT_GOOD);
                 this.finish();

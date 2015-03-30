@@ -135,7 +135,8 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
                             editor.putString("userLog", idTextView.getText().toString());
                             editor.putString("userLogId",tmp.getString("user_id"));
                             editor.apply();
-                            Intent intent = new Intent(ConnexionActivity.this, TimelineActivity.class);
+                            Intent intent = new Intent(ConnexionActivity.this, CategoriesActivity.class);
+                            intent.putExtra("fromConnexion",true);
                             startActivity(intent);
                             ((Activity)getLocalContext()).finish();
                         }
@@ -145,13 +146,16 @@ public class ConnexionActivity extends ActionBarActivity implements View.OnClick
                         }
                     }
                 } catch (JSONException e) {
-                    Log.w("ddd","ee");
+                    Log.w("Exception1",e.toString());
                     DialogCreation.createDialog(getLocalContext(),getString(R.string.erreur),getString(R.string.bad_mdp_login));
                     ViewModification.showProgress(false,mLoginStatusView,mLoginFormView,getLocalContext());
                 } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
+                    Log.w("Exception2",e.toString());
                 } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                    Log.w("Exception3",e.toString());
+                }catch (Exception e)
+                {
+                    Log.w("Exceptioné4",e.toString());
                 }
             }
         });

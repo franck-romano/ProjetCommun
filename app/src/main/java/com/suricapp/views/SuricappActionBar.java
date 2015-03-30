@@ -36,6 +36,8 @@ public class SuricappActionBar extends Activity {
         addDrawerItems();
     }
 
+
+
     private void setupDrawer(){
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.drawer_open, R.string.drawer_close) {
             /** Called when a drawer has settled in a completely open state. */
@@ -82,6 +84,11 @@ public class SuricappActionBar extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    public Context getLocalContext()
+    {
+        return this;
+    }
+
     private void addDrawerItems(){
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Variables.itemArray);
         mDrawerList.setAdapter(mAdapter);
@@ -92,9 +99,14 @@ public class SuricappActionBar extends Activity {
                 switch (position){
                     case 0:
                         Intent message = new Intent(getApplicationContext(), NewMessage.class);
-                        startActivity(message);
+                        startActivityForResult(message,Variables.REQUEST_CODE_MESSAGE_ACTIVITY);
                         break;
                     case 1:
+                        if(view.getContext() == getLocalContext())
+                        {
+                            mDrawerLayout.closeDrawers();
+                            return;
+                        }
                         Intent timeline = new Intent(getApplicationContext(), TimelineActivity.class);
                         startActivity(timeline);
                         break;
@@ -102,29 +114,26 @@ public class SuricappActionBar extends Activity {
                         Intent map = new Intent(getApplicationContext(), MapActivity.class);
                         startActivity(map);
                         break;
-                   /* case 3:
-                        Intent profil = new Intent(getApplicationContext(), ProfilActivity.class);
+                    case 3:
+                        Intent profil = new Intent(getApplicationContext(),ProfilActivity.class);
                         startActivity(profil);
                         break;
-                    /*case 3:
-                        Intent followers = new Intent(.this, followers.class);
-                        startActivity(followers);
-                        break;*/
-                    case 3:
-                        Intent categorie = new Intent(getApplicationContext(), CategoriesActivity.class);
-                        startActivity(categorie);
-                        break;
-                    /*case 5:
-                        Intent informations = new Intent(.this, Information.class);
-                        startActivity(informations);
-                        break;*/
                     case 4:
+                        Intent categorie = new Intent(getApplicationContext(), CategoriesActivity.class);
+                        startActivityForResult(categorie, Variables.REQUEST_CODE_CATEGORY_ACTIVITY);
+                        break;
+                    case 5:
                         Intent connexion = new Intent(SuricappActionBar.this, ConnexionActivity.class);
                         SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES, Context.MODE_PRIVATE);
                         preferences.edit().remove("userLog").commit();
+                        preferences.edit().remove("rayon").commit();
+                        preferences.edit().remove("userLogId").commit();
+                        preferences.edit().remove("categories").commit();
                         startActivity(connexion);
+                        finish();
                         break;
                 }
+                mDrawerLayout.closeDrawers();
             }
         });
     }

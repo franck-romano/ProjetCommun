@@ -5,6 +5,7 @@ import com.orm.dsl.Ignore;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by maxence on 17/03/15.
  */
-public class Message extends SugarRecord<Message>
+public class Message extends SugarRecord<Message> implements Serializable
 {
 
     /**
@@ -87,7 +88,7 @@ public class Message extends SugarRecord<Message>
         return message_id;
     }
 
-    public void setMessage_id(int message_id_) {
+    public void setMessage_id(int message_id) {
         this.message_id = message_id;
     }
 
@@ -109,11 +110,11 @@ public class Message extends SugarRecord<Message>
         this.message_id_user_fk = message_id_web_user_fk;
     }
 
-    public Message(int message_id_web, String message_title_fr_fr, String message_content_fr_fr,
+    public Message(int message_id, String message_title_fr_fr, String message_content_fr_fr,
                    int message_nb_like, int message_nb_unlike, int message_nb_view,
                    int message_nb_report, String message_status_fr_fr, Timestamp message_date,
                    int message_id_web_category_fk, int message_id_web_user_fk) {
-        this.message_id = message_id_web;
+        this.message_id = message_id;
         this.message_title_fr_fr = message_title_fr_fr;
         this.message_content_fr_fr = message_content_fr_fr;
         this.message_nb_like = message_nb_like;
