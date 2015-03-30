@@ -102,11 +102,6 @@ public class SuricappActionBar extends Activity {
                         startActivityForResult(message,Variables.REQUEST_CODE_MESSAGE_ACTIVITY);
                         break;
                     case 1:
-                        if(view.getContext() == getLocalContext())
-                        {
-                            mDrawerLayout.closeDrawers();
-                            return;
-                        }
                         Intent timeline = new Intent(getApplicationContext(), TimelineActivity.class);
                         startActivity(timeline);
                         break;

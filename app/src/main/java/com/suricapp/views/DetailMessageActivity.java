@@ -77,7 +77,7 @@ public class DetailMessageActivity extends SuricappActionBar implements View.OnC
     private Message mMessage;
 
     // List for userPosition
-    ArrayList<UserComment> userAdd = new ArrayList<>();
+    ArrayList<UserComment> userAdd;
 
 
     @Override
@@ -104,7 +104,6 @@ public class DetailMessageActivity extends SuricappActionBar implements View.OnC
         // List View
         commentList = (ListView)findViewById(R.id.activity_detail_message_listView);
         commentList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        allComments = new ArrayList<>();
 
         commentAdapter = new CommentListAdapter(this,R.layout.detail_message_list_row);
         commentList.setAdapter(commentAdapter);
@@ -129,7 +128,8 @@ public class DetailMessageActivity extends SuricappActionBar implements View.OnC
             public void setMyTaskComplete(String result) {
                 try {
                     JSONArray jarray = new JSONArray(result);
-                    Log.w("Result", result);
+                    userAdd = new ArrayList<UserComment>();
+                    allComments = new ArrayList<>();
                     StringBuilder sb = new StringBuilder(Integer.parseInt(jarray.getJSONObject(0).getString("comment_user_id_fk")));
                     for (int i = 0; i < jarray.length(); i++) {
                         UserComment uc = new UserComment();

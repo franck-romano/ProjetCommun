@@ -154,6 +154,7 @@ public class MessageListAdapter extends ArrayAdapter<Message> {
     public void swapItems(List<Message> items) {
         messageData.clear();
         messageData.addAll(items);
+        clear();
         addAll(items);
         notifyDataSetChanged();
     }

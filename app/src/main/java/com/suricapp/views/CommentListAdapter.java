@@ -91,6 +91,7 @@ public class CommentListAdapter extends ArrayAdapter<Comment> {
     public void swapItems(List<Comment> items) {
         commentData.clear();
         commentData.addAll(items);
+        clear();
         addAll(items);
         notifyDataSetChanged();
     }
