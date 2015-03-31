@@ -243,7 +243,6 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
         super.onPause();
         //On appelle la méthode pour se désabonner
         desabonnementGPS();
-        this.finish();
     }
 
     @Override
@@ -303,6 +302,7 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
     private void getAllMessageForUserCategorie() {
 
         allMessages = new ArrayList<>();
+        userAdd = new ArrayList<>();
         SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES, Context.MODE_PRIVATE);
         String tosplit = preferences.getString("categories","0");
         String categ[] = tosplit.split("-");
@@ -369,7 +369,7 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
         return this;
     }
 
-    ArrayList<UserMessageTimeline> userAdd = new ArrayList<>();
+    ArrayList<UserMessageTimeline> userAdd;
     private void getUserInfo(String req) {
         HTTPAsyncTask taskPseudo = new HTTPAsyncTask(getLocalContext());
         taskPseudo.execute(null, Variables.GETMULTIPLEUSERWITHID +req, "GET", null);
@@ -423,7 +423,7 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
         Message msg =hasMap.get(idMarker);
         Log.w("Message ",msg.getMessage_content_fr_fr());
         Message msgToReach =new Message();
-        for(Message m: this.allMessages){
+        for(Message m: allMessages){
               if(m.getMessage_id() == msg.getMessage_id()){
                   msgToReach=msg;
                   Log.w("TOUTITOITIU",msgToReach.getMessage_title_fr_fr());
