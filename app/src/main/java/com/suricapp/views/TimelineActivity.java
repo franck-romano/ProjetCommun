@@ -79,6 +79,7 @@ public class TimelineActivity extends SuricappActionBar {
 
     private void getAllMessageForUserCategorie() {
         allMessages = new ArrayList<>();
+        userAdd = new ArrayList<>();
         SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES, Context.MODE_PRIVATE);
         String tosplit = preferences.getString("categories","0");
         String categ[] = tosplit.split("-");
@@ -99,6 +100,7 @@ public class TimelineActivity extends SuricappActionBar {
                 "&message_latitude[gt]="+mLocationBetween.getLatitudePoint1()+
                 "&message_id_category_fk[in]="+sb.toString()
                 +"&order=message_date&orderType=DESC");
+        Log.w("LANCEMENT un", "LANCEMENT un");
 //        taskMessage.execute(null,"http://suricapp.esy.es/wsa.php/d_message/"+
 //                "?message_id_category_fk[in]="+sb.toString()+"&order=message_date&orderType=DESC","GET",null);
         taskMessage.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
@@ -107,7 +109,7 @@ public class TimelineActivity extends SuricappActionBar {
                 try {
                     JSONArray jarray = new JSONArray(result);
                     StringBuilder sb = new StringBuilder(Integer.parseInt(jarray.getJSONObject(0).getString("message_id_user_fk")));
-                    for (int i = 0; i < jarray.length() && i < 20; i++) {
+                    for (int i = 0; i < jarray.length(); i++) {
                         UserMessageTimeline umtl = new UserMessageTimeline();
                         JSONObject jsonObject = jarray.getJSONObject(i);
                         Message m = new Message();
@@ -126,12 +128,13 @@ public class TimelineActivity extends SuricappActionBar {
                         m.setMessage_latitude(Double.parseDouble(jsonObject.getString("message_latitude")));
                         m.setMessage_longitude(Double.parseDouble(jsonObject.getString("message_longitude")));
                         m.setMessage_title_fr_fr(jsonObject.getString("message_title_fr_fr"));
+                        m.setMessage_id_category_fk(Integer.parseInt(jsonObject.getString("message_id_category_fk")));
                         m.setMessage_content_fr_fr(jsonObject.getString("message_content_fr_fr"));
                         m.setMessage_nb_like(Integer.parseInt(jsonObject.getString("message_nb_like")));
                         m.setMessage_nb_unlike(Integer.parseInt(jsonObject.getString("message_nb_unlike")));
                         allMessages.add(m);
                     }
-                    Log.w("Retour un","retour un");
+                    Log.w("Retour un", "retour un");
                     getUserInfo(sb.toString());
                 } catch (JSONException e) {
                     Log.w("BAD1", e.toString());
@@ -144,11 +147,16 @@ public class TimelineActivity extends SuricappActionBar {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        messageAdapter.refreshView();
+    }
 
-
-    ArrayList<UserMessageTimeline> userAdd = new ArrayList<>();
+    ArrayList<UserMessageTimeline> userAdd;
     private void getUserInfo(String req) {
         HTTPAsyncTask taskPseudo = new HTTPAsyncTask(getLocalContext());
+        Log.w("LANCEMENT deux", "LANCEMENT deux");
         taskPseudo.execute(null, Variables.GETMULTIPLEUSERWITHID +req, "GET", null);
         taskPseudo.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
             @Override

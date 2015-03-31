@@ -224,7 +224,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:stackFromBottom="true"
                         android:transcriptMode="alwaysScroll"
                         android:layout_above="@id/activity_detail_message_commentaire_view"/>
                 </RelativeLayout>

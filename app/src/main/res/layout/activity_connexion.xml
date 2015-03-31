@@ -96,12 +96,12 @@
         android:text="@string/inscrivez_vous"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"/>
-    <TextView
+    <!--<TextView
         android:id="@+id/activity_connexion_oubli"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:text="@string/forgotPwd"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"/>-->
     </LinearLayout>
 </LinearLayout>

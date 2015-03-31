@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.suricapp.models.Message;
 import com.suricapp.tools.DateManipulation;
 import com.suricapp.tools.ImageManipulation;
+import com.suricapp.tools.LikeUnlike;
 import com.suricapp.tools.LocationUsage;
 
 import java.io.UnsupportedEncodingException;
@@ -42,6 +43,13 @@ public class MessageProfilListAdapter extends ArrayAdapter<Message> {
         this.context = context;
     }
 
+    public void refreshView()
+    {
+        clear();
+        addAll(messageData);
+        notifyDataSetChanged();
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         row = convertView;
@@ -57,6 +65,8 @@ public class MessageProfilListAdapter extends ArrayAdapter<Message> {
             mMessageInformation.nbjaime = (TextView)row.findViewById(R.id.activity_profil_row_nbjaime);
             mMessageInformation.nbjaimepas = (TextView)row.findViewById(R.id.activity_profil_row_nbjaimepas);
             mMessageInformation.titre = (TextView)row.findViewById(R.id.activity_profil_row_titre);
+            mMessageInformation.jaimepasView = row.findViewById(R.id.activity_profil_row_nbjaimepas_view);
+            mMessageInformation.jaimeView = row.findViewById(R.id.activity_profil_row_nbjaime_view);
 
             row.setTag(mMessageInformation);
         }
@@ -102,7 +112,25 @@ public class MessageProfilListAdapter extends ArrayAdapter<Message> {
             }
         });
 
+        mMessageInformation.jaimeView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LikeUnlike.likeMessageProfil(getCurrentAdapter(), context, message);
+            }
+        });
+        mMessageInformation.jaimepasView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LikeUnlike.unlikeMessageProfil(getCurrentAdapter(),context,message);
+            }
+        });
+
         return row;
+    }
+
+    private MessageProfilListAdapter getCurrentAdapter()
+    {
+        return this;
     }
 
     public void swapItems(List<Message> items) {
@@ -122,6 +150,8 @@ public class MessageProfilListAdapter extends ArrayAdapter<Message> {
 
     static class MessageInformationProfil
     {
+        View jaimeView;
+        View jaimepasView;
         TextView heure;
         TextView distance;
         TextView contenu;

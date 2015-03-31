@@ -13,6 +13,7 @@ public class Variables {
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE= 100;
     public static final int GALLERY_IMAGE_ACTIVITY_REQUEST_CODE= 200;
 
+    public static final String PUTMESSAGE = "http://suricapp.esy.es/ws.php/d_message/";
     public static final String GETMAILFORUSER = "http://suricapp.esy.es/ws.php/d_user/user_email/";
     public static final String GETUSERWITHID = "http://suricapp.esy.es/ws.php/d_user/user_id/";
     public static final String GETMULTIPLEUSERWITHID ="http://suricapp.esy.es/wsa.php/d_user/?user_id[in]=";

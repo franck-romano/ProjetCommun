@@ -94,7 +94,8 @@
                 android:layout_weight="1"
                 android:paddingTop="5dp"
                 android:layout_height="match_parent"
-                android:background="@layout/border_top_right_blue">
+                android:background="@layout/border_top_right_blue"
+                android:id="@+id/activity_timeline_row_nbjaime_view">
                 <TextView
                     android:id="@+id/activity_timeline_row_nbjaime"
                     android:layout_width="match_parent"
@@ -108,7 +109,8 @@
                 android:layout_weight="1"
                 android:paddingTop="5dp"
                 android:layout_height="match_parent"
-                android:background="@layout/border_top_blue">
+                android:background="@layout/border_top_blue"
+                android:id="@+id/activity_timeline_row_nbjaimepas_view">>
                 <TextView
                     android:id="@+id/activity_timeline_row_nbjaimepas"
                     android:layout_width="match_parent"

@@ -73,19 +73,7 @@ public class ProfilActivity extends SuricappActionBar {
 
         // View conf
         mPseudoTextView = (TextView) findViewById(R.id.activity_profil_pseudo);
-        mPseudoTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchProfilView();
-            }
-        });
         mPhotoImageView = (ImageView) findViewById(R.id.activity_profil_photo);
-        mPhotoImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchProfilView();
-            }
-        });
 
 
 
@@ -182,8 +170,10 @@ public class ProfilActivity extends SuricappActionBar {
                         mess.setMessage_latitude(Double.parseDouble(jsonObject.getString("message_latitude")));
                         mess.setMessage_longitude(Double.parseDouble(jsonObject.getString("message_longitude")));
                         mess.setMessage_content_fr_fr(jsonObject.getString("message_content_fr_fr"));
+                        mess.setMessage_id_category_fk(Integer.parseInt(jsonObject.getString("message_id_category_fk")));
                         mess.setMessage_title_fr_fr(jsonObject.getString("message_title_fr_fr"));
                         mess.setmUser(mUser);
+                        mess.setMessage_id_user_fk(Integer.parseInt(jsonObject.getString("message_id_user_fk")));
 
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                         Date parsedDate = dateFormat.parse(jsonObject.getString("message_date"));
@@ -197,6 +187,12 @@ public class ProfilActivity extends SuricappActionBar {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        messageAdapter.refreshView();
     }
 
 

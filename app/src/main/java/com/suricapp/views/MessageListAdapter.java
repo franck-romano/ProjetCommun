@@ -20,6 +20,7 @@ import com.suricapp.rest.client.HTTPAsyncTask;
 import com.suricapp.tools.DateManipulation;
 import com.suricapp.tools.DialogCreation;
 import com.suricapp.tools.ImageManipulation;
+import com.suricapp.tools.LikeUnlike;
 import com.suricapp.tools.LocationUsage;
 import com.suricapp.tools.Variables;
 
@@ -46,7 +47,10 @@ public class MessageListAdapter extends ArrayAdapter<Message> {
     private MessageInformation mMessageInformation;
 
 
-
+    private MessageListAdapter getCurrentAdapter()
+    {
+        return this;
+    }
     public MessageListAdapter(Context context, int layoutResourceId){
         super(context,layoutResourceId);
         this.layoutResourceId = layoutResourceId;
@@ -70,6 +74,8 @@ public class MessageListAdapter extends ArrayAdapter<Message> {
             mMessageInformation.nbjaime = (TextView)row.findViewById(R.id.activity_timeline_row_nbjaime);
             mMessageInformation.nbjaimepas = (TextView)row.findViewById(R.id.activity_timeline_row_nbjaimepas);
             mMessageInformation.titre = (TextView)row.findViewById(R.id.activity_timeline_row_titre);
+            mMessageInformation.jaimeView = row.findViewById(R.id.activity_timeline_row_nbjaime_view);
+            mMessageInformation.jaimepasView = row.findViewById(R.id.activity_timeline_row_nbjaimepas_view);
 
             row.setTag(mMessageInformation);
         }
@@ -103,6 +109,19 @@ public class MessageListAdapter extends ArrayAdapter<Message> {
 
         mMessageInformation.pseudo.setText(messageData.get(position).getmUser().getUser_pseudo());
         loadImage(messageData.get(position).getmUser().getUser_picture(),position);
+
+        mMessageInformation.jaimeView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LikeUnlike.likeMessageTimeline(getCurrentAdapter(),context,message);
+            }
+        });
+        mMessageInformation.jaimepasView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LikeUnlike.unlikeMessageTimeline(getCurrentAdapter(),context,message);
+            }
+        });
 
 
         // Action listenr to start profil or message detail view
@@ -151,6 +170,13 @@ public class MessageListAdapter extends ArrayAdapter<Message> {
         context.startActivity(intent);
     }
 
+    public void refreshView()
+    {
+        clear();
+        addAll(messageData);
+        notifyDataSetChanged();
+    }
+
     public void swapItems(List<Message> items) {
         messageData.clear();
         messageData.addAll(items);
@@ -173,6 +199,8 @@ public class MessageListAdapter extends ArrayAdapter<Message> {
 
     static class MessageInformation
     {
+        View jaimeView;
+        View jaimepasView;
         ImageView photo;
         TextView pseudo;
         TextView heure;
