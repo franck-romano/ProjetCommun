@@ -82,7 +82,7 @@
                 android:layout_height="30dp"
                 android:text="@string/photo"
                 android:textColor="#ffffff"
-                android:background="@color/blue"
+                android:background="@color/normal_text_color"
                 android:onClick="setDate"/>
         </LinearLayout>
         <LinearLayout
@@ -146,7 +146,7 @@
                 android:layout_height="30dp"
                 android:text="@string/date_naissance"
                 android:textColor="#ffffff"
-                android:background="@color/blue"
+                android:background="@color/normal_text_color"
                 android:onClick="setDate"/>
         </LinearLayout>
         <LinearLayout
