@@ -349,7 +349,7 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
                                 .position(coordMessage)
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                                 .snippet(m.getMessage_title_fr_fr())
-                                .title("Posté" + DateManipulation.timespanToStringWithoutA(m.getMessage_date())));
+                                .title("Posté " + DateManipulation.timespanToStringWithoutA(m.getMessage_date())));
                         hasMap.put(marker.getId(),m);
                         Log.w("Message content ",m.getMessage_content_fr_fr());
                         allMessages.add(m);
