@@ -56,6 +56,7 @@ public class DetailMessageActivity extends SuricappActionBar implements View.OnC
     private ListView commentList;
     private EditText mCommentEditText;
     private Button mEnvoyerButton;
+    private ImageView mCategImageView;
 
     /**
      * View to hide or show spinner
@@ -100,6 +101,7 @@ public class DetailMessageActivity extends SuricappActionBar implements View.OnC
         mCommentEditText=(EditText) findViewById(R.id.activity_detail_message_commentaire);
         mEnvoyerButton = (Button) findViewById(R.id.activity_detail_message_envoyer);
         mEnvoyerButton.setOnClickListener(this);
+        mCategImageView = (ImageView)findViewById(R.id.activity_detail_message_photo_categ);
 
         // List View
         commentList = (ListView)findViewById(R.id.activity_detail_message_listView);
@@ -112,9 +114,37 @@ public class DetailMessageActivity extends SuricappActionBar implements View.OnC
         mView = findViewById(R.id.detail_message_comment_view);
         mSpinnerView = findViewById(R.id.activity_detail_message_status);
 
+        setCorrectPhotoCateg();
+
         // Load Message informations
         loadMessageInfos();
         loadCommentAndUsers();
+
+    }
+
+    private void setCorrectPhotoCateg()
+    {
+        switch (mMessage.getMessage_id_category_fk())
+        {
+            case 2:
+                mCategImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.categ_transport));
+                break;
+            case 3:
+                mCategImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.categ_promotion));
+                break;
+            case 4 :
+                mCategImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.categ_rencontre));
+                break;
+            case 5 :
+                mCategImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.categ_evenement));
+                break;
+            case 6 :
+                mCategImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.categ_autorites));
+                break;
+            case 7 :
+                mCategImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.categ_covoiturage));
+                break;
+        }
 
     }
 

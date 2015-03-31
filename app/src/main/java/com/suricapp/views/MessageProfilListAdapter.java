@@ -67,6 +67,7 @@ public class MessageProfilListAdapter extends ArrayAdapter<Message> {
             mMessageInformation.titre = (TextView)row.findViewById(R.id.activity_profil_row_titre);
             mMessageInformation.jaimepasView = row.findViewById(R.id.activity_profil_row_nbjaimepas_view);
             mMessageInformation.jaimeView = row.findViewById(R.id.activity_profil_row_nbjaime_view);
+            mMessageInformation.photoCateg = (ImageView) row.findViewById(R.id.activity_profil_row_photo_categ);
 
             row.setTag(mMessageInformation);
         }
@@ -125,7 +126,34 @@ public class MessageProfilListAdapter extends ArrayAdapter<Message> {
             }
         });
 
+        setCorrectPhotoCateg(mMessageInformation,message);
         return row;
+    }
+
+    private void setCorrectPhotoCateg(MessageInformationProfil mMessageInformation,Message message)
+    {
+        switch (message.getMessage_id_category_fk())
+        {
+            case 2:
+                mMessageInformation.photoCateg.setImageBitmap(BitmapFactory.decodeResource(context.getResources(),R.drawable.categ_transport));
+                break;
+            case 3:
+                mMessageInformation.photoCateg.setImageBitmap(BitmapFactory.decodeResource(context.getResources(),R.drawable.categ_promotion));
+                break;
+            case 4 :
+                mMessageInformation.photoCateg.setImageBitmap(BitmapFactory.decodeResource(context.getResources(),R.drawable.categ_rencontre));
+                break;
+            case 5 :
+                mMessageInformation.photoCateg.setImageBitmap(BitmapFactory.decodeResource(context.getResources(),R.drawable.categ_evenement));
+                break;
+            case 6 :
+                mMessageInformation.photoCateg.setImageBitmap(BitmapFactory.decodeResource(context.getResources(),R.drawable.categ_autorites));
+                break;
+            case 7 :
+                mMessageInformation.photoCateg.setImageBitmap(BitmapFactory.decodeResource(context.getResources(),R.drawable.categ_covoiturage));
+                break;
+        }
+
     }
 
     private MessageProfilListAdapter getCurrentAdapter()
@@ -158,5 +186,6 @@ public class MessageProfilListAdapter extends ArrayAdapter<Message> {
         TextView nbjaime;
         TextView nbjaimepas;
         TextView titre;
+        ImageView photoCateg;
     }
 }
