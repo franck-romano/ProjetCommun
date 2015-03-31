@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Point;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -24,12 +25,33 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.suricapp.models.LocationBetween;
+import com.suricapp.models.Message;
+import com.suricapp.models.User;
+import com.suricapp.models.UserMessageTimeline;
+import com.suricapp.rest.client.HTTPAsyncTask;
+import com.suricapp.tools.DateManipulation;
+import com.suricapp.tools.LocationUsage;
 import com.suricapp.tools.Variables;
+import com.suricapp.tools.ViewModification;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.WeakHashMap;
 
 
-public class MapActivity extends FragmentActivity implements LocationListener{
+public class MapActivity extends FragmentActivity implements LocationListener,GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
 
     /**
      * Variables pour Google Maps
@@ -42,25 +64,26 @@ public class MapActivity extends FragmentActivity implements LocationListener{
     private ArrayAdapter<String> mAdapter;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
-
-
+    private ArrayList<Message> allMessages;
+    private LatLng coordMessage;
+    private HashMap<String, Message> hasMap = new HashMap<>();
+    private LocationBetween mLocationBetween;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-
-
         mDrawerList = (ListView)findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-
+        loadMessage();
         setupDrawer();
         addDrawerItems();
-
         createMapView();
-
+        googleMap.setOnMarkerClickListener(this);
+        googleMap.setOnInfoWindowClickListener(this);
+        //googleMap.animateCamera( CameraUpdateFactory.zoomTo( 7.0f ) );
         //Changement de vue vers la vue NewMessage
         ImageButton bouton = (ImageButton)findViewById(R.id.new_message);
-
+        getAllMessageForUserCategorie();
         bouton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -68,8 +91,20 @@ public class MapActivity extends FragmentActivity implements LocationListener{
                 startActivity(intent);
             }
         });
+       // messageAdapter = new MessageListAdapter(this,R.layout.activity_timeline_row);
     }
 
+    public void loadMessage()
+    {
+        Location myLocation = LocationUsage.getLastKnownLocation(this);
+        // Check if location is available
+        if(myLocation == null)
+            LocationUsage.buildAlertMessageNoGps(this);
+        else {
+            mLocationBetween = LocationUsage.getLocationBetween(myLocation,this);
+            getAllMessageForUserCategorie();
+        }
+    }
     @Override
     public void onResume() {
         super.onResume();
@@ -136,8 +171,7 @@ public class MapActivity extends FragmentActivity implements LocationListener{
 
     @Override
     public void onLocationChanged(Location location) {
-        final LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15.0f));
+
     }
 
     @Override
@@ -264,10 +298,153 @@ public class MapActivity extends FragmentActivity implements LocationListener{
         });
     }
 
+
+
+    private void getAllMessageForUserCategorie() {
+
+        allMessages = new ArrayList<>();
+        SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES, Context.MODE_PRIVATE);
+        String tosplit = preferences.getString("categories","0");
+        String categ[] = tosplit.split("-");
+        StringBuilder sb = new StringBuilder(categ[0]);
+        for (int i =1; i < categ.length; i++)
+        {
+            sb.append(","+categ[i]);
+        }
+        HTTPAsyncTask taskMessage= new HTTPAsyncTask(getLocalContext());
+
+        taskMessage.execute(null,"http://suricapp.esy.es/wsa.php/d_message/?message_longitude[gt]="+mLocationBetween.getLongitudePoint1()+
+                "&message_longitude[lt]="+mLocationBetween.getLongitudePoint2()+"&message_latitude[lt]="+mLocationBetween.getLatitudePoint2()
+                +"&message_latitude[gt]="+mLocationBetween.getLatitudePoint1()+"&message_id_category_fk[in]="+sb.toString()
+                +"&order=message_date&orderType=DESC","GET",null);
+
+        taskMessage.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
+            @Override
+            public void setMyTaskComplete(String result) {
+                try {
+                    JSONArray jarray = new JSONArray(result);
+                    StringBuilder sb = new StringBuilder(Integer.parseInt(jarray.getJSONObject(0).getString("message_id_user_fk")));
+                    for (int i = 0; i < jarray.length() && i < 20; i++) {
+                        UserMessageTimeline umtl = new UserMessageTimeline();
+                        JSONObject jsonObject = jarray.getJSONObject(i);
+                        Message m = new Message();
+                        m.setMessage_id_user_fk(Integer.parseInt(jsonObject.getString("message_id_user_fk")));
+                        m.setMessage_id(Integer.parseInt(jsonObject.getString("message_id")));
+                        umtl.setmUserId(Integer.parseInt(jsonObject.getString("message_id_user_fk")));
+                        umtl.setmMessagePosition(i);
+                        userAdd.add(umtl);
+                        sb.append("," + Integer.parseInt(jsonObject.getString("message_id_user_fk")));
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                        Date parsedDate = dateFormat.parse(jsonObject.getString("message_date"));
+                        m.setMessage_date(new java.sql.Timestamp(parsedDate.getTime()));
+                        m.setMessage_latitude(Double.parseDouble(jsonObject.getString("message_latitude")));
+                        m.setMessage_longitude(Double.parseDouble(jsonObject.getString("message_longitude")));
+                        m.setMessage_title_fr_fr(jsonObject.getString("message_title_fr_fr"));
+                        m.setMessage_content_fr_fr(jsonObject.getString("message_content_fr_fr"));
+                        m.setMessage_nb_like(Integer.parseInt(jsonObject.getString("message_nb_like")));
+                        m.setMessage_nb_unlike(Integer.parseInt(jsonObject.getString("message_nb_unlike")));
+
+                        coordMessage= new LatLng(m.getMessage_latitude(), m.getMessage_longitude());
+                        Marker marker = googleMap.addMarker(new MarkerOptions()
+                                .position(coordMessage)
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                                .snippet(m.getMessage_title_fr_fr())
+                                .title("Posté" + DateManipulation.timespanToStringWithoutA(m.getMessage_date())));
+                        hasMap.put(marker.getId(),m);
+                        Log.w("Message content ",m.getMessage_content_fr_fr());
+                        allMessages.add(m);
+                    }
+                    getUserInfo(sb.toString());
+                } catch (JSONException e) {
+                } catch (ParseException e) {
+                } catch (Exception e) {
+                }
+            }
+        });
+    }
+
+
+    public Context getLocalContext()
+    {
+        return this;
+    }
+
+    ArrayList<UserMessageTimeline> userAdd = new ArrayList<>();
+    private void getUserInfo(String req) {
+        HTTPAsyncTask taskPseudo = new HTTPAsyncTask(getLocalContext());
+        taskPseudo.execute(null, Variables.GETMULTIPLEUSERWITHID +req, "GET", null);
+        taskPseudo.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
+            @Override
+            public void setMyTaskComplete(String result) {
+                JSONArray jarray = null;
+                try {
+
+                    jarray = new JSONArray(result);
+                    for (int i=0;i<jarray.length();i++)
+                    {
+                        setUserToMessage(jarray.getJSONObject(i));
+                    }
+                    Log.w("Retour deux","retour deux");
+                } catch (Exception e) {
+                    Log.w("EXCEPTION", e.toString());
+                }
+            }
+        });
+    }
+
+    private void setUserToMessage(JSONObject jsonObject) throws JSONException {
+        User user = new User();
+        user.setUser_pseudo(jsonObject.getString("user_pseudo"));
+        user.setUser_id(Integer.parseInt(jsonObject.getString("user_id")));
+        user.setUser_picture(jsonObject.getString("user_picture"));
+        for(int i=0; i < userAdd.size();i++)
+        {
+            if(userAdd.get(i).getmUserId() == user.getUser_id()) {
+                allMessages.get(userAdd.get(i).getmMessagePosition()).setmUser(user);
+            }
+        }
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent timeline = new Intent(getApplicationContext(), TimelineActivity.class);
         startActivity(timeline);
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        marker.showInfoWindow();
+        return true;
+    }
+
+    public Message findMarkerMessage(Marker marker){
+        String idMarker = marker.getId();
+        Message msg =hasMap.get(idMarker);
+        Log.w("Message ",msg.getMessage_content_fr_fr());
+        Message msgToReach =new Message();
+        for(Message m: this.allMessages){
+              if(m.getMessage_id() == msg.getMessage_id()){
+                  msgToReach=msg;
+                  Log.w("TOUTITOITIU",msgToReach.getMessage_title_fr_fr());
+                  break;
+              }
+        }
+        return msgToReach;
+    }
+    private void launchDetailMessageView(Message mess)
+    {
+        Intent detailIntent = new Intent(this, DetailMessageActivity.class);
+        detailIntent.putExtra("message",mess);
+        startActivity(detailIntent);
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Message msgToReach;
+        msgToReach= findMarkerMessage(marker);
+        if(msgToReach != null) {
+            launchDetailMessageView(msgToReach);
+        }
     }
 }

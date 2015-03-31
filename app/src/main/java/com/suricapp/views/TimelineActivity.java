@@ -60,13 +60,11 @@ public class TimelineActivity extends SuricappActionBar {
         mView = findViewById(R.id.activity_timeline_view);
         mSpinnerView = findViewById(R.id.activity_timeline_status);
         loadMessage();
-
     }
 
     public void loadMessage()
     {
         ViewModification.showProgress(true,mSpinnerView,mView,this);
-
         Location myLocation = LocationUsage.getLastKnownLocation(this);
         // Check if location is available
         if(myLocation == null)

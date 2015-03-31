@@ -1,4 +1,5 @@
 package com.suricapp.models;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.orm.SugarRecord;
 import com.orm.dsl.Ignore;
 
@@ -9,6 +10,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.WeakHashMap;
 
 /**
  * Created by maxence on 17/03/15.

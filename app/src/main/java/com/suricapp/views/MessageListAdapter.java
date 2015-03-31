@@ -3,9 +3,7 @@ package com.suricapp.views;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.location.Location;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,24 +11,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.suricapp.models.Message;
-import com.suricapp.models.User;
-import com.suricapp.rest.client.HTTPAsyncTask;
 import com.suricapp.tools.DateManipulation;
-import com.suricapp.tools.DialogCreation;
 import com.suricapp.tools.ImageManipulation;
 import com.suricapp.tools.LikeUnlike;
 import com.suricapp.tools.LocationUsage;
-import com.suricapp.tools.Variables;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
