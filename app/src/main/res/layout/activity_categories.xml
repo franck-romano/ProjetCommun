@@ -194,8 +194,8 @@
                         android:id="@+id/activity_inscription_2rayon"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:max="5"
-                        android:progress="2"
+                        android:max="10"
+                        android:progress="5"
                         android:layout_marginTop="10dp"
                         />
                     <TextView

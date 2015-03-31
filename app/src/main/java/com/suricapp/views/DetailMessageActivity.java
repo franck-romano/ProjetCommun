@@ -180,6 +180,7 @@ public class DetailMessageActivity extends SuricappActionBar implements View.OnC
                     }
                     commentAdapter.swapItems(allComments);
                     ViewModification.showProgress(false, mSpinnerView, mView, getLocalContext());
+                    mEnvoyerButton.setEnabled(true);
                 } catch (Exception e) {
                     Log.w("EXCEPTION", e.toString());
                 }
@@ -261,11 +262,10 @@ public class DetailMessageActivity extends SuricappActionBar implements View.OnC
         switch (v.getId())
         {
             case R.id.activity_detail_message_envoyer:
-                if(mContentTextView.getText().toString().trim().matches(""))
+                if(mCommentEditText.getText().length() == 0)
                 {
                     DialogCreation.createDialog(this,getString(R.string.erreur),getString(R.string.commentaire_empty));
-                }
-                else
+                }else
                 {
                     postComment();
                 }
@@ -276,6 +276,7 @@ public class DetailMessageActivity extends SuricappActionBar implements View.OnC
     private void postComment()
     {
         // Date of post message
+        mEnvoyerButton.setEnabled(false);
         Comment comment = new Comment();
         comment.setComment_date(new Timestamp(System.currentTimeMillis()));
         comment.setComment_message_id_fk(mMessage.getMessage_id());

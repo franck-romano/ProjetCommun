@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
+
+import com.suricapp.models.LocationBetween;
 import com.suricapp.models.Message;
 import com.suricapp.models.User;
 import com.suricapp.models.UserMessageTimeline;
@@ -40,6 +42,8 @@ public class TimelineActivity extends SuricappActionBar {
     private View mView;
     private View mSpinnerView;
 
+    LocationBetween mLocationBetween;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         setContentView(R.layout.activity_timeline);
@@ -67,8 +71,10 @@ public class TimelineActivity extends SuricappActionBar {
         // Check if location is available
         if(myLocation == null)
             LocationUsage.buildAlertMessageNoGps(this);
-        else
+        else {
+            mLocationBetween = LocationUsage.getLocationBetween(myLocation,this);
             getAllMessageForUserCategorie();
+        }
     }
 
     private void getAllMessageForUserCategorie() {
@@ -82,8 +88,19 @@ public class TimelineActivity extends SuricappActionBar {
             sb.append(","+categ[i]);
         }
         HTTPAsyncTask taskMessage= new HTTPAsyncTask(getLocalContext());
-        taskMessage.execute(null,"http://suricapp.esy.es/wsa.php/d_message/"+
-                "?message_id_category_fk[in]="+sb.toString()+"&order=message_date&orderType=DESC","GET",null);
+
+        taskMessage.execute(null,"http://suricapp.esy.es/wsa.php/d_message/?message_longitude[gt]="+mLocationBetween.getLongitudePoint1()+
+                "&message_longitude[lt]="+mLocationBetween.getLongitudePoint2()+"&message_latitude[lt]="+mLocationBetween.getLatitudePoint2()
+                +"&message_latitude[gt]="+mLocationBetween.getLatitudePoint1()+"&message_id_category_fk[in]="+sb.toString()
+                +"&order=message_date&orderType=DESC","GET",null);
+        Log.w("URL","http://suricapp.esy.es/wsa.php/d_message/?message_longitude[gt]="+mLocationBetween.getLongitudePoint1()+
+                "&message_longitude[lt]="+mLocationBetween.getLongitudePoint2()+
+                "&message_latitude[lt]="+mLocationBetween.getLatitudePoint2() +
+                "&message_latitude[gt]="+mLocationBetween.getLatitudePoint1()+
+                "&message_id_category_fk[in]="+sb.toString()
+                +"&order=message_date&orderType=DESC");
+//        taskMessage.execute(null,"http://suricapp.esy.es/wsa.php/d_message/"+
+//                "?message_id_category_fk[in]="+sb.toString()+"&order=message_date&orderType=DESC","GET",null);
         taskMessage.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
             @Override
             public void setMyTaskComplete(String result) {
@@ -114,6 +131,7 @@ public class TimelineActivity extends SuricappActionBar {
                         m.setMessage_nb_unlike(Integer.parseInt(jsonObject.getString("message_nb_unlike")));
                         allMessages.add(m);
                     }
+                    Log.w("Retour un","retour un");
                     getUserInfo(sb.toString());
                 } catch (JSONException e) {
                     Log.w("BAD1", e.toString());
@@ -144,6 +162,7 @@ public class TimelineActivity extends SuricappActionBar {
                         setUserToMessage(jarray.getJSONObject(i));
                     }
                     messageAdapter.swapItems(allMessages);
+                    Log.w("Retour deux","retour deux");
                     ViewModification.showProgress(false,mSpinnerView,mView,getLocalContext());
                 } catch (Exception e) {
                     Log.w("EXCEPTION", e.toString());

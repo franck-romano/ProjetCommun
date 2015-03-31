@@ -4,17 +4,25 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationManager;
+import android.util.Log;
 
+import com.suricapp.models.LocationBetween;
 import com.suricapp.views.R;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
  * Created by maxence on 25/03/15.
  */
 public class LocationUsage {
+
+    public static final double latitude_between = 0.008998;
+    public static final double longitude_bewteen = 0.012984;
 
     /**
      * Ask to user to activate gps or not.
@@ -76,4 +84,18 @@ public class LocationUsage {
         }
         return bestLocation;
     }
+
+    public static LocationBetween getLocationBetween(Location actual,Context ctx)
+    {
+        double rayonPref = new Integer(ctx.getSharedPreferences(Variables.SURICAPPREFERENCES,Context.MODE_PRIVATE).getInt("rayon",0)).doubleValue();
+        double lat1 = Math.round((actual.getLatitude() - (rayonPref * latitude_between)) * 1000000.0) / 1000000.0;;
+        double long1=Math.round( (actual.getLongitude() - (rayonPref*longitude_bewteen)) * 1000000.0 ) / 1000000.0;
+        double lat2=Math.round( (actual.getLatitude() + (rayonPref*latitude_between)) * 1000000.0 ) / 1000000.0;
+        double long2 =Math.round( (actual.getLongitude() +(rayonPref*longitude_bewteen)) * 1000000.0 ) / 1000000.0;
+        LocationBetween lb = new LocationBetween(lat1,long1,lat2,long2);
+        Log.w("POINT",lb.toString());
+        return  lb;
+    }
+
+
 }
