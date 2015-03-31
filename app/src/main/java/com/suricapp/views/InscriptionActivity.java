@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -60,7 +61,7 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
     // Button from view
     private Button mPhotoButton;
     private Button mNextStepButton;
-
+    private TextView txtLabel;
     // Date picker
     private int year, month, day;
     private static int _MAJORITY = 18;
@@ -75,6 +76,9 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
 
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/corbel.ttf");
+        txtLabel=(TextView)findViewById(R.id.txtViewLabel);
+        txtLabel.setTypeface(type);
         // Date picker initialization
         mDateView = (TextView) findViewById(R.id.activity_inscription_date);
         wakeUpDate();

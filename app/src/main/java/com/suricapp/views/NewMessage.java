@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -45,7 +46,7 @@ public class NewMessage extends ActionBarActivity implements CompoundButton.OnCh
     private CheckBox mEventCheckBox;
     private CheckBox mRencontreCheckBox;
     private CheckBox mAutoriteCheckBox;
-
+    private TextView txtLabel;
     // Button
     private Button mEnvoyerButton;
 
@@ -61,7 +62,9 @@ public class NewMessage extends ActionBarActivity implements CompoundButton.OnCh
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_new_message);
         super.onCreate(savedInstanceState);
-
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/corbel.ttf");
+        txtLabel=(TextView)findViewById(R.id.txtViewLabel);
+        txtLabel.setTypeface(type);
         //View settings
         mTransportCheckBox = (CheckBox) findViewById(R.id.activity_new_message_categorie_transport);
         mTransportCheckBox.setOnCheckedChangeListener(this);

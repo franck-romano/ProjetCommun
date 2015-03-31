@@ -37,23 +37,18 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:gravity="center_horizontal"
-        android:src="@drawable/logo"
+        android:src="@drawable/logo3"
         android:paddingTop="30dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:layout_marginTop="40dp"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="@string/identifiant_"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textColor="@color/normal_text_color"/>
+
         <EditText
             android:id="@+id/activity_connexion_identifiant"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:hint="@string/identifiant"
             android:inputType="text"/>
@@ -62,18 +57,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center_horizontal"
         android:layout_marginTop="20dp">
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="@string/mot_de_passe_"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textColor="@color/normal_text_color"/>
+
         <EditText
             android:id="@+id/activity_connexion_mot_de_passe"
-            android:layout_width="fill_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
+
             android:hint="@string/mot_de_passe"
             android:inputType="textPassword"/>
     </LinearLayout>

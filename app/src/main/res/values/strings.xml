@@ -108,6 +108,9 @@
     <!-- Text Colors -->
     <color name="normal_text_color">#063040</color>
     <color name="normal_text_clear_color">#0F6878</color>
+
+    <color name="blue">#0F6878</color>
+    <color name="marron">#432918</color>
     <color name="white">#ffffff</color>
     <color name="background">#DEDEDE</color>
 

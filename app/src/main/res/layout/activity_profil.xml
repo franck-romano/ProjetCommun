@@ -22,7 +22,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:src="@drawable/bandeau"/>
+                        android:src="@drawable/bandeau4"/>
                     <LinearLayout
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="5dp"

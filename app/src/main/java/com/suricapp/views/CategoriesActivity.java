@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -28,7 +29,7 @@ public class CategoriesActivity extends ActionBarActivity implements View.OnClic
     private CheckBox mEventCheckBox;
     private CheckBox mRencontreCheckBox;
     private CheckBox mAutoriteCheckBox;
-
+    private TextView txtLabel;
     // Button
     private Button mEnvoyerButton;
 
@@ -41,7 +42,9 @@ public class CategoriesActivity extends ActionBarActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_categories);
         super.onCreate(savedInstanceState);
-
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/corbel.ttf");
+        txtLabel=(TextView)findViewById(R.id.txtViewLabel);
+        txtLabel.setTypeface(type);
         //View settings
         mTransportCheckBox = (CheckBox) findViewById(R.id.activity_categories_categorie_transport);
         mPromotionCheckBox = (CheckBox) findViewById(R.id.activity_categories_categorie_promotion);
