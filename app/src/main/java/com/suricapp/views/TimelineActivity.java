@@ -4,12 +4,14 @@ package com.suricapp.views;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.suricapp.models.LocationBetween;
 import com.suricapp.models.Message;
@@ -34,7 +36,7 @@ public class TimelineActivity extends SuricappActionBar {
     //Variables pour la listView
     private MessageListAdapter messageAdapter;
     private ListView messageList;
-
+    private TextView txtLabel;
 
     /**
      * View to hide or show spinner
@@ -48,6 +50,10 @@ public class TimelineActivity extends SuricappActionBar {
     protected void onCreate(Bundle savedInstanceState){
         setContentView(R.layout.activity_timeline);
         super.onCreate(savedInstanceState);
+
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/corbel.ttf");
+        txtLabel=(TextView)findViewById(R.id.txtViewLabel);
+        txtLabel.setTypeface(type);
 
         // List View
         messageList = (ListView)findViewById(R.id.timeline_listView);
@@ -88,19 +94,11 @@ public class TimelineActivity extends SuricappActionBar {
         }
         HTTPAsyncTask taskMessage= new HTTPAsyncTask(getLocalContext());
 
-        taskMessage.execute(null,"http://suricapp.esy.es/wsa.php/d_message/?message_longitude[gt]="+mLocationBetween.getLongitudePoint1()+
+        taskMessage.execute(null,"http://vps53670.ovh.net/~suricapp/wsa.php/d_message/?message_longitude[gt]="+mLocationBetween.getLongitudePoint1()+
                 "&message_longitude[lt]="+mLocationBetween.getLongitudePoint2()+"&message_latitude[lt]="+mLocationBetween.getLatitudePoint2()
                 +"&message_latitude[gt]="+mLocationBetween.getLatitudePoint1()+"&message_id_category_fk[in]="+sb.toString()
                 +"&order=message_date&orderType=DESC","GET",null);
-        Log.w("URL","http://suricapp.esy.es/wsa.php/d_message/?message_longitude[gt]="+mLocationBetween.getLongitudePoint1()+
-                "&message_longitude[lt]="+mLocationBetween.getLongitudePoint2()+
-                "&message_latitude[lt]="+mLocationBetween.getLatitudePoint2() +
-                "&message_latitude[gt]="+mLocationBetween.getLatitudePoint1()+
-                "&message_id_category_fk[in]="+sb.toString()
-                +"&order=message_date&orderType=DESC");
-        Log.w("LANCEMENT un", "LANCEMENT un");
-//        taskMessage.execute(null,"http://suricapp.esy.es/wsa.php/d_message/"+
-//                "?message_id_category_fk[in]="+sb.toString()+"&order=message_date&orderType=DESC","GET",null);
+
         taskMessage.setMyTaskCompleteListener(new HTTPAsyncTask.OnTaskComplete() {
             @Override
             public void setMyTaskComplete(String result) {

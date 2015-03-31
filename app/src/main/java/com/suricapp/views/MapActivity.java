@@ -80,8 +80,6 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
         createMapView();
         googleMap.setOnMarkerClickListener(this);
         googleMap.setOnInfoWindowClickListener(this);
-        //googleMap.animateCamera( CameraUpdateFactory.zoomTo( 7.0f ) );
-        //Changement de vue vers la vue NewMessage
         ImageButton bouton = (ImageButton)findViewById(R.id.new_message);
         getAllMessageForUserCategorie();
         bouton.setOnClickListener(new View.OnClickListener(){
@@ -91,7 +89,6 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
                 startActivity(intent);
             }
         });
-       // messageAdapter = new MessageListAdapter(this,R.layout.activity_timeline_row);
     }
 
     public void loadMessage()
@@ -394,7 +391,6 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
                     {
                         setUserToMessage(jarray.getJSONObject(i));
                     }
-                    Log.w("Retour deux","retour deux");
                 } catch (Exception e) {
                     Log.w("EXCEPTION", e.toString());
                 }
@@ -431,12 +427,10 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
     public Message findMarkerMessage(Marker marker){
         String idMarker = marker.getId();
         Message msg =hasMap.get(idMarker);
-        Log.w("Message ",msg.getMessage_content_fr_fr());
         Message msgToReach =new Message();
         for(Message m: allMessages){
               if(m.getMessage_id() == msg.getMessage_id()){
                   msgToReach=msg;
-                  Log.w("TOUTITOITIU",msgToReach.getMessage_title_fr_fr());
                   break;
               }
         }

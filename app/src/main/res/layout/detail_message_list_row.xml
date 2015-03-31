@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="fezffezf"
             android:layout_marginTop="2dp"
-            android:paddingLeft="10dp"
+            android:paddingLeft="200dp"
             android:textSize="16dp"
             android:textColor="@color/normal_text_clear_color"/>
         <LinearLayout
