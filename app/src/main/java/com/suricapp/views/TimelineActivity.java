@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,6 +38,7 @@ public class TimelineActivity extends SuricappActionBar {
     private MessageListAdapter messageAdapter;
     private ListView messageList;
     private TextView txtLabel;
+    private ImageView mRefreshImageView;
 
     /**
      * View to hide or show spinner
@@ -65,6 +67,13 @@ public class TimelineActivity extends SuricappActionBar {
         //View for show or not the spinner
         mView = findViewById(R.id.activity_timeline_view);
         mSpinnerView = findViewById(R.id.activity_timeline_status);
+        mRefreshImageView = (ImageView)findViewById(R.id.activity_timeline_refresh);
+        mRefreshImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadMessage();
+            }
+        });
         loadMessage();
     }
 

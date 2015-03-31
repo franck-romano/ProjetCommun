@@ -18,68 +18,77 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#DEDEDE"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:src="@drawable/bandeau4"/>
-                <TextView
-                    android:id="@+id/txtViewLabel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/activity_timeline_title"
-                    android:textStyle="bold"
-                    android:textColor="@color/blue"
-                    android:gravity="center"
-                    android:textSize="25sp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/normal_text_color"/>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/activity_timeline_status"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:visibility="gone" >
-                <ProgressBar
-                    style="?android:attr/progressBarStyleLarge"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp" />
-
-                <TextView
-                    android:id="@+id/login_status_message"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/loading"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:id="@+id/activity_timeline_view"
-                android:layout_height="match_parent">
-                <ListView
-                    android:id="@+id/timeline_listView"
-                    android:divider="@null"
-                    android:dividerHeight="15dp"
+                    android:background="#DEDEDE"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:src="@drawable/bandeau4"/>
+                    <TextView
+                        android:id="@+id/txtViewLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_timeline_title"
+                        android:textStyle="bold"
+                        android:textColor="@color/blue"
+                        android:gravity="center"
+                        android:textSize="25sp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/normal_text_color"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/activity_timeline_status"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp">
-                </ListView>
-            </LinearLayout>
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="gone" >
+                    <ProgressBar
+                        style="?android:attr/progressBarStyleLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/login_status_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/loading"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/activity_timeline_view"
+                    android:layout_height="match_parent">
+                    <ListView
+                        android:id="@+id/timeline_listView"
+                        android:divider="@null"
+                        android:dividerHeight="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp">
+                    </ListView>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:id="@+id/activity_timeline_refresh"
+                        android:layout_height="50dp"
+                        android:src="@drawable/refresh_icon"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_alignParentRight="true"/>
+                    </RelativeLayout>
             </LinearLayout>
         </FrameLayout>
         <ListView
