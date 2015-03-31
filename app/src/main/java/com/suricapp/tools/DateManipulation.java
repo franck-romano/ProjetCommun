@@ -22,8 +22,7 @@ public class DateManipulation {
     {
         String first = time.toString();
         String spaceplit[] = first.split(" ");
-        String dateSPlit[] = spaceplit[0].split("-");
         String heureSplit[] = spaceplit[1].split("\\.");
-        return "le "+dateSPlit[2]+"/"+dateSPlit[1]+"/"+dateSPlit[0]+" à "+heureSplit[0];
+        return " à "+heureSplit[0];
     }
 }
