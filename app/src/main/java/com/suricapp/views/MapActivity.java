@@ -37,7 +37,6 @@ import com.suricapp.rest.client.HTTPAsyncTask;
 import com.suricapp.tools.DateManipulation;
 import com.suricapp.tools.LocationUsage;
 import com.suricapp.tools.Variables;
-import com.suricapp.tools.ViewModification;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,11 +47,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.WeakHashMap;
 
 
 public class MapActivity extends FragmentActivity implements LocationListener,GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
 
+
+    private String [] tabCategory={"Défaut","Transport","Shopping","Rencontre","Evenement","Autorités"};
     /**
      * Variables pour Google Maps
      */
@@ -343,13 +343,23 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
                         m.setMessage_content_fr_fr(jsonObject.getString("message_content_fr_fr"));
                         m.setMessage_nb_like(Integer.parseInt(jsonObject.getString("message_nb_like")));
                         m.setMessage_nb_unlike(Integer.parseInt(jsonObject.getString("message_nb_unlike")));
+                        m.setMessage_id_category_fk(Integer.parseInt(jsonObject.getString("message_id_category_fk")));
 
+                        SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES,Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor  = preferences.edit();
+                        String categorie="";
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append("Posté" + DateManipulation.timespanToStringWithoutA(m.getMessage_date())).append(" - ").append(" Catégorie : "+tabCategory[m.getMessage_id_category_fk()-1]);
+
+
+
+                        editor.putString("categories",categorie);
                         coordMessage= new LatLng(m.getMessage_latitude(), m.getMessage_longitude());
                         Marker marker = googleMap.addMarker(new MarkerOptions()
                                 .position(coordMessage)
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                                 .snippet(m.getMessage_title_fr_fr())
-                                .title("Posté " + DateManipulation.timespanToStringWithoutA(m.getMessage_date())));
+                                .title(stringBuilder.toString()));
                         hasMap.put(marker.getId(),m);
                         Log.w("Message content ",m.getMessage_content_fr_fr());
                         allMessages.add(m);
