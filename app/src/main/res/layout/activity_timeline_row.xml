@@ -27,34 +27,45 @@
             android:layout_width="0dp"
             android:layout_weight="15"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/activity_timeline_row_pseudo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pseudo"
-                android:layout_marginLeft="5dp"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="@color/normal_text_color"
-                android:layout_gravity="left"/>
+            android:orientation="horizontal">
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginLeft="5dp"
-                android:gravity="left">
+                android:layout_width="0dp"
+                android:layout_weight="15"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/activity_timeline_row_heure"
+                    android:id="@+id/activity_timeline_row_pseudo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="heure"/>
-                <TextView
-                    android:id="@+id/activity_timeline_row_distance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="distance"/>
+                    android:text="@string/pseudo"
+                    android:layout_marginLeft="5dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@color/normal_text_color"
+                    android:layout_gravity="left"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="left">
+                    <TextView
+                        android:id="@+id/activity_timeline_row_heure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="heure"/>
+                    <TextView
+                        android:id="@+id/activity_timeline_row_distance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="distance"/>
+                </LinearLayout>
             </LinearLayout>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/activity_timeline_row_photo_categ"
+                android:src="@drawable/categ_autorites"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout

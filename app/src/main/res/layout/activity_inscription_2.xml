@@ -32,7 +32,7 @@
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:id="@+id/activity_inscription_first_step"
-        android:src="@drawable/appli1"
+        android:src="@drawable/appli1_2"
         android:layout_marginTop="-40sp"/>
     <TextView
         android:layout_width="fill_parent"
@@ -58,6 +58,11 @@
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:layout_margin="5dp">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/categ_transport"/>
                 <CheckBox
                     android:id="@+id/activity_inscription_2_transport"
                     android:layout_gravity="center_horizontal"
@@ -78,6 +83,11 @@
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:layout_margin="5dp">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/categ_evenement"/>
                 <CheckBox
                     android:id="@+id/activity_inscription_2_evenement"
                     android:layout_gravity="center_horizontal"
@@ -103,6 +113,11 @@
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:layout_margin="5dp">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/categ_promotion"/>
                 <CheckBox
                     android:id="@+id/activity_inscription_2_promotion"
                     android:layout_gravity="center_horizontal"
@@ -123,6 +138,11 @@
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:layout_margin="5dp">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/categ_rencontre"/>
                 <CheckBox
                     android:id="@+id/activity_inscription_2_rencontre"
                     android:layout_gravity="center_horizontal"
@@ -148,6 +168,11 @@
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:layout_margin="5dp">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/categ_covoiturage"/>
                 <CheckBox
                     android:id="@+id/activity_inscription_2_covoiturage"
                     android:layout_gravity="center_horizontal"
@@ -168,6 +193,11 @@
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:layout_margin="5dp">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/categ_autorites"/>
                 <CheckBox
                     android:id="@+id/activity_inscription_2_autorites"
                     android:layout_gravity="center_horizontal"
