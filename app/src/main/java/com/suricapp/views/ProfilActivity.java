@@ -82,6 +82,12 @@ public class ProfilActivity extends SuricappActionBar {
             mUser = (User) getIntent().getSerializableExtra("user");
             loadUserLocal();
         }
+        else if(getIntent().hasExtra("userId"))
+        {
+            mUser = new User();
+            mUser.setUser_id(getIntent().getIntExtra("userId",0));
+            loadUserFromWeb();
+        }
         else {
             mUser = new User();
             mUser.setUser_id(Integer.parseInt(getSharedPreferences(Variables.SURICAPPREFERENCES, Context.MODE_PRIVATE).getString("userLogId", "0")));
