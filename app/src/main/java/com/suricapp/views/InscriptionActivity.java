@@ -192,6 +192,7 @@ public class InscriptionActivity extends ActionBarActivity implements View.OnCli
                     Intent intent = new Intent(InscriptionActivity.this, Inscription_2Activity.class);
                     intent.putExtra("user",mUser);
                     startActivityForResult(intent,Variables.REQUEST_EXIT);
+
                 }
                break;
            case R.id.activity_inscription_photo :
