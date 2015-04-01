@@ -2,6 +2,7 @@ package com.suricapp.views;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
@@ -34,7 +35,7 @@ public class Inscription_2Activity extends ActionBarActivity implements View.OnC
     // Progress bar
     private int mProgress = 0;
     private SeekBar rayon;
-
+    private TextView txtLabel;
     // User from previous intent
     private User mUserToSent;
 
@@ -53,6 +54,10 @@ public class Inscription_2Activity extends ActionBarActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription_2);
 
+
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/corbel.ttf");
+        txtLabel=(TextView)findViewById(R.id.txtViewLabel);
+        txtLabel.setTypeface(type);
         rayon = (SeekBar)findViewById(R.id.activity_inscription_2rayon);
         final TextView rayon_numeric = (TextView)findViewById(R.id.rayon_texte);
 
