@@ -13,12 +13,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.suricapp.models.LocationBetween;
 import com.suricapp.models.Message;
 import com.suricapp.models.User;
 import com.suricapp.models.UserMessageTimeline;
 import com.suricapp.rest.client.HTTPAsyncTask;
+import com.suricapp.tools.DialogCreation;
 import com.suricapp.tools.LocationUsage;
 import com.suricapp.tools.Variables;
 import com.suricapp.tools.ViewModification;
@@ -82,7 +84,7 @@ public class TimelineActivity extends SuricappActionBar {
         ViewModification.showProgress(true,mSpinnerView,mView,this);
         Location myLocation = LocationUsage.getLastKnownLocation(this);
         // Check if location is available
-        if(myLocation == null)
+        if((myLocation == null))
             LocationUsage.buildAlertMessageNoGps(this);
         else {
             mLocationBetween = LocationUsage.getLocationBetween(myLocation,this);
@@ -90,7 +92,7 @@ public class TimelineActivity extends SuricappActionBar {
         }
     }
 
-    private void getAllMessageForUserCategorie() {
+    private int getAllMessageForUserCategorie() {
         allMessages = new ArrayList<>();
         userAdd = new ArrayList<>();
         SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES, Context.MODE_PRIVATE);
@@ -121,7 +123,6 @@ public class TimelineActivity extends SuricappActionBar {
                         m.setMessage_id_user_fk(Integer.parseInt(jsonObject.getString("message_id_user_fk")));
                         m.setMessage_id(Integer.parseInt(jsonObject.getString("message_id")));
 
-
                         umtl.setmUserId(Integer.parseInt(jsonObject.getString("message_id_user_fk")));
                         umtl.setmMessagePosition(i);
                         userAdd.add(umtl);
@@ -150,6 +151,7 @@ public class TimelineActivity extends SuricappActionBar {
                 }
             }
         });
+        return 1;
     }
 
     @Override

@@ -80,14 +80,12 @@ public class MesInformationsActivity extends ActionBarActivity implements View.O
     private boolean changed = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/corbel.ttf");
-        txtLabel=(TextView)findViewById(R.id.txtViewLabel);
-        txtLabel.setTypeface(type);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mes_informations);
 
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/corbel.ttf");
         txtLabel=(TextView)findViewById(R.id.txtViewLabel);
+        txtLabel.setTypeface(type);
         // Date picker initialization
         mDateView = (TextView) findViewById(R.id.activity_mes_informations_date);
         wakeUpDate();

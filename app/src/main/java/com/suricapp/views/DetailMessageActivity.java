@@ -26,6 +26,7 @@ import com.suricapp.rest.client.HTTPAsyncTask;
 import com.suricapp.tools.DateManipulation;
 import com.suricapp.tools.DialogCreation;
 import com.suricapp.tools.ImageManipulation;
+import com.suricapp.tools.LikeUnlike;
 import com.suricapp.tools.LocationUsage;
 import com.suricapp.tools.Variables;
 import com.suricapp.tools.ViewModification;
@@ -73,6 +74,8 @@ public class DetailMessageActivity extends SuricappActionBar implements View.OnC
     private TextView mContentTextView;
     private TextView mJaimeTextView;
     private TextView mJaimePasTextView;
+    private View jaime;
+    private View jaimepas;
 
     // Message shows
     private Message mMessage;
@@ -102,6 +105,20 @@ public class DetailMessageActivity extends SuricappActionBar implements View.OnC
         mEnvoyerButton = (Button) findViewById(R.id.activity_detail_message_envoyer);
         mEnvoyerButton.setOnClickListener(this);
         mCategImageView = (ImageView)findViewById(R.id.activity_detail_message_photo_categ);
+        jaime = findViewById(R.id.activity_detail_message_nbjaime_view);
+        jaime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LikeUnlike.likeMessageWithTextView(mJaimeTextView,getLocalContext(),mMessage);
+            }
+        });
+        jaimepas = findViewById(R.id.activity_detail_message_nbjaimepas_view);
+        jaimepas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LikeUnlike.unlikeMessageWithTextView(mJaimePasTextView,getLocalContext(),mMessage);
+            }
+        });
 
         // List View
         commentList = (ListView)findViewById(R.id.activity_detail_message_listView);
@@ -255,8 +272,8 @@ public class DetailMessageActivity extends SuricappActionBar implements View.OnC
             Log.w("EXCEPTION",e.toString());
         }
 
-        mJaimeTextView.setText(mMessage.getMessage_nb_like()+getString(R.string.jaime));
-        mJaimePasTextView.setText(mMessage.getMessage_nb_unlike()+getString(R.string.jaimepas));
+        mJaimeTextView.setText(mMessage.getMessage_nb_like()+" "+getString(R.string.jaime));
+        mJaimePasTextView.setText(mMessage.getMessage_nb_unlike()+" "+getString(R.string.jaimepas));
 
         mPhotoImageView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -7,6 +7,7 @@ public class Variables {
 
     //public final static String[] itemArray = { "Nouveau Message", "Vue Timeline", "Vue Carte","Mon profil", "Mes suiveurs", "Mes catégories", "Mes informations", "Déconnexion" };
     public final static String[] itemArray = { "Nouveau Message", "Autour de moi", "Carte des messages","Mon profil","Mes informations" , "Mes préférences","Déconnexion" };
+    //public final static String[] itemArray = { "Nouveau Message", "Autour de vous", "Carte des messages","Mon profil", "Mes préférences","Déconnexion" };
 
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
@@ -22,8 +23,9 @@ public class Variables {
     public static final String POSTUSER = "http://vps53670.ovh.net/~suricapp/ws.php/d_user/";
     public static final String POSTMESSAGE = "http://vps53670.ovh.net/~suricapp/ws.php/d_message/";
     public static final String POSTCOMMENT = "http://vps53670.ovh.net/~suricapp/ws.php/d_comment/";
+
     public static final String SURICAPPREFERENCES = "suricappprefs";
-    public static final String GETMESSAGEFORCATEG = "http://vps53670.ovh.net/~suricapp/ws.php/d_message/message_id_category_fk/";
+
     public static final String GETMESSAGEFROMUSER ="http://vps53670.ovh.net/~suricapp/ws.php/d_message/message_id_user_fk/";
     public static final String ORDERBYDATEDESC ="?by=message_date&order=desc";
     public static final String GETCOMMENTFROMMESSAGEID="http://vps53670.ovh.net/~suricapp/ws.php/d_comment/comment_message_id_fk/";

@@ -42,6 +42,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,6 +54,8 @@ import java.util.HashMap;
 public class MapActivity extends FragmentActivity implements LocationListener,GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
 
 
+    /* Basic array which contains categories
+     */
     private String [] tabCategory={"Défaut","Transport","Shopping","Rencontre","Evenement","Autorités"};
     /**
      * Variables pour Google Maps
@@ -257,7 +261,7 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
                 switch (position){
                     case 0:
                         Intent message = new Intent(getApplicationContext(), NewMessage.class);
-                        startActivity(message);
+                        startActivityForResult(message,Variables.REQUEST_CODE_MESSAGE_ACTIVITY);
                         break;
                     case 1:
                         Intent timeline = new Intent(getApplicationContext(), TimelineActivity.class);
@@ -267,29 +271,30 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
                         Intent map = new Intent(getApplicationContext(), MapActivity.class);
                         startActivity(map);
                         break;
-                   /* case 3:
-                        Intent profil = new Intent(getApplicationContext(), ProfilActivity.class);
+                    case 3:
+                        Intent profil = new Intent(getApplicationContext(),ProfilActivity.class);
                         startActivity(profil);
                         break;
-                    /*case 3:
-                        Intent followers = new Intent(.this, followers.class);
-                        startActivity(followers);
-                        break;*/
-                    case 3:
-                        Intent categorie = new Intent(getApplicationContext(), CategoriesActivity.class);
-                        startActivity(categorie);
-                        break;
-                    /*case 5:
-                        Intent informations = new Intent(.this, Information.class);
-                        startActivity(informations);
-                        break;*/
                     case 4:
-                        Intent connexion = new Intent(MapActivity.this, ConnexionActivity.class);
+                        Intent infos = new Intent(getApplicationContext(), MesInformationsActivity.class);
+                        startActivity(infos);
+                        break;
+                    case 5:
+                        Intent categorie = new Intent(getApplicationContext(), CategoriesActivity.class);
+                        startActivityForResult(categorie, Variables.REQUEST_CODE_CATEGORY_ACTIVITY);
+                        break;
+                    case 6:
+                        Intent connexion = new Intent(getApplicationContext(), ConnexionActivity.class);
                         SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES, Context.MODE_PRIVATE);
                         preferences.edit().remove("userLog").commit();
+                        preferences.edit().remove("rayon").commit();
+                        preferences.edit().remove("userLogId").commit();
+                        preferences.edit().remove("categories").commit();
                         startActivity(connexion);
+                        finish();
                         break;
                 }
+                mDrawerLayout.closeDrawers();
             }
         });
     }
@@ -310,7 +315,7 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
         }
         HTTPAsyncTask taskMessage= new HTTPAsyncTask(getLocalContext());
 
-        taskMessage.execute(null,"http://suricapp.esy.es/wsa.php/d_message/?message_longitude[gt]="+mLocationBetween.getLongitudePoint1()+
+        taskMessage.execute(null,"http://vps53670.ovh.net/~suricapp/wsa.php/d_message/?message_longitude[gt]="+mLocationBetween.getLongitudePoint1()+
                 "&message_longitude[lt]="+mLocationBetween.getLongitudePoint2()+"&message_latitude[lt]="+mLocationBetween.getLatitudePoint2()
                 +"&message_latitude[gt]="+mLocationBetween.getLatitudePoint1()+"&message_id_category_fk[in]="+sb.toString()
                 +"&order=message_date&orderType=DESC","GET",null);
@@ -347,18 +352,22 @@ public class MapActivity extends FragmentActivity implements LocationListener,Go
                         String categorie="";
                         StringBuilder stringBuilder = new StringBuilder();
                         stringBuilder.append("Posté" + DateManipulation.timespanToStringWithoutA(m.getMessage_date())).append(" - ").append(" Catégorie : "+tabCategory[m.getMessage_id_category_fk()-1]);
-
-
-
-                        editor.putString("categories",categorie);
+                        editor.putString("categories", categorie);
                         coordMessage= new LatLng(m.getMessage_latitude(), m.getMessage_longitude());
+                        String title="Undefined Title";
+                        String content="No content";
+                        try {
+                             title=URLDecoder.decode(m.getMessage_title_fr_fr(), "UTF-8");
+                             content = URLDecoder.decode(stringBuilder.toString(),"UTF-8");
+                        } catch (UnsupportedEncodingException e) {
+                            Log.w("EXCEPTION",e.toString());
+                        }
                         Marker marker = googleMap.addMarker(new MarkerOptions()
                                 .position(coordMessage)
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-                                .snippet(m.getMessage_title_fr_fr())
-                                .title(stringBuilder.toString()));
-                        hasMap.put(marker.getId(),m);
-                        Log.w("Message content ",m.getMessage_content_fr_fr());
+                                .snippet(title)
+                                .title(content));
+                        hasMap.put(marker.getId(), m);
                         allMessages.add(m);
                     }
                     getUserInfo(sb.toString());
