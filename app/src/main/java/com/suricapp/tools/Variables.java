@@ -6,7 +6,7 @@ package com.suricapp.tools;
 public class Variables {
 
     //public final static String[] itemArray = { "Nouveau Message", "Vue Timeline", "Vue Carte","Mon profil", "Mes suiveurs", "Mes catégories", "Mes informations", "Déconnexion" };
-    public final static String[] itemArray = { "Nouveau Message", "Autour de moi", "Carte des messages","Mon profil", "Mes préférences","Déconnexion" };
+    public final static String[] itemArray = { "Nouveau Message", "Autour de moi", "Carte des messages","Mon profil","Mes informations" , "Mes préférences","Déconnexion" };
 
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
@@ -14,6 +14,7 @@ public class Variables {
     public static final int GALLERY_IMAGE_ACTIVITY_REQUEST_CODE= 200;
 
     public static final String PUTMESSAGE = "http://vps53670.ovh.net/~suricapp/ws.php/d_message/";
+    public static final String PUTUSER = "http://vps53670.ovh.net/~suricapp/ws.php/d_user/";
     public static final String GETMAILFORUSER = "http://vps53670.ovh.net/~suricapp/ws.php/d_user/user_email/";
     public static final String GETUSERWITHID = "http://vps53670.ovh.net/~suricapp/ws.php/d_user/user_id/";
     public static final String GETMULTIPLEUSERWITHID ="http://vps53670.ovh.net/~suricapp/wsa.php/d_user/?user_id[in]=";

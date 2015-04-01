@@ -120,6 +120,7 @@
 
     <!-- Activity catégories -->
     <string name="my_categories">Mes Catégories</string>
+    <string name="my_informations">Mes informations</string>
 
     <!-- Connexion activity Text -->
     <string name="identifiant_">Login :</string>
@@ -131,6 +132,7 @@
 
     <!--Activity Timeline-->
     <string name="activity_timeline_title">Timeline</string>
+    <string name="title_activity_mes_informations">MesInformationsActivity</string>
 
 </resources>
 

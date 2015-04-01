@@ -7,59 +7,78 @@
     android:background="#DEDEDE"
     android:weightSum="1">
     <LinearLayout
+        android:id="@+id/activity_mes_informations_status"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone" >
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/login_status_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/loading"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/activity_mes_informations_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10sp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_gravity="center"
-            android:src="@drawable/logo3"/>
-        <TextView
+        android:orientation="vertical">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/inscrivez_vous"
-            android:textColor="@color/blue"
-            android:gravity="center"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"/>
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:src="@drawable/bandeau4"/>
+            <TextView
+                android:id="@+id/txtViewLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/my_informations"
+                android:textStyle="bold"
+                android:textColor="@color/blue"
+                android:gravity="center"
+                android:textSize="25sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/normal_text_color"/>
+        </LinearLayout>
     </LinearLayout>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:id="@+id/activity_inscription_first_step"
-        android:src="@drawable/appli1"
-        android:layout_marginTop="-40sp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginBottom="10sp"
         android:layout_marginRight="10sp"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="-20sp">
+        android:layout_marginLeft="10sp">
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_weight="1">
             <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/pseudo_"
-                android:textStyle="bold"
-                android:textColor="@color/normal_text_color"
-                android:gravity="center"
-                />
-            <EditText
-                android:id="@+id/activity_inscription_pseudo"
+                android:id="@+id/activity_mes_informations_pseudo"
                 android:layout_width="fill_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:hint="@string/pseudo"
                 android:inputType="text"
+                android:textStyle="bold"
+                android:textColor="@color/normal_text_color"
                 android:layout_weight="1"
                 />
         </LinearLayout>
@@ -76,7 +95,7 @@
                 android:textColor="@color/normal_text_color"
                 android:gravity="center"/>
             <Button
-                android:id="@+id/activity_inscription_photo"
+                android:id="@+id/activity_mes_informations_photo"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text="@string/photo"
@@ -90,18 +109,13 @@
             android:orientation="horizontal"
             android:layout_weight="1">
             <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/mail_"
-                android:textStyle="bold"
-                android:textColor="@color/normal_text_color"
+                android:layout_gravity="center"
                 android:gravity="center"
-                />
-            <EditText
-                android:id="@+id/activity_inscription_mail"
+                android:id="@+id/activity_mes_informations_mail"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/mail"
+                android:textStyle="bold"
+                android:textColor="@color/normal_text_color"
                 android:inputType="text"
                 android:layout_weight="1"
                 />
@@ -120,7 +134,7 @@
                 android:gravity="center"
                 />
             <EditText
-                android:id="@+id/activity_inscription_ville"
+                android:id="@+id/activity_mes_informations_ville"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/ville"
@@ -140,7 +154,7 @@
                 android:textColor="@color/normal_text_color"
                 android:gravity="center"/>
             <Button
-                android:id="@+id/activity_inscription_date"
+                android:id="@+id/activity_mes_informations_date"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text="@string/date_naissance"
@@ -164,7 +178,7 @@
             <EditText
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/activity_inscription_password"
+                android:id="@+id/activity_mes_informations_password"
                 android:inputType="textPassword"
                 android:hint="@string/mot_de_passe"
                 android:layout_weight="1" />
@@ -185,7 +199,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/activity_inscription_confirmation"
+                android:id="@+id/activity_mes_informations_confirmation"
                 android:inputType="textPassword"
                 android:hint="@string/confirmation"
                 android:layout_weight="1" />
@@ -197,14 +211,14 @@
             android:gravity="center_horizontal"
             android:layout_weight="1">
             <Button
-                android:id="@+id/activity_inscription_suivant"
+                android:id="@+id/activity_mes_informations_suivant"
                 android:layout_width="wrap_content"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:layout_height="wrap_content"
                 android:background="@color/normal_text_color"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/etape_suivante"
+                android:text="@string/send"
                 android:textColor="@color/white"/>
         </LinearLayout>
     </LinearLayout>

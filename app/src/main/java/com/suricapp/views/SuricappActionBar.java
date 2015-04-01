@@ -114,10 +114,14 @@ public class SuricappActionBar extends Activity {
                         startActivity(profil);
                         break;
                     case 4:
+                        Intent infos = new Intent(getApplicationContext(), MesInformationsActivity.class);
+                        startActivity(infos);
+                        break;
+                    case 5:
                         Intent categorie = new Intent(getApplicationContext(), CategoriesActivity.class);
                         startActivityForResult(categorie, Variables.REQUEST_CODE_CATEGORY_ACTIVITY);
                         break;
-                    case 5:
+                    case 6:
                         Intent connexion = new Intent(SuricappActionBar.this, ConnexionActivity.class);
                         SharedPreferences preferences = getSharedPreferences(Variables.SURICAPPREFERENCES, Context.MODE_PRIVATE);
                         preferences.edit().remove("userLog").commit();
