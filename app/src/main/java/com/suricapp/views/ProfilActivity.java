@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -55,6 +56,10 @@ public class ProfilActivity extends SuricappActionBar {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_profil);
         super.onCreate(savedInstanceState);
+
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/corbel.ttf");
+        mPseudoTextView=(TextView)findViewById(R.id.activity_profil_pseudo);
+        mPseudoTextView.setTypeface(type);
 
         //All messages intialisation
         allMessages = new ArrayList<>();

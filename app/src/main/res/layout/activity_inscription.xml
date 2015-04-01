@@ -17,6 +17,7 @@
             android:layout_gravity="center"
             android:src="@drawable/logo3"/>
         <TextView
+            android:id="@+id/txtViewLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/inscrivez_vous"
